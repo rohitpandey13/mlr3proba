@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GLM with Elastic Net Regularization Survival Learner — LearnerSurvGlmnet • mlr3proba</title>
+<title>Cox Model with Likelihood Based Boosting Survival Learner — LearnerSurvCVCoxboost • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,18 +47,20 @@
 
 
 
-<meta property="og:title" content="GLM with Elastic Net Regularization Survival Learner — LearnerSurvGlmnet" />
-<meta property="og:description" content="Calls glmnet::glmnet().
-lp is predicted by glmnet::predict.glmnet()
+<meta property="og:title" content="Cox Model with Likelihood Based Boosting Survival Learner — LearnerSurvCVCoxboost" />
+<meta property="og:description" content="Calls CoxBoost::cv.CoxBoost.
+lp is predicted by CoxBoost::predict.CoxBoost
+distr is predicted by CoxBoost::predict.CoxBoost
 crank is identical to lp
 
 
-Use LearnerSurvGlmnet and LearnerSurvCVGlmnet for glmnets without and with internal
-cross-validation, respectively. Tuning using the internal optimizer in LearnerSurvCVGlmnet
-may be more efficient when tuning lambda only. However, for tuning multiple hyperparameters,
-mlr3tuning and LearnerSurvGlmnet will likely give better results.
-Parameter s (value of the regularization parameter used for predictions) is set to the median
-of the lambda sequence by default, but needs to be tuned by the user." />
+Use LearnerSurvCoxboost and LearnerSurvCVCoxboost for Cox boosting without and with internal
+cross-validation of boosting step number, respectively. Tuning using the internal optimizer in
+LearnerSurvCVCoxboost may be more efficient when tuning stepno only. However, for tuning
+multiple hyperparameters, mlr3tuning and LearnerSurvCoxboost will likely give better
+results.
+If penalty == &quot;optimCoxBoostPenalty&quot; then CoxBoost::optimCoxBoostPenalty is used to determine
+the penalty value to be used in CoxBoost::cv.CoxBoost." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -160,23 +162,25 @@ of the lambda sequence by default, but needs to be tuned by the user." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>GLM with Elastic Net Regularization Survival Learner</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/LearnerSurvGlmnet.R'><code>R/LearnerSurvGlmnet.R</code></a></small>
-    <div class="hidden name"><code>LearnerSurvGlmnet.Rd</code></div>
+    <h1>Cox Model with Likelihood Based Boosting Survival Learner</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/LearnerSurvCVCoxboost.R'><code>R/LearnerSurvCVCoxboost.R</code></a></small>
+    <div class="hidden name"><code>LearnerSurvCVCoxboost.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calls <code><a href='https://rdrr.io/pkg/glmnet/man/glmnet.html'>glmnet::glmnet()</a></code>.</p><ul>
-<li><p>lp is predicted by <code><a href='https://rdrr.io/pkg/glmnet/man/predict.glmnet.html'>glmnet::predict.glmnet()</a></code></p></li>
+    <p>Calls <a href='https://rdrr.io/pkg/CoxBoost/man/cv.CoxBoost.html'>CoxBoost::cv.CoxBoost</a>.</p><ul>
+<li><p>lp is predicted by <a href='https://rdrr.io/pkg/CoxBoost/man/predict.CoxBoost.html'>CoxBoost::predict.CoxBoost</a></p></li>
+<li><p>distr is predicted by <a href='https://rdrr.io/pkg/CoxBoost/man/predict.CoxBoost.html'>CoxBoost::predict.CoxBoost</a></p></li>
 <li><p><code>crank</code> is identical to <code>lp</code></p></li>
 </ul>
 
-<p>Use LearnerSurvGlmnet and <a href='LearnerSurvCVGlmnet.html'>LearnerSurvCVGlmnet</a> for glmnets without and with internal
-cross-validation, respectively. Tuning using the internal optimizer in <a href='LearnerSurvCVGlmnet.html'>LearnerSurvCVGlmnet</a>
-may be more efficient when tuning lambda only. However, for tuning multiple hyperparameters,
-<a href='https://CRAN.R-project.org/package=mlr3tuning'><span class="pkg">mlr3tuning</span></a> and LearnerSurvGlmnet will likely give better results.</p>
-<p>Parameter <code>s</code> (value of the regularization parameter used for predictions) is set to the median
-of the <code>lambda</code> sequence by default, but needs to be tuned by the user.</p>
+<p>Use <a href='LearnerSurvCoxboost.html'>LearnerSurvCoxboost</a> and LearnerSurvCVCoxboost for Cox boosting without and with internal
+cross-validation of boosting step number, respectively. Tuning using the internal optimizer in
+LearnerSurvCVCoxboost may be more efficient when tuning <code>stepno</code> only. However, for tuning
+multiple hyperparameters, <a href='https://CRAN.R-project.org/package=mlr3tuning'><span class="pkg">mlr3tuning</span></a> and <a href='LearnerSurvCoxboost.html'>LearnerSurvCoxboost</a> will likely give better
+results.</p>
+<p>If <code>penalty == "optimCoxBoostPenalty"</code> then <a href='https://rdrr.io/pkg/CoxBoost/man/optimCoxBoostPenalty.html'>CoxBoost::optimCoxBoostPenalty</a> is used to determine
+the penalty value to be used in <a href='https://rdrr.io/pkg/CoxBoost/man/cv.CoxBoost.html'>CoxBoost::cv.CoxBoost</a>.</p>
     </div>
 
 
@@ -186,9 +190,9 @@ of the <code>lambda</code> sequence by default, but needs to be tuned by the use
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Learner.html'>Learner</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre><span class='no'>LearnerSurvGlmnet</span>$<span class='fu'>new</span>()
-<span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.glmnet"</span>)
-<span class='fu'>lrn</span>(<span class='st'>"surv.glmnet"</span>)</pre>
+<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre><span class='no'>LearnerSurvCVCoxboost</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.cvcoxboost"</span>)
+<span class='fu'>lrn</span>(<span class='st'>"surv.cvcoxboost"</span>)</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
@@ -196,24 +200,21 @@ of the <code>lambda</code> sequence by default, but needs to be tuned by the use
 
 <ul>
 <li><p>Type: "surv"</p></li>
-<li><p>Predict Types: <code>crank, lp</code></p></li>
-<li><p>Feature Types: <code>integer, numeric, factor</code></p></li>
+<li><p>Predict Types: <code>distr, crank, lp</code></p></li>
+<li><p>Feature Types: <code>integer, numeric, factor, logical</code></p></li>
 <li><p>Properties: <code>weights</code></p></li>
-<li><p>Packages: <a href='https://CRAN.R-project.org/package=glmnet'><span class="pkg">glmnet</span></a> <a href='https://CRAN.R-project.org/package=survival'><span class="pkg">survival</span></a></p></li>
+<li><p>Packages: <a href='https://CRAN.R-project.org/package=CoxBoost'><span class="pkg">CoxBoost</span></a> <a href='https://CRAN.R-project.org/package=Matrix'><span class="pkg">Matrix</span></a> <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a> <a href='https://CRAN.R-project.org/package=survival'><span class="pkg">survival</span></a></p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Friedman J, Hastie T, Tibshirani R (2010).
-&#8220;Regularization Paths for Generalized Linear Models via Coordinate Descent.&#8221;
-<em>Journal of Statistical Software</em>, <b>33</b>(1).
-doi: <a href='https://doi.org/10.18637/jss.v033.i01'>10.18637/jss.v033.i01</a>
-.</p>
+    <p>Binder H, Allignol A, Schumacher M, Beyersmann J (2009).
+&#8220;Boosting for high-dimensional time-to-event data with competing risks.&#8221;
+<em>Bioinformatics</em>, <b>25</b>, 890--896.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other survival learners: 
 <code><a href='LearnerSurvBlackboost.html'>LearnerSurvBlackboost</a></code>,
-<code><a href='LearnerSurvCVCoxboost.html'>LearnerSurvCVCoxboost</a></code>,
 <code><a href='LearnerSurvCVGlmnet.html'>LearnerSurvCVGlmnet</a></code>,
 <code><a href='LearnerSurvCoxPH.html'>LearnerSurvCoxPH</a></code>,
 <code><a href='LearnerSurvCoxboost.html'>LearnerSurvCoxboost</a></code>,
@@ -221,6 +222,7 @@ doi: <a href='https://doi.org/10.18637/jss.v033.i01'>10.18637/jss.v033.i01</a>
 <code><a href='LearnerSurvGBM.html'>LearnerSurvGBM</a></code>,
 <code><a href='LearnerSurvGamboost.html'>LearnerSurvGamboost</a></code>,
 <code><a href='LearnerSurvGlmboost.html'>LearnerSurvGlmboost</a></code>,
+<code><a href='LearnerSurvGlmnet.html'>LearnerSurvGlmnet</a></code>,
 <code><a href='LearnerSurvKaplan.html'>LearnerSurvKaplan</a></code>,
 <code><a href='LearnerSurvMboost.html'>LearnerSurvMboost</a></code>,
 <code><a href='LearnerSurvNelson.html'>LearnerSurvNelson</a></code>,
@@ -233,15 +235,15 @@ doi: <a href='https://doi.org/10.18637/jss.v033.i01'>10.18637/jss.v033.i01</a>
 <code><a href='LearnerSurvSVM.html'>LearnerSurvSVM</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
-    <p><code><a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a></code> -&gt; <code><a href='LearnerSurv.html'>mlr3proba::LearnerSurv</a></code> -&gt; <code>LearnerSurvGlmnet</code></p>
+    <p><code><a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a></code> -&gt; <code><a href='LearnerSurv.html'>mlr3proba::LearnerSurv</a></code> -&gt; <code>LearnerSurvCVCoxboost</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>LearnerSurvGlmnet$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>LearnerSurvGlmnet$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>LearnerSurvCVCoxboost$new()</code></a></p></li>
+<li><p><a href='#method-clone'><code>LearnerSurvCVCoxboost$clone()</code></a></p></li>
 </ul>
 <p><details ><summary>Inherited methods</summary>
 <ul>
@@ -258,12 +260,12 @@ doi: <a href='https://doi.org/10.18637/jss.v033.i01'>10.18637/jss.v033.i01</a>
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>LearnerSurvGlmnet</span>$<span class='fu'>new</span>()</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvCVCoxboost</span>$<span class='fu'>new</span>()</pre><p></div></p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>LearnerSurvGlmnet</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvCVCoxboost</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>

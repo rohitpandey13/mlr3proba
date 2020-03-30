@@ -46,10 +46,16 @@
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvBlackboost.html</loc>
   </url>
   <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvCVCoxboost.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvCVGlmnet.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvCoxPH.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvCoxboost.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvFlexible.html</loc>
