@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gradient Boosting with Component-wise Linear Models Survival Learner — LearnerSurvGlmboost • mlr3proba</title>
+<title>CoxPH models based on gradient boosted trees Survival Learner — LearnerSurvXgboost • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,19 +47,21 @@
 
 
 
-<meta property="og:title" content="Gradient Boosting with Component-wise Linear Models Survival Learner — LearnerSurvGlmboost" />
-<meta property="og:description" content="Calls mboost::glmboost().
-lp is predicted by mboost::predict.mboost()
-distr is predicted by mboost::survFit() which assumes a PH fit with a Breslow estimator
-crank is identical to lp
+<meta property="og:title" content="CoxPH models based on gradient boosted trees Survival Learner — LearnerSurvXgboost" />
+<meta property="og:description" content="Calls xgboost::xgboost().
+distr is predicted by stats::predict()
+crank is predicted as the expectation of the survival distribution, distr
 
 
-The dist parameter is specified slightly differently than in mboost. Whereas the latter
-takes in objects, in this learner instead a string is specified in order to identify which distribution
-to use. As the default in mboost is the Gaussian family, which is not compatible with
-survival models, instead we have by default &quot;coxph&quot;.
-If the value given to the Family parameter is &quot;custom.family&quot; then an object of class
-mboost::Family() needs to be passed to the custom.family parameter." />
+#' eXtreme Gradient Boosting regression for Cox PH model.
+Calls xgboost::xgb.train() from package xgboost.
+We changed the following defaults for this learner:
+Verbosity is reduced by setting verbose to 0.
+Number of boosting iterations nrounds is set to 1.
+The objective is set to survival:cox.
+The eval_metric is set to cox-nloglik
+
+" />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -161,24 +163,26 @@ mboost::Family() needs to be passed to the custom.family parameter." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Gradient Boosting with Component-wise Linear Models Survival Learner</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/LearnerSurvGlmboost.R'><code>R/LearnerSurvGlmboost.R</code></a></small>
-    <div class="hidden name"><code>LearnerSurvGlmboost.Rd</code></div>
+    <h1>CoxPH models based on gradient boosted trees Survival Learner</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/LearnerSurvXGBoost.R'><code>R/LearnerSurvXGBoost.R</code></a></small>
+    <div class="hidden name"><code>LearnerSurvXgboost.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calls <code><a href='https://rdrr.io/pkg/mboost/man/glmboost.html'>mboost::glmboost()</a></code>.</p><ul>
-<li><p>lp is predicted by <code><a href='https://rdrr.io/pkg/mboost/man/methods.html'>mboost::predict.mboost()</a></code></p></li>
-<li><p>distr is predicted by <code><a href='https://rdrr.io/pkg/mboost/man/survFit.html'>mboost::survFit()</a></code> which assumes a PH fit with a Breslow estimator</p></li>
-<li><p><code>crank</code> is identical to <code>lp</code></p></li>
+    <p>Calls <code><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost::xgboost()</a></code>.</p><ul>
+<li><p>distr is predicted by <code><a href='https://rdrr.io/r/stats/predict.html'>stats::predict()</a></code></p></li>
+<li><p><code>crank</code> is predicted as the expectation of the survival distribution, <code>distr</code></p></li>
 </ul>
 
-<p>The <code>dist</code> parameter is specified slightly differently than in <a href='https://CRAN.R-project.org/package=mboost'><span class="pkg">mboost</span></a>. Whereas the latter
-takes in objects, in this learner instead a string is specified in order to identify which distribution
-to use. As the default in <a href='https://CRAN.R-project.org/package=mboost'><span class="pkg">mboost</span></a> is the Gaussian family, which is not compatible with
-survival models, instead we have by default <code>"coxph"</code>.</p>
-<p>If the value given to the <code>Family</code> parameter is "custom.family" then an object of class
-<code><a href='https://rdrr.io/pkg/mboost/man/Family.html'>mboost::Family()</a></code> needs to be passed to the <code>custom.family</code> parameter.</p>
+<p>#' eXtreme Gradient Boosting regression for Cox PH model.
+Calls <code><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost::xgb.train()</a></code> from package <a href='https://CRAN.R-project.org/package=xgboost'><span class="pkg">xgboost</span></a>.</p>
+<p>We changed the following defaults for this learner:</p><ul>
+<li><p>Verbosity is reduced by setting <code>verbose</code> to <code>0</code>.</p></li>
+<li><p>Number of boosting iterations <code>nrounds</code> is set to <code>1</code>.</p></li>
+<li><p>The <code>objective</code> is set to <code>survival:cox</code>.</p></li>
+<li><p>The <code>eval_metric</code> is set to <code>cox-nloglik</code></p></li>
+</ul>
+
     </div>
 
 
@@ -188,9 +192,9 @@ survival models, instead we have by default <code>"coxph"</code>.</p>
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Learner.html'>Learner</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre><span class='no'>LearnerSurvGlmboost</span>$<span class='fu'>new</span>()
-<span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.glmboost"</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.glmboost"</span>)</pre>
+<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre><span class='no'>LearnerSurvXgboost</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.xgboost"</span>)
+<span class='fu'>lrn</span>(<span class='st'>"surv.xgboost"</span>)</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
@@ -198,48 +202,28 @@ survival models, instead we have by default <code>"coxph"</code>.</p>
 
 <ul>
 <li><p>Type: "surv"</p></li>
-<li><p>Predict Types: <code>distr, crank, lp</code></p></li>
-<li><p>Feature Types: <code>integer, numeric, factor, logical</code></p></li>
-<li><p>Properties: <code>-</code></p></li>
-<li><p>Packages: <a href='https://CRAN.R-project.org/package=mboost'><span class="pkg">mboost</span></a> <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a> <a href='https://CRAN.R-project.org/package=survival'><span class="pkg">survival</span></a></p></li>
+<li><p>Predict Types: <code>crank, lp</code></p></li>
+<li><p>Feature Types: <code>logical, integer, numeric</code></p></li>
+<li><p>Properties: <code>importance, missings, weights</code></p></li>
+<li><p>Packages: <a href='https://CRAN.R-project.org/package=xgboost'><span class="pkg">xgboost</span></a></p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Bühlmann P, Yu B (2003).
-&#8220;Boosting With the L2 Loss.&#8221;
-<em>Journal of the American Statistical Association</em>, <b>98</b>(462), 324--339.
-doi: <a href='https://doi.org/10.1198/016214503000125'>10.1198/016214503000125</a>
-.</p>
-<p>Bühlmann P (2006).
-&#8220;Boosting for High-Dimensional Linear Models.&#8221;
-<em>The Annals of Statistics</em>, <b>34</b>(2), 559--583.
-<a href='http://www.jstor.org/stable/25463430'>http://www.jstor.org/stable/25463430</a>.</p>
-<p>Bühlmann P, Hothorn T (2007).
-&#8220;Boosting Algorithms: Regularization,  Prediction and Model Fitting.&#8221;
-<em>Statistical Science</em>, <b>22</b>(4), 477--505.
-doi: <a href='https://doi.org/10.1214/07-sts242'>10.1214/07-sts242</a>
-.</p>
-<p>Hothorn T, Bühlmann P, Kneib T, Schmid M, Hofner B (2010).
-&#8220;Model-based boosting 2.0.&#8221;
-<em>Journal of Machine Learning Research</em>, <b>11</b>(Aug), 2109--2113.
-<a href='http://www.jmlr.org/papers/v11/hothorn10a.html'>http://www.jmlr.org/papers/v11/hothorn10a.html</a>.</p>
-<p>Hofner B, Mayr A, Robinzonov N, Schmid M (2012).
-&#8220;Model-based boosting in R: a hands-on tutorial using the R package mboost.&#8221;
-<em>Computational Statistics</em>, <b>29</b>(1-2), 3--35.
-doi: <a href='https://doi.org/10.1007/s00180-012-0382-5'>10.1007/s00180-012-0382-5</a>
-.</p>
+    <p>Chen T, Guestrin C (2016).
+&#8220;XGBoost: A Scalable Tree Boosting System.&#8221;
+<em>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining - KDD '16</em>, 785--794.
+arXiv: 1603.02754, <a href='http://arxiv.org/abs/1603.02754'>http://arxiv.org/abs/1603.02754</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other survival learners: 
 <code><a href='LearnerSurvBlackboost.html'>LearnerSurvBlackboost</a></code>,
-<code><a href='LearnerSurvCVCoxboost.html'>LearnerSurvCVCoxboost</a></code>,
 <code><a href='LearnerSurvCVGlmnet.html'>LearnerSurvCVGlmnet</a></code>,
 <code><a href='LearnerSurvCoxPH.html'>LearnerSurvCoxPH</a></code>,
-<code><a href='LearnerSurvCoxboost.html'>LearnerSurvCoxboost</a></code>,
 <code><a href='LearnerSurvFlexible.html'>LearnerSurvFlexible</a></code>,
 <code><a href='LearnerSurvGBM.html'>LearnerSurvGBM</a></code>,
 <code><a href='LearnerSurvGamboost.html'>LearnerSurvGamboost</a></code>,
+<code><a href='LearnerSurvGlmboost.html'>LearnerSurvGlmboost</a></code>,
 <code><a href='LearnerSurvGlmnet.html'>LearnerSurvGlmnet</a></code>,
 <code><a href='LearnerSurvKaplan.html'>LearnerSurvKaplan</a></code>,
 <code><a href='LearnerSurvMboost.html'>LearnerSurvMboost</a></code>,
@@ -250,19 +234,19 @@ doi: <a href='https://doi.org/10.1007/s00180-012-0382-5'>10.1007/s00180-012-0382
 <code><a href='LearnerSurvRandomForestSRC.html'>LearnerSurvRandomForestSRC</a></code>,
 <code><a href='LearnerSurvRanger.html'>LearnerSurvRanger</a></code>,
 <code><a href='LearnerSurvRpart.html'>LearnerSurvRpart</a></code>,
-<code><a href='LearnerSurvSVM.html'>LearnerSurvSVM</a></code>,
-<code><a href='LearnerSurvXgboost.html'>LearnerSurvXgboost</a></code></p></div>
+<code><a href='LearnerSurvSVM.html'>LearnerSurvSVM</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
-    <p><code><a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a></code> -&gt; <code><a href='LearnerSurv.html'>mlr3proba::LearnerSurv</a></code> -&gt; <code>LearnerSurvGlmboost</code></p>
+    <p><code><a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a></code> -&gt; <code><a href='LearnerSurv.html'>mlr3proba::LearnerSurv</a></code> -&gt; <code>LearnerSurvXgboost</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>LearnerSurvGlmboost$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>LearnerSurvGlmboost$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>LearnerSurvXgboost$new()</code></a></p></li>
+<li><p><a href='#method-importance'><code>LearnerSurvXgboost$importance()</code></a></p></li>
+<li><p><a href='#method-clone'><code>LearnerSurvXgboost$clone()</code></a></p></li>
 </ul>
 <p><details ><summary>Inherited methods</summary>
 <ul>
@@ -279,12 +263,19 @@ doi: <a href='https://doi.org/10.1007/s00180-012-0382-5'>10.1007/s00180-012-0382
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>LearnerSurvGlmboost</span>$<span class='fu'>new</span>()</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvXgboost</span>$<span class='fu'>new</span>()</pre><p></div></p>
 
+<p><hr>
+<a id="method-importance"></a></p><h3>Method <code>importance()</code></h3>
+<p>The importance scores are calculated with <code><a href='https://rdrr.io/pkg/xgboost/man/xgb.importance.html'>xgboost::xgb.importance()</a></code>.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvXgboost</span>$<span class='fu'>importance</span>()</pre><p></div></p>
+
+<h3>Returns</h3>
+<p>Named <code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>.</p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>LearnerSurvGlmboost</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvXgboost</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
@@ -294,16 +285,6 @@ doi: <a href='https://doi.org/10.1007/s00180-012-0382-5'>10.1007/s00180-012-0382
 
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.glmboost"</span>)
-<span class='no'>resampling</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>learner</span>, <span class='no'>resampling</span>)</div><div class='output co'>#&gt; &lt;ResampleResult&gt; of 3 iterations
-#&gt; * Task: simsurv
-#&gt; * Learner: surv.glmboost
-#&gt; * Warnings: 0 in 0 iterations
-#&gt; * Errors: 0 in 0 iterations</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
