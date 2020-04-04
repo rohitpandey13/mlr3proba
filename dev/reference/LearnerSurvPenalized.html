@@ -194,7 +194,7 @@ see examples.</p>
 <li><p>Type: "surv"</p></li>
 <li><p>Predict Types: <code>distr, crank</code></p></li>
 <li><p>Feature Types: <code>integer, numeric, factor, ordered</code></p></li>
-<li><p>Properties: <code>importance</code></p></li>
+<li><p>Properties: <code>-</code></p></li>
 <li><p>Packages: <a href='https://CRAN.R-project.org/package=penalized'><span class="pkg">penalized</span></a> <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a></p></li>
 </ul>
 
@@ -221,9 +221,7 @@ doi: <a href='https://doi.org/10.1002/bimj.200900028'>10.1002/bimj.200900028</a>
 <code><a href='LearnerSurvGlmnet.html'>LearnerSurvGlmnet</a></code>,
 <code><a href='LearnerSurvKaplan.html'>LearnerSurvKaplan</a></code>,
 <code><a href='LearnerSurvMboost.html'>LearnerSurvMboost</a></code>,
-<code><a href='LearnerSurvNelson.html'>LearnerSurvNelson</a></code>,
 <code><a href='LearnerSurvObliqueRSF.html'>LearnerSurvObliqueRSF</a></code>,
-<code><a href='LearnerSurvParametric.html'>LearnerSurvParametric</a></code>,
 <code><a href='LearnerSurvRandomForestSRC.html'>LearnerSurvRandomForestSRC</a></code>,
 <code><a href='LearnerSurvRanger.html'>LearnerSurvRanger</a></code>,
 <code><a href='LearnerSurvRpart.html'>LearnerSurvRpart</a></code>,
@@ -239,7 +237,6 @@ doi: <a href='https://doi.org/10.1002/bimj.200900028'>10.1002/bimj.200900028</a>
 
 <ul>
 <li><p><a href='#method-new'><code>LearnerSurvPenalized$new()</code></a></p></li>
-<li><p><a href='#method-importance'><code>LearnerSurvPenalized$importance()</code></a></p></li>
 <li><p><a href='#method-clone'><code>LearnerSurvPenalized$clone()</code></a></p></li>
 </ul>
 <p><details ><summary>Inherited methods</summary>
@@ -259,13 +256,6 @@ doi: <a href='https://doi.org/10.1002/bimj.200900028'>10.1002/bimj.200900028</a>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
 <p><div class="r"></p><pre><span class='no'>LearnerSurvPenalized</span>$<span class='fu'>new</span>()</pre><p></div></p>
 
-<p><hr>
-<a id="method-importance"></a></p><h3>Method <code>importance()</code></h3>
-<p>The importance scores are extracted from the model slot <code>variable.importance</code>.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>LearnerSurvPenalized</span>$<span class='fu'>importance</span>()</pre><p></div></p>
-
-<h3>Returns</h3>
-<p>Named <code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>.</p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>

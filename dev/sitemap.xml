@@ -79,13 +79,7 @@
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvMboost.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvNelson.html</loc>
-  </url>
-  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvObliqueRSF.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvParametric.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvPenalized.html</loc>

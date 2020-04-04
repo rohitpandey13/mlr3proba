@@ -49,7 +49,7 @@
 
 <meta property="og:title" content="CoxPH models based on gradient boosted trees Survival Learner — LearnerSurvXgboost" />
 <meta property="og:description" content="Calls xgboost::xgboost().
-distr is predicted by stats::predict()
+distr is predicted by xgboost::predict.xgb.Booster()
 crank is predicted as the expectation of the survival distribution, distr
 
 
@@ -170,7 +170,7 @@ The eval_metric is set to cox-nloglik
 
     <div class="ref-description">
     <p>Calls <code><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost::xgboost()</a></code>.</p><ul>
-<li><p>distr is predicted by <code><a href='https://rdrr.io/r/stats/predict.html'>stats::predict()</a></code></p></li>
+<li><p>distr is predicted by <code><a href='https://rdrr.io/pkg/xgboost/man/predict.xgb.Booster.html'>xgboost::predict.xgb.Booster()</a></code></p></li>
 <li><p><code>crank</code> is predicted as the expectation of the survival distribution, <code>distr</code></p></li>
 </ul>
 
@@ -218,8 +218,10 @@ arXiv: 1603.02754, <a href='http://arxiv.org/abs/1603.02754'>http://arxiv.org/ab
 
     <div class='dont-index'><p>Other survival learners: 
 <code><a href='LearnerSurvBlackboost.html'>LearnerSurvBlackboost</a></code>,
+<code><a href='LearnerSurvCVCoxboost.html'>LearnerSurvCVCoxboost</a></code>,
 <code><a href='LearnerSurvCVGlmnet.html'>LearnerSurvCVGlmnet</a></code>,
 <code><a href='LearnerSurvCoxPH.html'>LearnerSurvCoxPH</a></code>,
+<code><a href='LearnerSurvCoxboost.html'>LearnerSurvCoxboost</a></code>,
 <code><a href='LearnerSurvFlexible.html'>LearnerSurvFlexible</a></code>,
 <code><a href='LearnerSurvGBM.html'>LearnerSurvGBM</a></code>,
 <code><a href='LearnerSurvGamboost.html'>LearnerSurvGamboost</a></code>,
@@ -227,9 +229,7 @@ arXiv: 1603.02754, <a href='http://arxiv.org/abs/1603.02754'>http://arxiv.org/ab
 <code><a href='LearnerSurvGlmnet.html'>LearnerSurvGlmnet</a></code>,
 <code><a href='LearnerSurvKaplan.html'>LearnerSurvKaplan</a></code>,
 <code><a href='LearnerSurvMboost.html'>LearnerSurvMboost</a></code>,
-<code><a href='LearnerSurvNelson.html'>LearnerSurvNelson</a></code>,
 <code><a href='LearnerSurvObliqueRSF.html'>LearnerSurvObliqueRSF</a></code>,
-<code><a href='LearnerSurvParametric.html'>LearnerSurvParametric</a></code>,
 <code><a href='LearnerSurvPenalized.html'>LearnerSurvPenalized</a></code>,
 <code><a href='LearnerSurvRandomForestSRC.html'>LearnerSurvRandomForestSRC</a></code>,
 <code><a href='LearnerSurvRanger.html'>LearnerSurvRanger</a></code>,

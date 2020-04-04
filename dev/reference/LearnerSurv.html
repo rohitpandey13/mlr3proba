@@ -274,9 +274,9 @@ but loaded (not attached) later on-demand via <code><a href='https://rdrr.io/r/b
 #&gt;  [4] "surv.cvcoxboost"      "surv.cvglmnet"        "surv.flexible"       
 #&gt;  [7] "surv.gamboost"        "surv.gbm"             "surv.glmboost"       
 #&gt; [10] "surv.glmnet"          "surv.kaplan"          "surv.mboost"         
-#&gt; [13] "surv.nelson"          "surv.obliqueRSF"      "surv.parametric"     
-#&gt; [16] "surv.penalized"       "surv.randomForestSRC" "surv.ranger"         
-#&gt; [19] "surv.rpart"           "surv.svm"             "surv.xgboost"        </div><div class='input'>
+#&gt; [13] "surv.obliqueRSF"      "surv.penalized"       "surv.randomForestSRC"
+#&gt; [16] "surv.ranger"          "surv.rpart"           "surv.svm"            
+#&gt; [19] "surv.xgboost"        </div><div class='input'>
 <span class='co'># get a specific learner from mlr_learners:</span>
 <span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.coxph"</span>)</div><div class='output co'>#&gt; &lt;LearnerSurvCoxPH:surv.coxph&gt;
 #&gt; * Model: -
@@ -284,13 +284,13 @@ but loaded (not attached) later on-demand via <code><a href='https://rdrr.io/r/b
 #&gt; * Packages: survival, distr6
 #&gt; * Predict Type: distr
 #&gt; * Feature types: logical, integer, numeric, factor
-#&gt; * Properties: importance</div><div class='input'><span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)</div><div class='output co'>#&gt; &lt;LearnerSurvCoxPH:surv.coxph&gt;
+#&gt; * Properties: weights</div><div class='input'><span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)</div><div class='output co'>#&gt; &lt;LearnerSurvCoxPH:surv.coxph&gt;
 #&gt; * Model: -
 #&gt; * Parameters: list()
 #&gt; * Packages: survival, distr6
 #&gt; * Predict Type: distr
 #&gt; * Feature types: logical, integer, numeric, factor
-#&gt; * Properties: importance</div></pre>
+#&gt; * Properties: weights</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

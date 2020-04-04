@@ -393,8 +393,7 @@
 <span class="no">composed_lrn_gbm</span> <span class="kw">=</span> <span class="fu"><a href="../reference/distrcompositor.html">distrcompositor</a></span>(<span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"surv.gbm"</span>, <span class="kw">bag.fraction</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">n.trees</span> <span class="kw">=</span> <span class="fl">50L</span>),
                                    <span class="st">"kaplan"</span>, <span class="st">"ph"</span>)
 
-<span class="no">lrns</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"surv."</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"kaplan"</span>, <span class="st">"coxph"</span>, <span class="st">"parametric"</span>)), <span class="no">lrn</span>)
-<span class="no">lrns</span><span class="kw">[[</span><span class="fl">3</span>]]$<span class="no">param_set</span>$<span class="no">values</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">dist</span> <span class="kw">=</span> <span class="st">"weibull"</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"ph"</span>)
+<span class="no">lrns</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"surv."</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"kaplan"</span>, <span class="st">"coxph"</span>)), <span class="no">lrn</span>)
 
 <span class="no">design</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark_grid.html">benchmark_grid</a></span>(<span class="kw">tasks</span> <span class="kw">=</span> <span class="no">task</span>, <span class="kw">learners</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">lrns</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">composed_lrn_gbm</span>)),
                         <span class="kw">resamplings</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span>(<span class="st">"cv"</span>, <span class="kw">folds</span> <span class="kw">=</span> <span class="fl">2</span>))
@@ -404,8 +403,7 @@
 <span class="co">#&gt;                           learner_id surv.harrellC surv.graf surv.grafSE</span>
 <span class="co">#&gt; 1:                       surv.kaplan     0.5000000 0.2107141  0.02003976</span>
 <span class="co">#&gt; 2:                        surv.coxph     0.5003190 0.2259178  0.03210873</span>
-<span class="co">#&gt; 3:                   surv.parametric     0.5066986 0.4481043  0.06730402</span>
-<span class="co">#&gt; 4: surv.kaplan.surv.gbm.distrcompose     0.4811204 0.2774313  0.04296744</span></pre></body></html></div>
+<span class="co">#&gt; 3: surv.kaplan.surv.gbm.distrcompose     0.4811204 0.2774313  0.04296744</span></pre></body></html></div>
 </div>
   </div>
 
