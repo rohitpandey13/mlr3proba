@@ -218,7 +218,8 @@ Possible values for predict_types are:
   <span class='kw'>predict_types</span> <span class='kw'>=</span> <span class='st'>"distr"</span>,
   <span class='kw'>feature_types</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(),
   <span class='kw'>properties</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(),
-  <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>()
+  <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(),
+  <span class='kw'>man</span> <span class='kw'>=</span> <span class='fl'>NA_character_</span>
 )</pre><p></div></p>
 
 <h3>Arguments</h3>
@@ -251,6 +252,10 @@ The following properties are currently standardized and understood by learners i
 Set of required packages.
 A warning is signaled by the constructor if at least one of the packages is not installed,
 but loaded (not attached) later on-demand via <code><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace()</a></code>.</p></dd>
+
+<dt><code>man</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
+String in the format <code>[pkg]::[topic]</code> pointing to a manual page for this object.
+The referenced help package can be opened via method <code>$help()</code>.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
