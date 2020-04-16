@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rpart Survival Forest Survival Learner — LearnerSurvRpart • mlr3proba</title>
+<title>Rpart Survival Trees Survival Learner — LearnerSurvRpart • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,10 +47,9 @@
 
 
 
-<meta property="og:title" content="Rpart Survival Forest Survival Learner — LearnerSurvRpart" />
+<meta property="og:title" content="Rpart Survival Trees Survival Learner — LearnerSurvRpart" />
 <meta property="og:description" content="Calls rpart::rpart().
-distr is predicted using pec::pecRpart() and pec::predictSurvProb()
-crank is predicted as the expectation of the survival distribution, distr
+crank is predicted using rpart::predict.rpart()
 
 
 Parameter xval is set to 0 in order to save some computation time." />
@@ -155,15 +154,14 @@ Parameter xval is set to 0 in order to save some computation time." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rpart Survival Forest Survival Learner</h1>
+    <h1>Rpart Survival Trees Survival Learner</h1>
     <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/LearnerSurvRpart.R'><code>R/LearnerSurvRpart.R</code></a></small>
     <div class="hidden name"><code>LearnerSurvRpart.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Calls <code><a href='https://rdrr.io/pkg/rpart/man/rpart.html'>rpart::rpart()</a></code>.</p><ul>
-<li><p>distr is predicted using <code><a href='https://rdrr.io/pkg/pec/man/pecRpart.html'>pec::pecRpart()</a></code> and <code><a href='https://rdrr.io/pkg/pec/man/predictSurvProb.html'>pec::predictSurvProb()</a></code></p></li>
-<li><p><code>crank</code> is predicted as the expectation of the survival distribution, <code>distr</code></p></li>
+<li><p>crank is predicted using <code><a href='https://rdrr.io/pkg/rpart/man/predict.rpart.html'>rpart::predict.rpart()</a></code></p></li>
 </ul>
 
 <p>Parameter <code>xval</code> is set to 0 in order to save some computation time.</p>
@@ -216,7 +214,6 @@ doi: <a href='https://doi.org/10.1201/9781315139470'>10.1201/9781315139470</a>
 <code><a href='LearnerSurvPenalized.html'>LearnerSurvPenalized</a></code>,
 <code><a href='LearnerSurvRandomForestSRC.html'>LearnerSurvRandomForestSRC</a></code>,
 <code><a href='LearnerSurvRanger.html'>LearnerSurvRanger</a></code>,
-<code><a href='LearnerSurvSVM.html'>LearnerSurvSVM</a></code>,
 <code><a href='LearnerSurvXgboost.html'>LearnerSurvXgboost</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 

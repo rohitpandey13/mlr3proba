@@ -272,13 +272,13 @@ One element for each observation in the test set.</p></dd>
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
 <span class='no'>learner</span> <span class='kw'>=</span> <span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.rpart"</span>)
 <span class='no'>p</span> <span class='kw'>=</span> <span class='no'>learner</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/as.data.table.html'>as.data.table</a></span>(<span class='no'>p</span>))</div><div class='output co'>#&gt;    row_id     time status    crank                distr
-#&gt; 1:      1 4.272501   TRUE 1.989096 &lt;VectorDistribution&gt;
-#&gt; 2:      2 5.000000  FALSE 1.095800 &lt;VectorDistribution&gt;
-#&gt; 3:      3 1.930479   TRUE 1.095800 &lt;VectorDistribution&gt;
-#&gt; 4:      4 2.768952   TRUE 1.989096 &lt;VectorDistribution&gt;
-#&gt; 5:      5 3.523663   TRUE 1.095800 &lt;VectorDistribution&gt;
-#&gt; 6:      6 1.577877   TRUE 1.095800 &lt;VectorDistribution&gt;</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/as.data.table.html'>as.data.table</a></span>(<span class='no'>p</span>))</div><div class='output co'>#&gt;    row_id     time status     crank
+#&gt; 1:      1 4.272501   TRUE 1.5736523
+#&gt; 2:      2 5.000000  FALSE 0.7328501
+#&gt; 3:      3 1.930479   TRUE 0.7328501
+#&gt; 4:      4 2.768952   TRUE 1.5736523
+#&gt; 5:      5 3.523663   TRUE 0.7328501
+#&gt; 6:      6 1.577877   TRUE 0.7328501</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
