@@ -19,6 +19,10 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
@@ -45,7 +49,7 @@
 
 <meta property="og:title" content="Abstract Class for Integrated Measures — MeasureSurvIntegrated" />
 <meta property="og:description" content="This is an abstract class that should not be constructed directly." />
-<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.png" />
+<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -64,7 +68,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +83,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.4</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -110,7 +114,7 @@
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3proba">
+  <a href="https://github.com/mlr-org/mlr3proba/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -162,7 +166,7 @@
     <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code>MeasureSurvIntegrated</code></p>
     <h2 class="hasAnchor" id="active-bindings"><a class="anchor" href="#active-bindings"></a>Active bindings</h2>
 
-    <p><div class="r6-active-bindings"></p><dl class='dl-horizontal'>
+    <p><div class="r6-active-bindings"></p><dl'>
 <dt><code>integrated</code></dt><dd><p><code>(logical(1))</code>
 Returns if the measure should be integrated or not.
 Settable.</p></dd>
@@ -198,20 +202,20 @@ Settable.</p></dd>
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>This is an abstract class that should not be constructed directly.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>MeasureSurvIntegrated$new(
-  integrated = TRUE,
-  times,
-  method = 2,
-  id,
-  range,
-  minimize,
-  packages,
-  predict_type,
-  properties
+<p><div class="r"></p><pre><span class='no'>MeasureSurvIntegrated</span>$<span class='fu'>new</span>(
+  <span class='kw'>integrated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>times</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='no'>id</span>,
+  <span class='no'>range</span>,
+  <span class='no'>minimize</span>,
+  <span class='no'>packages</span>,
+  <span class='no'>predict_type</span>,
+  <span class='no'>properties</span>
 )</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>integrated</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>)<br />
 If <code>TRUE</code> (default), returns the integrated score; otherwise, not integrated.</p></dd>
 
@@ -261,10 +265,10 @@ Supported by <code>mlr3</code>:
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>MeasureSurvIntegrated$clone(deep = FALSE)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>MeasureSurvIntegrated</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -272,14 +276,10 @@ Supported by <code>mlr3</code>:
 
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#super-classes">Super classes</a></li>
-      <li><a href="#active-bindings">Active bindings</a></li>
-      <li><a href="#methods">Methods</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -290,7 +290,7 @@ Supported by <code>mlr3</code>:
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

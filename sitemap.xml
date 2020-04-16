@@ -73,13 +73,7 @@
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvMboost.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvNelson.html</loc>
-  </url>
-  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvObliqueRSF.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvParametric.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvPenalized.html</loc>
@@ -94,7 +88,7 @@
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvRpart.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvSVM.html</loc>
+    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvXgboost.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/MeasureDens.html</loc>
@@ -239,6 +233,15 @@
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_tasks_unemployment.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/pecs.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/plot.LearnerSurv.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/articles/density.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/articles/survival.html</loc>

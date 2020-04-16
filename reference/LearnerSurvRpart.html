@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rpart Survival Forest Survival Learner — LearnerSurvRpart • mlr3proba</title>
+<title>Rpart Survival Trees Survival Learner — LearnerSurvRpart • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -18,6 +18,10 @@
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -43,14 +47,13 @@
 
 
 
-<meta property="og:title" content="Rpart Survival Forest Survival Learner — LearnerSurvRpart" />
+<meta property="og:title" content="Rpart Survival Trees Survival Learner — LearnerSurvRpart" />
 <meta property="og:description" content="Calls rpart::rpart().
-distr is predicted using pec::pecRpart() and pec::predictSurvProb()
-crank is predicted as the expectation of the survival distribution, distr
+crank is predicted using rpart::predict.rpart()
 
 
 Parameter xval is set to 0 in order to save some computation time." />
-<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.png" />
+<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +72,7 @@ Parameter xval is set to 0 in order to save some computation time." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -84,7 +87,7 @@ Parameter xval is set to 0 in order to save some computation time." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.4</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -115,7 +118,7 @@ Parameter xval is set to 0 in order to save some computation time." />
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3proba">
+  <a href="https://github.com/mlr-org/mlr3proba/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -151,15 +154,14 @@ Parameter xval is set to 0 in order to save some computation time." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rpart Survival Forest Survival Learner</h1>
+    <h1>Rpart Survival Trees Survival Learner</h1>
     <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/LearnerSurvRpart.R'><code>R/LearnerSurvRpart.R</code></a></small>
     <div class="hidden name"><code>LearnerSurvRpart.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Calls <code><a href='https://rdrr.io/pkg/rpart/man/rpart.html'>rpart::rpart()</a></code>.</p><ul>
-<li><p>distr is predicted using <code><a href='https://rdrr.io/pkg/pec/man/pecRpart.html'>pec::pecRpart()</a></code> and <code><a href='https://rdrr.io/pkg/pec/man/predictSurvProb.html'>pec::predictSurvProb()</a></code></p></li>
-<li><p><code>crank</code> is predicted as the expectation of the survival distribution, <code>distr</code></p></li>
+<li><p>crank is predicted using <code><a href='https://rdrr.io/pkg/rpart/man/predict.rpart.html'>rpart::predict.rpart()</a></code></p></li>
 </ul>
 
 <p>Parameter <code>xval</code> is set to 0 in order to save some computation time.</p>
@@ -172,10 +174,9 @@ Parameter xval is set to 0 in order to save some computation time." />
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Learner.html'>Learner</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre>LearnerSurvRpart$new()
-mlr_learners$get("surv.rpart")
-lrn("surv.rpart")
-</pre>
+<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre><span class='no'>LearnerSurvRpart</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.rpart"</span>)
+<span class='fu'>lrn</span>(<span class='st'>"surv.rpart"</span>)</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
@@ -209,13 +210,11 @@ doi: <a href='https://doi.org/10.1201/9781315139470'>10.1201/9781315139470</a>
 <code><a href='LearnerSurvGlmnet.html'>LearnerSurvGlmnet</a></code>,
 <code><a href='LearnerSurvKaplan.html'>LearnerSurvKaplan</a></code>,
 <code><a href='LearnerSurvMboost.html'>LearnerSurvMboost</a></code>,
-<code><a href='LearnerSurvNelson.html'>LearnerSurvNelson</a></code>,
 <code><a href='LearnerSurvObliqueRSF.html'>LearnerSurvObliqueRSF</a></code>,
-<code><a href='LearnerSurvParametric.html'>LearnerSurvParametric</a></code>,
 <code><a href='LearnerSurvPenalized.html'>LearnerSurvPenalized</a></code>,
 <code><a href='LearnerSurvRandomForestSRC.html'>LearnerSurvRandomForestSRC</a></code>,
 <code><a href='LearnerSurvRanger.html'>LearnerSurvRanger</a></code>,
-<code><a href='LearnerSurvSVM.html'>LearnerSurvSVM</a></code></p></div>
+<code><a href='LearnerSurvXgboost.html'>LearnerSurvXgboost</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
     <p><code><a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a></code> -&gt; <code><a href='LearnerSurv.html'>mlr3proba::LearnerSurv</a></code> -&gt; <code>LearnerSurvRpart</code></p>
@@ -245,29 +244,29 @@ doi: <a href='https://doi.org/10.1201/9781315139470'>10.1201/9781315139470</a>
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>LearnerSurvRpart$new()</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvRpart</span>$<span class='fu'>new</span>()</pre><p></div></p>
 
 <p><hr>
 <a id="method-importance"></a></p><h3>Method <code>importance()</code></h3>
 <p>The importance scores are extracted from the model slot <code>variable.importance</code>.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>LearnerSurvRpart$importance()</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvRpart</span>$<span class='fu'>importance</span>()</pre><p></div></p>
 
 <h3>Returns</h3>
 <p>Named <code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>.</p>
 <p><hr>
 <a id="method-selected_features"></a></p><h3>Method <code>selected_features()</code></h3>
 <p>Selected features are extracted from the model slot <code>frame$var</code>.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>LearnerSurvRpart$selected_features()</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvRpart</span>$<span class='fu'>selected_features</span>()</pre><p></div></p>
 
 <h3>Returns</h3>
 <p><code><a href='https://rdrr.io/r/base/character.html'>character()</a></code>.</p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>LearnerSurvRpart$clone(deep = FALSE)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvRpart</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -275,17 +274,10 @@ doi: <a href='https://doi.org/10.1201/9781315139470'>10.1201/9781315139470</a>
 
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#dictionary">Dictionary</a></li>
-      <li><a href="#meta-information">Meta Information</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#super-classes">Super classes</a></li>
-      <li><a href="#methods">Methods</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -296,7 +288,7 @@ doi: <a href='https://doi.org/10.1201/9781315139470'>10.1201/9781315139470</a>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -19,6 +19,10 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
@@ -45,7 +49,7 @@
 
 <meta property="og:title" content="Kernel Density Estimator — LearnerDensKDE" />
 <meta property="og:description" content="Calls kernels implemented in distr6 and the result is coerced to a distr6::Distribution." />
-<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.png" />
+<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -64,7 +68,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +83,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.4</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -110,7 +114,7 @@
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3proba">
+  <a href="https://github.com/mlr-org/mlr3proba/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -167,10 +171,9 @@ cross-validation. Other density learners can be used for automated bandwidth sel
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Learner.html'>Learner</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre>LearnerDensKDE$new()
-mlr_learners$get("dens.kde")
-lrn("dens.kde")
-</pre>
+<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre><span class='no'>LearnerDensKDE</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"dens.kde"</span>)
+<span class='fu'>lrn</span>(<span class='st'>"dens.kde"</span>)</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
@@ -229,15 +232,15 @@ Chapman \&amp; Hall, London.</p>
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>LearnerDensKDE$new()</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerDensKDE</span>$<span class='fu'>new</span>()</pre><p></div></p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>LearnerDensKDE$clone(deep = FALSE)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerDensKDE</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -245,18 +248,10 @@ Chapman \&amp; Hall, London.</p>
 
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#details">Details</a></li>
-      <li><a href="#dictionary">Dictionary</a></li>
-      <li><a href="#meta-information">Meta Information</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#super-classes">Super classes</a></li>
-      <li><a href="#methods">Methods</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -267,7 +262,7 @@ Chapman \&amp; Hall, London.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

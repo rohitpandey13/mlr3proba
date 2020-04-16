@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nelson-Aalen Estimator Survival Learner — LearnerSurvNelson • mlr3proba</title>
+<title>CoxPH models based on gradient boosted trees Survival Learner — LearnerSurvXgboost • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -18,6 +18,10 @@
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -43,15 +47,22 @@
 
 
 
-<meta property="og:title" content="Nelson-Aalen Estimator Survival Learner — LearnerSurvNelson" />
-<meta property="og:description" content="Calls survival::survfit().
-distr is predicted by estimating the cumulative hazard function with survival::survfit()
+<meta property="og:title" content="CoxPH models based on gradient boosted trees Survival Learner — LearnerSurvXgboost" />
+<meta property="og:description" content="Calls xgboost::xgboost().
+distr is predicted by xgboost::predict.xgb.Booster()
 crank is predicted as the expectation of the survival distribution, distr
 
 
+#' eXtreme Gradient Boosting regression for Cox PH model.
+Calls xgboost::xgb.train() from package xgboost.
+We changed the following defaults for this learner:
+Verbosity is reduced by setting verbose to 0.
+Number of boosting iterations nrounds is set to 1.
+The objective is set to survival:cox.
+The eval_metric is set to cox-nloglik
 
 " />
-<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.png" />
+<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -70,7 +81,7 @@ crank is predicted as the expectation of the survival distribution, distr
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -85,7 +96,7 @@ crank is predicted as the expectation of the survival distribution, distr
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.4</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -116,7 +127,7 @@ crank is predicted as the expectation of the survival distribution, distr
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3proba">
+  <a href="https://github.com/mlr-org/mlr3proba/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -152,18 +163,25 @@ crank is predicted as the expectation of the survival distribution, distr
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Nelson-Aalen Estimator Survival Learner</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/LearnerSurvNelson.R'><code>R/LearnerSurvNelson.R</code></a></small>
-    <div class="hidden name"><code>LearnerSurvNelson.Rd</code></div>
+    <h1>CoxPH models based on gradient boosted trees Survival Learner</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/LearnerSurvXGBoost.R'><code>R/LearnerSurvXGBoost.R</code></a></small>
+    <div class="hidden name"><code>LearnerSurvXgboost.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calls <code><a href='https://rdrr.io/pkg/survival/man/survfit.html'>survival::survfit()</a></code>.</p><ul>
-<li><p>distr is predicted by estimating the cumulative hazard function with <code><a href='https://rdrr.io/pkg/survival/man/survfit.html'>survival::survfit()</a></code></p></li>
+    <p>Calls <code><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost::xgboost()</a></code>.</p><ul>
+<li><p>distr is predicted by <code><a href='https://rdrr.io/pkg/xgboost/man/predict.xgb.Booster.html'>xgboost::predict.xgb.Booster()</a></code></p></li>
 <li><p><code>crank</code> is predicted as the expectation of the survival distribution, <code>distr</code></p></li>
 </ul>
 
-
+<p>#' eXtreme Gradient Boosting regression for Cox PH model.
+Calls <code><a href='https://rdrr.io/pkg/xgboost/man/xgb.train.html'>xgboost::xgb.train()</a></code> from package <a href='https://CRAN.R-project.org/package=xgboost'><span class="pkg">xgboost</span></a>.</p>
+<p>We changed the following defaults for this learner:</p><ul>
+<li><p>Verbosity is reduced by setting <code>verbose</code> to <code>0</code>.</p></li>
+<li><p>Number of boosting iterations <code>nrounds</code> is set to <code>1</code>.</p></li>
+<li><p>The <code>objective</code> is set to <code>survival:cox</code>.</p></li>
+<li><p>The <code>eval_metric</code> is set to <code>cox-nloglik</code></p></li>
+</ul>
 
     </div>
 
@@ -174,10 +192,9 @@ crank is predicted as the expectation of the survival distribution, distr
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Learner.html'>Learner</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre>LearnerSurvNelson$new()
-mlr_learners$get("surv.nelson")
-lrn("surv.nelson")
-</pre>
+<a href='https://mlr3.mlr-org.com/reference/mlr_learners.html'>mlr_learners</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn()</a>:</p><pre><span class='no'>LearnerSurvXgboost</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.xgboost"</span>)
+<span class='fu'>lrn</span>(<span class='st'>"surv.xgboost"</span>)</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
@@ -185,28 +202,18 @@ lrn("surv.nelson")
 
 <ul>
 <li><p>Type: "surv"</p></li>
-<li><p>Predict Types: <code>crank, distr</code></p></li>
-<li><p>Feature Types: <code>logical, integer, numeric, character, factor, ordered</code></p></li>
-<li><p>Properties: <code>missings</code></p></li>
-<li><p>Packages: <a href='https://CRAN.R-project.org/package=survival'><span class="pkg">survival</span></a> <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a></p></li>
+<li><p>Predict Types: <code>crank, lp</code></p></li>
+<li><p>Feature Types: <code>logical, integer, numeric</code></p></li>
+<li><p>Properties: <code>importance, missings, weights</code></p></li>
+<li><p>Packages: <a href='https://CRAN.R-project.org/package=xgboost'><span class="pkg">xgboost</span></a></p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Nelson W (1969).
-&#8220;Hazard Plotting for Incomplete Failure Data.&#8221;
-<em>Journal of Quality Technology</em>, <b>1</b>(1), 27--52.
-doi: <a href='https://doi.org/10.1080/00224065.1969.11980344'>10.1080/00224065.1969.11980344</a>
-.</p>
-<p>Nelson W (1972).
-&#8220;Theory and Applications of Hazard Plotting for Censored Failure Data.&#8221;
-<em>Technometrics</em>, <b>14</b>(4), 945--966.
-doi: <a href='https://doi.org/10.1080/00401706.1972.10488991'>10.1080/00401706.1972.10488991</a>
-.</p>
-<p>Aalen O (1978).
-&#8220;Nonparametric Inference for a Family of Counting Processes.&#8221;
-<em>The Annals of Statistics</em>, <b>6</b>(4), 701--726.
-<a href='http://www.jstor.org/stable/2958850'>http://www.jstor.org/stable/2958850</a>.</p>
+    <p>Chen T, Guestrin C (2016).
+&#8220;XGBoost: A Scalable Tree Boosting System.&#8221;
+<em>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining - KDD '16</em>, 785--794.
+arXiv: 1603.02754, <a href='http://arxiv.org/abs/1603.02754'>http://arxiv.org/abs/1603.02754</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other survival learners: 
@@ -221,23 +228,22 @@ doi: <a href='https://doi.org/10.1080/00401706.1972.10488991'>10.1080/00401706.1
 <code><a href='LearnerSurvKaplan.html'>LearnerSurvKaplan</a></code>,
 <code><a href='LearnerSurvMboost.html'>LearnerSurvMboost</a></code>,
 <code><a href='LearnerSurvObliqueRSF.html'>LearnerSurvObliqueRSF</a></code>,
-<code><a href='LearnerSurvParametric.html'>LearnerSurvParametric</a></code>,
 <code><a href='LearnerSurvPenalized.html'>LearnerSurvPenalized</a></code>,
 <code><a href='LearnerSurvRandomForestSRC.html'>LearnerSurvRandomForestSRC</a></code>,
 <code><a href='LearnerSurvRanger.html'>LearnerSurvRanger</a></code>,
-<code><a href='LearnerSurvRpart.html'>LearnerSurvRpart</a></code>,
-<code><a href='LearnerSurvSVM.html'>LearnerSurvSVM</a></code></p></div>
+<code><a href='LearnerSurvRpart.html'>LearnerSurvRpart</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
-    <p><code><a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a></code> -&gt; <code><a href='LearnerSurv.html'>mlr3proba::LearnerSurv</a></code> -&gt; <code>LearnerSurvNelson</code></p>
+    <p><code><a href='https://mlr3.mlr-org.com/reference/Learner.html'>mlr3::Learner</a></code> -&gt; <code><a href='LearnerSurv.html'>mlr3proba::LearnerSurv</a></code> -&gt; <code>LearnerSurvXgboost</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>LearnerSurvNelson$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>LearnerSurvNelson$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>LearnerSurvXgboost$new()</code></a></p></li>
+<li><p><a href='#method-importance'><code>LearnerSurvXgboost$importance()</code></a></p></li>
+<li><p><a href='#method-clone'><code>LearnerSurvXgboost$clone()</code></a></p></li>
 </ul>
 <p><details ><summary>Inherited methods</summary>
 <ul>
@@ -254,15 +260,22 @@ doi: <a href='https://doi.org/10.1080/00401706.1972.10488991'>10.1080/00401706.1
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>LearnerSurvNelson$new()</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvXgboost</span>$<span class='fu'>new</span>()</pre><p></div></p>
 
+<p><hr>
+<a id="method-importance"></a></p><h3>Method <code>importance()</code></h3>
+<p>The importance scores are calculated with <code><a href='https://rdrr.io/pkg/xgboost/man/xgb.importance.html'>xgboost::xgb.importance()</a></code>.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvXgboost</span>$<span class='fu'>importance</span>()</pre><p></div></p>
+
+<h3>Returns</h3>
+<p>Named <code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>.</p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>LearnerSurvNelson$clone(deep = FALSE)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvXgboost</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -270,17 +283,10 @@ doi: <a href='https://doi.org/10.1080/00401706.1972.10488991'>10.1080/00401706.1
 
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#dictionary">Dictionary</a></li>
-      <li><a href="#meta-information">Meta Information</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#super-classes">Super classes</a></li>
-      <li><a href="#methods">Methods</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -291,7 +297,7 @@ doi: <a href='https://doi.org/10.1080/00401706.1972.10488991'>10.1080/00401706.1
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

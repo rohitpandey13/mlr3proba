@@ -19,6 +19,10 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
+
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
@@ -47,14 +51,14 @@
 <meta property="og:description" content="Estimates (or 'composes') a survival distribution from a predicted baseline distr and a
 crank or lp from two PredictionSurvs.
 Compositor Assumptions:
-The baseline distr is a discrete estimator, i.e. LearnerSurvKaplan or LearnerSurvNelson
+The baseline distr is a discrete estimator, i.e. surv.kaplan or surv.nelson
 The composed distr is of a linear form
 If lp is missing then crank is equivalent
 
 
 These assumptions are strong and may not be reasonable. Future updates will upgrade this
 compositor to be more flexible." />
-<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.png" />
+<meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -73,7 +77,7 @@ compositor to be more flexible." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -88,7 +92,7 @@ compositor to be more flexible." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.4</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -119,7 +123,7 @@ compositor to be more flexible." />
   </a>
 </li>
         <li>
-  <a href="https://github.com/mlr-org/mlr3proba">
+  <a href="https://github.com/mlr-org/mlr3proba/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -164,7 +168,7 @@ compositor to be more flexible." />
     <p>Estimates (or 'composes') a survival distribution from a predicted baseline <code>distr</code> and a
 <code>crank</code> or <code>lp</code> from two <a href='PredictionSurv.html'>PredictionSurv</a>s.</p>
 <p>Compositor Assumptions:</p><ul>
-<li><p>The baseline <code>distr</code> is a discrete estimator, i.e. <a href='LearnerSurvKaplan.html'>LearnerSurvKaplan</a> or <a href='LearnerSurvNelson.html'>LearnerSurvNelson</a></p></li>
+<li><p>The baseline <code>distr</code> is a discrete estimator, i.e. <a href='LearnerSurvKaplan.html'>surv.kaplan</a> or surv.nelson</p></li>
 <li><p>The composed <code>distr</code> is of a linear form</p></li>
 <li><p>If <code>lp</code> is missing then <code>crank</code> is equivalent</p></li>
 </ul>
@@ -180,10 +184,9 @@ compositor to be more flexible.</p>
     
 
 <p>This <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops.html'>mlr3pipelines::mlr_pipeops</a> or with the associated sugar function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre>PipeOpDistrCompositor$new()
-mlr_pipeops$get("distrcompose")
-po("distrcompose")
-</pre>
+<a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops.html'>mlr3pipelines::mlr_pipeops</a> or with the associated sugar function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_pipeops</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"distrcompose"</span>)
+<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"distrcompose"</span>)</pre>
 
     <h2 class="hasAnchor" id="input-and-output-channels"><a class="anchor" href="#input-and-output-channels"></a>Input and Output Channels</h2>
 
@@ -268,13 +271,13 @@ assumed to be the <code>lp</code> - <strong>this may be a strong and unreasonabl
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>PipeOpDistrCompositor$new(
-  id = "distrcompose",
-  param_vals = list(form = "aft", overwrite = FALSE)
+<p><div class="r"></p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>new</span>(
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"distrcompose"</span>,
+  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 )</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>id</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
 Identifier of the resulting  object.</p></dd>
 
@@ -287,10 +290,10 @@ otherwise be set during construction.</p></dd>
 <a id="method-train_internal"></a></p><h3>Method <code>train_internal()</code></h3>
 <p>train_internal
 Internal <code>train</code> function, will be moved to <code>private</code> in a near-future update, should be ignored.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>PipeOpDistrCompositor$train_internal(inputs)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>train_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>inputs</code></dt><dd><p>Ignore.</p></dd>
 
 </dl><p></div></p>
@@ -298,20 +301,20 @@ Internal <code>train</code> function, will be moved to <code>private</code> in a
 <a id="method-predict_internal"></a></p><h3>Method <code>predict_internal()</code></h3>
 <p>predict_internal
 Internal <code>predict</code> function, will be moved to <code>private</code> in a near-future update, should be ignored.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>PipeOpDistrCompositor$predict_internal(inputs)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>predict_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>inputs</code></dt><dd><p>Ignore.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>PipeOpDistrCompositor$clone(deep = FALSE)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -360,22 +363,10 @@ Internal <code>predict</code> function, will be moved to <code>private</code> in
 <span class='no'>cvglm.distr</span>$<span class='fu'>fit</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 }</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#dictionary">Dictionary</a></li>
-      <li><a href="#input-and-output-channels">Input and Output Channels</a></li>
-      <li><a href="#state">State</a></li>
-      <li><a href="#parameters">Parameters</a></li>
-      <li><a href="#internals">Internals</a></li>
-      <li><a href="#fields">Fields</a></li>
-      <li><a href="#methods">Methods</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#super-class">Super class</a></li>
-      <li><a href="#methods">Methods</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -386,7 +377,7 @@ Internal <code>predict</code> function, will be moved to <code>private</code> in
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
