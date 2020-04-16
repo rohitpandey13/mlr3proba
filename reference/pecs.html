@@ -235,104 +235,27 @@ from the <a href='PredictionSurv.html'>PredictionSurv</a> or <a href='TaskSurv.h
 then all time-points between the range are returned.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)
 
 <span class='co'># Prediction Error Curves for prediction object</span>
 <span class='no'>learn</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)
 <span class='no'>p</span> <span class='kw'>=</span> <span class='no'>learn</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
-<span class='fu'>pecs</span>(<span class='no'>p</span>)</div><div class='img'><img src='pecs-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>pecs</span>(<span class='no'>p</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"logloss"</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>60</span>, <span class='fl'>80</span>)) +
+<span class='fu'>pecs</span>(<span class='no'>p</span>)
+<span class='fu'>pecs</span>(<span class='no'>p</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"logloss"</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>60</span>, <span class='fl'>80</span>)) +
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() +
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"Logloss Prediction Error Curve for Cox PH"</span>)</div><div class='img'><img src='pecs-2.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"Logloss Prediction Error Curve for Cox PH"</span>)
+
 <span class='co'># Access underlying data</span>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>pecs</span>(<span class='no'>p</span>)
-<span class='no'>x</span>$<span class='no'>data</span></div><div class='output co'>#&gt;           graf time
-#&gt; 1  0.000000000   23
-#&gt; 2  0.000000000   32
-#&gt; 3  0.003310244   34
-#&gt; 4  0.006576053   39
-#&gt; 5  0.009860458   40
-#&gt; 6  0.012955582   45
-#&gt; 7  0.016230979   49
-#&gt; 8  0.019497844   50
-#&gt; 9  0.019506719   51
-#&gt; 10 0.019509734   53
-#&gt; 11 0.022799966   54
-#&gt; 12 0.026065155   55
-#&gt; 13 0.026070550   61
-#&gt; 14 0.026076006   62
-#&gt; 15 0.026089153   63
-#&gt; 16 0.029448353   64
-#&gt; 17 0.029455487   65
-#&gt; 18 0.032718043   66
-#&gt; 19 0.035748571   67
-#&gt; 20 0.039100120   68
-#&gt; 21 0.039123326   69
-#&gt; 22 0.042192679   70
-#&gt; 23 0.045984066   71
-#&gt; 24 0.048482549   72
-#&gt; 25 0.054000521   73
-#&gt; 26 0.054007933   74
-#&gt; 27 0.057870535   75
-#&gt; 28 0.057631521   76
-#&gt; 29 0.061226788   77
-#&gt; 30 0.064363020   78
-#&gt; 31 0.067416275   79
-#&gt; 32 0.071682789   80
-#&gt; 33 0.077835811   81
-#&gt; 34 0.077800322   82
-#&gt; 35 0.077877145   83
-#&gt; 36 0.084259531   84
-#&gt; 37 0.084171110   85
-#&gt; 38 0.086166757   86
-#&gt; 39 0.086143608   87
-#&gt; 40 0.088340322   88
-#&gt; 41 0.091357225   89
-#&gt; 42 0.091591708   90
-#&gt; 43 0.092163010   91
-#&gt; 44 0.093509294   92
-#&gt; 45 0.093339626   93
-#&gt; 46 0.095007510   94
-#&gt; 47 0.095176545   95
-#&gt; 48 0.102085163   96
-#&gt; 49 0.102157571   97
-#&gt; 50 0.103072562   98
-#&gt; 51 0.103237288   99
-#&gt; 52 0.103432266  100
-#&gt; 53 0.106857151  101
-#&gt; 54 0.118450246  102
-#&gt; 55 0.121530451  103</div><div class='input'>
+<span class='no'>x</span>$<span class='no'>data</span>
+
 <span class='co'># Prediction Error Curves for fitted learners</span>
 <span class='no'>learns</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrns</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"surv.kaplan"</span>, <span class='st'>"surv.coxph"</span>, <span class='st'>"surv.ranger"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>learns</span>, <span class='kw'>function</span>(<span class='no'>x</span>) <span class='no'>x</span>$<span class='fu'>train</span>(<span class='no'>task</span>))</div><div class='output co'>#&gt; [[1]]
-#&gt; &lt;LearnerSurvKaplan:surv.kaplan&gt;
-#&gt; * Model: survfit
-#&gt; * Parameters: list()
-#&gt; * Packages: survival, distr6
-#&gt; * Predict Type: crank
-#&gt; * Feature types: logical, integer, numeric, character, factor, ordered
-#&gt; * Properties: missings
-#&gt; 
-#&gt; [[2]]
-#&gt; &lt;LearnerSurvCoxPH:surv.coxph&gt;
-#&gt; * Model: coxph
-#&gt; * Parameters: list()
-#&gt; * Packages: survival, distr6
-#&gt; * Predict Type: distr
-#&gt; * Feature types: logical, integer, numeric, factor
-#&gt; * Properties: weights
-#&gt; 
-#&gt; [[3]]
-#&gt; &lt;LearnerSurvRanger:surv.ranger&gt;
-#&gt; * Model: ranger
-#&gt; * Parameters: list()
-#&gt; * Packages: ranger, distr6
-#&gt; * Predict Type: distr
-#&gt; * Feature types: logical, integer, numeric, character, factor, ordered
-#&gt; * Properties: importance, oob_error, weights
-#&gt; </div><div class='input'><span class='fu'>pecs</span>(<span class='no'>learns</span>, <span class='kw'>task</span> <span class='kw'>=</span> <span class='no'>task</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"logloss"</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>90</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='img'><img src='pecs-3.png' alt='' width='700' height='433' /></div><div class='input'>
-
-</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>learns</span>, <span class='kw'>function</span>(<span class='no'>x</span>) <span class='no'>x</span>$<span class='fu'>train</span>(<span class='no'>task</span>))
+<span class='fu'>pecs</span>(<span class='no'>learns</span>, <span class='kw'>task</span> <span class='kw'>=</span> <span class='no'>task</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"logloss"</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>90</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
