@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Visualization of fitted <code>LearnerSurv</code> objects — plot.LearnerSurv • mlr3proba</title>
+<title>Prediction Error Curves for PredictionSurv and LearnerSurv — pecs • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,8 +47,9 @@
 
 
 
-<meta property="og:title" content="Visualization of fitted <code>LearnerSurv</code> objects — plot.LearnerSurv" />
-<meta property="og:description" content="Wrapper around predict.LearnerSurv and plot.VectorDistribution." />
+<meta property="og:title" content="Prediction Error Curves for PredictionSurv and LearnerSurv — pecs" />
+<meta property="og:description" content="Methods to plot prediction error curves (pecs) for either a PredictionSurv object
+or a list of trained LearnerSurvs." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -150,69 +151,111 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Visualization of fitted <code>LearnerSurv</code> objects</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/autoplot.R'><code>R/autoplot.R</code></a></small>
-    <div class="hidden name"><code>plot.LearnerSurv.Rd</code></div>
+    <h1>Prediction Error Curves for PredictionSurv and LearnerSurv</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/pecs.R'><code>R/pecs.R</code></a></small>
+    <div class="hidden name"><code>pecs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Wrapper around <code>predict.LearnerSurv</code> and <code>plot.VectorDistribution</code>.</p>
+    <p>Methods to plot prediction error curves (pecs) for either a <a href='PredictionSurv.html'>PredictionSurv</a> object
+or a list of trained <a href='LearnerSurv.html'>LearnerSurv</a>s.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for LearnerSurv</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(
+    <pre class="usage"><span class='fu'>pecs</span>(<span class='no'>x</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"graf"</span>, <span class='st'>"logloss"</span>), <span class='no'>times</span>, <span class='no'>n</span>, <span class='kw'>eps</span> <span class='kw'>=</span> <span class='fl'>1e-15</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for list</span>
+<span class='fu'>pecs</span>(
   <span class='no'>x</span>,
-  <span class='no'>task</span>,
-  <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"survival"</span>, <span class='st'>"pdf"</span>, <span class='st'>"cdf"</span>, <span class='st'>"quantile"</span>, <span class='st'>"hazard"</span>, <span class='st'>"cumhazard"</span>),
+  <span class='kw'>measure</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"graf"</span>, <span class='st'>"logloss"</span>),
+  <span class='no'>times</span>,
+  <span class='no'>n</span>,
+  <span class='kw'>eps</span> <span class='kw'>=</span> <span class='fl'>1e-15</span>,
+  <span class='kw'>task</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>row_ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>newdata</span>,
   <span class='no'>...</span>
-)</pre>
+)
+
+<span class='co'># S3 method for PredictionSurv</span>
+<span class='fu'>pecs</span>(<span class='no'>x</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"graf"</span>, <span class='st'>"logloss"</span>), <span class='no'>times</span>, <span class='no'>n</span>, <span class='kw'>eps</span> <span class='kw'>=</span> <span class='fl'>1e-15</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>(<a href='LearnerSurv.html'>LearnerSurv</a>)</p></td>
+      <td><p>(<a href='PredictionSurv.html'>PredictionSurv</a> or <code>list</code> of <a href='LearnerSurv.html'>LearnerSurv</a>s)</p></td>
+    </tr>
+    <tr>
+      <th>measure</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>) <br />
+Either <code>"graf"</code> for <a href='MeasureSurvGraf.html'>MeasureSurvGraf</a>, or <code>"logloss"</code> for <a href='MeasureSurvIntLogloss.html'>MeasureSurvIntLogloss</a></p></td>
+    </tr>
+    <tr>
+      <th>times</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>) <br />
+If provided then either a vector of time-points to evaluate <code>measure</code> or a range of time-points.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code>) <br />
+If <code>times</code> is missing or given as a range, then <code>n</code> provide number of time-points to evaluate
+<code>measure</code> over.</p></td>
+    </tr>
+    <tr>
+      <th>eps</th>
+      <td><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>) <br />
+Small error value to pass to <a href='MeasureSurvIntLogloss.html'>MeasureSurvIntLogloss</a> to prevent errors resulting from a log(0)
+calculation.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
       <th>task</th>
       <td><p>(<a href='TaskSurv.html'>TaskSurv</a>)</p></td>
     </tr>
     <tr>
-      <th>fun</th>
-      <td><p>(<code>character</code>) <br />
-Passed to <code><a href='https://alan-turing-institute.github.io/distr6/reference/plot.VectorDistribution.html'>distr6::plot.VectorDistribution</a></code></p></td>
-    </tr>
-    <tr>
       <th>row_ids</th>
       <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code>) <br />
-Passed to <code>Learner$predict</code></p></td>
+Passed to <code>Learner$predict</code>.</p></td>
     </tr>
     <tr>
       <th>newdata</th>
       <td><p>(<code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame()</a></code>) <br />
 If not missing <code>Learner$predict_newdata</code> is called instead of <code>Learner$predict</code>.</p></td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments passed to <code><a href='https://alan-turing-institute.github.io/distr6/reference/plot.VectorDistribution.html'>distr6::plot.VectorDistribution</a></code></p></td>
-    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If <code>times</code> and <code>n</code> are missing then <code>measure</code> is evaluated over all observed time-points
+from the <a href='PredictionSurv.html'>PredictionSurv</a> or <a href='TaskSurv.html'>TaskSurv</a> object. If a range is provided for <code>times</code> without <code>n</code>,
+then all time-points between the range are returned.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)
 
 <span class='co'># Prediction Error Curves for prediction object</span>
 <span class='no'>learn</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)
-<span class='no'>learn</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='no'>p</span> <span class='kw'>=</span> <span class='no'>learn</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+<span class='fu'>pecs</span>(<span class='no'>p</span>)
+<span class='fu'>pecs</span>(<span class='no'>p</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"logloss"</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>60</span>, <span class='fl'>80</span>)) +
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() +
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"Logloss Prediction Error Curve for Cox PH"</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>ind</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='img'><img src='plot.LearnerSurv-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>row_ids</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>()[<span class='fl'>1</span>:<span class='fl'>5</span>,])</div><div class='img'><img src='plot.LearnerSurv-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>()[<span class='fl'>1</span>:<span class='fl'>5</span>,], <span class='kw'>ylim</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div><div class='img'><img src='plot.LearnerSurv-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Access underlying data</span>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>pecs</span>(<span class='no'>p</span>)
+<span class='no'>x</span>$<span class='no'>data</span>
 
-</div></pre>
+<span class='co'># Prediction Error Curves for fitted learners</span>
+<span class='no'>learns</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrns</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"surv.kaplan"</span>, <span class='st'>"surv.coxph"</span>, <span class='st'>"surv.ranger"</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>learns</span>, <span class='kw'>function</span>(<span class='no'>x</span>) <span class='no'>x</span>$<span class='fu'>train</span>(<span class='no'>task</span>))
+<span class='fu'>pecs</span>(<span class='no'>learns</span>, <span class='kw'>task</span> <span class='kw'>=</span> <span class='no'>task</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"logloss"</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>90</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
