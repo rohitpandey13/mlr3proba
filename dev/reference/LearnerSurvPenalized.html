@@ -271,8 +271,8 @@ doi: <a href='https://doi.org/10.1002/bimj.200900028'>10.1002/bimj.200900028</a>
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
 <span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.penalized"</span>)
 <span class='no'>resampling</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>learner</span>, <span class='no'>resampling</span>)</div><div class='output co'>#&gt; 1234
-#&gt; 1234</div><div class='output co'>#&gt; &lt;ResampleResult&gt; of 2 iterations
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>learner</span>, <span class='no'>resampling</span>)</div><div class='output co'>#&gt; 12345
+#&gt; 123456789101112131415161718</div><div class='output co'>#&gt; &lt;ResampleResult&gt; of 2 iterations
 #&gt; * Task: simsurv
 #&gt; * Learner: surv.penalized
 #&gt; * Warnings: 0 in 0 iterations
@@ -280,9 +280,9 @@ doi: <a href='https://doi.org/10.1002/bimj.200900028'>10.1002/bimj.200900028</a>
 <span class='co'># specifying penalized and unpenalized variables</span>
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
 <span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.penalized"</span>, <span class='kw'>unpenalized</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"height"</span>))
-<span class='no'>learner</span>$<span class='fu'>train</span>(<span class='no'>task</span>)</div><div class='output co'>#&gt; 1234</div><div class='input'><span class='no'>learner</span>$<span class='no'>model</span>@<span class='kw'>penalized</span></div><div class='output co'>#&gt;  treatment     weight 
-#&gt; 0.97867392 0.02127612 </div><div class='input'><span class='no'>learner</span>$<span class='no'>model</span>@<span class='kw'>unpenalized</span></div><div class='output co'>#&gt;      height 
-#&gt; 0.008976014 </div></pre>
+<span class='no'>learner</span>$<span class='fu'>train</span>(<span class='no'>task</span>)</div><div class='output co'>#&gt; 1234</div><div class='input'><span class='no'>learner</span>$<span class='no'>model</span>@<span class='kw'>penalized</span></div><div class='output co'>#&gt;   treatment      weight 
+#&gt;  1.16867024 -0.02236692 </div><div class='input'><span class='no'>learner</span>$<span class='no'>model</span>@<span class='kw'>unpenalized</span></div><div class='output co'>#&gt;      height 
+#&gt; -0.05681012 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
