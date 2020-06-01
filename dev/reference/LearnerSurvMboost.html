@@ -206,9 +206,9 @@ specific definition of the corresponding base-learner.</p>
 
 <ul>
 <li><p>Type: "surv"</p></li>
-<li><p>Predict Types: <code>distr, crank, lp</code></p></li>
+<li><p>Predict Types: <code>distr, crank, lp, response</code></p></li>
 <li><p>Feature Types: <code>integer, numeric, factor, logical</code></p></li>
-<li><p>Properties: <code>-</code></p></li>
+<li><p>Properties: <code>importance, selected_features, weights</code></p></li>
 <li><p>Packages: <a href='https://CRAN.R-project.org/package=mboost'><span class="pkg">mboost</span></a> <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a> <a href='https://CRAN.R-project.org/package=survival'><span class="pkg">survival</span></a></p></li>
 </ul>
 
@@ -276,6 +276,8 @@ doi: <a href='https://doi.org/10.1007/s00180-012-0382-5'>10.1007/s00180-012-0382
 
 <ul>
 <li><p><a href='#method-new'><code>LearnerSurvMboost$new()</code></a></p></li>
+<li><p><a href='#method-importance'><code>LearnerSurvMboost$importance()</code></a></p></li>
+<li><p><a href='#method-selected_features'><code>LearnerSurvMboost$selected_features()</code></a></p></li>
 <li><p><a href='#method-clone'><code>LearnerSurvMboost$clone()</code></a></p></li>
 </ul>
 <p><details ><summary>Inherited methods</summary>
@@ -295,6 +297,22 @@ doi: <a href='https://doi.org/10.1007/s00180-012-0382-5'>10.1007/s00180-012-0382
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
 <p><div class="r"></p><pre><span class='no'>LearnerSurvMboost</span>$<span class='fu'>new</span>()</pre><p></div></p>
 
+<p><hr>
+<a id="method-importance"></a></p><h3>Method <code>importance()</code></h3>
+<p>The importance scores are extracted with the function <code><a href='https://rdrr.io/pkg/mboost/man/varimp.html'>mboost::varimp()</a></code> with the
+default arguments.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvMboost</span>$<span class='fu'>importance</span>()</pre><p></div></p>
+
+<h3>Returns</h3>
+<p>Named <code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>.</p>
+<p><hr>
+<a id="method-selected_features"></a></p><h3>Method <code>selected_features()</code></h3>
+<p>Selected features are extracted with the function <code><a href='https://rdrr.io/pkg/mboost/man/methods.html'>mboost::variable.names.mboost()</a></code>, with
+<code>used.only = TRUE</code>.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>LearnerSurvMboost</span>$<span class='fu'>selected_features</span>()</pre><p></div></p>
+
+<h3>Returns</h3>
+<p><code><a href='https://rdrr.io/r/base/character.html'>character()</a></code>.</p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
