@@ -13,33 +13,6 @@
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensKDE.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensKDEkd.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensKDEks.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensLocfit.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensLogspline.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensMixed.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensNonparametric.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensPenalized.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensPlugin.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerDensSpline.html</loc>
-  </url>
-  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurv.html</loc>
   </url>
   <url>
@@ -50,9 +23,6 @@
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvCoxPH.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvFlexible.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvGBM.html</loc>
@@ -71,15 +41,6 @@
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvMboost.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvObliqueRSF.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvPenalized.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvRandomForestSRC.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvRanger.html</loc>

@@ -41,7 +41,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org"></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -54,7 +54,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/survival.html">Survival Analysis</a>
+      <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -287,7 +290,7 @@
 
 <span class="co"># As well as plotted</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">prediction</span>$<span class="no">distr</span>[<span class="fl">1</span>], <span class="st">"survival"</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"First 2 Survival Curves"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">prediction</span>$<span class="no">distr</span>[<span class="fl">1</span>], <span class="st">"survival"</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">"First 2 Survival Curves"</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span>(<span class="no">prediction</span>$<span class="no">distr</span>[<span class="fl">2</span>], <span class="st">"survival"</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
 <p><img src="survival_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>

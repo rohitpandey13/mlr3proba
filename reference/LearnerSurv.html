@@ -93,7 +93,7 @@ Possible values for predict_types are:
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -106,7 +106,10 @@ Possible values for predict_types are:
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survival.html">Survival Analysis</a>
+      <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -275,12 +278,9 @@ The referenced help package can be opened via method <code>$help()</code>.</p></
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='co'># get all survival learners from mlr_learners:</span>
 <span class='no'>lrns</span> <span class='kw'>=</span> <span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>mget</a></span>(<span class='no'>mlr_learners</span>$<span class='fu'>keys</span>(<span class='st'>"^surv"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>lrns</span>)</div><div class='output co'>#&gt;  [1] "surv.blackboost"      "surv.coxph"           "surv.cvglmnet"       
-#&gt;  [4] "surv.flexible"        "surv.gamboost"        "surv.gbm"            
-#&gt;  [7] "surv.glmboost"        "surv.glmnet"          "surv.kaplan"         
-#&gt; [10] "surv.mboost"          "surv.obliqueRSF"      "surv.penalized"      
-#&gt; [13] "surv.randomForestSRC" "surv.ranger"          "surv.rpart"          
-#&gt; [16] "surv.xgboost"        </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>lrns</span>)</div><div class='output co'>#&gt;  [1] "surv.blackboost" "surv.coxph"      "surv.cvglmnet"   "surv.gamboost"  
+#&gt;  [5] "surv.gbm"        "surv.glmboost"   "surv.glmnet"     "surv.kaplan"    
+#&gt;  [9] "surv.mboost"     "surv.ranger"     "surv.rpart"      "surv.xgboost"   </div><div class='input'>
 <span class='co'># get a specific learner from mlr_learners:</span>
 <span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.coxph"</span>)</div><div class='output co'>#&gt; &lt;LearnerSurvCoxPH:surv.coxph&gt;
 #&gt; * Model: -
