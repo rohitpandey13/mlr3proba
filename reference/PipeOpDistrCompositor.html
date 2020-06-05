@@ -360,9 +360,10 @@ Internal <code>predict</code> function, will be moved to <code>private</code> in
 <span class='no'>gr</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='no'>gr</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 
 <span class='co'># Method 3 - Syntactic sugar: Wrap the learner in a graph.</span>
-<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'><a href='distrcompositor.html'>distrcompositor</a></span>(<span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
-                            <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
-                            <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
+<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'><a href='distrcompositor.html'>distrcompositor</a></span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
+  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
+  <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
 <span class='no'>cvglm.distr</span>$<span class='fu'>fit</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 }</div></pre>
   </div>

@@ -216,9 +216,10 @@ which may be required for changing the prediction <code>distr</code> from one mo
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
 
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'>distrcompositor</span>(<span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
-                            <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
-                            <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
+<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'>distrcompositor</span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
+  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
+  <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
 
 <span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cvglm.distr</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
 }</div></pre>

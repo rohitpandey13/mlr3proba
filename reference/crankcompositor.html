@@ -201,8 +201,9 @@ how <code>crank</code> is estimated from the predicted <code>distr</code>. Defau
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3pipelines</span>)
 
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>ranger.crank</span> <span class='kw'>=</span> <span class='fu'>crankcompositor</span>(<span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
-                            <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"median"</span>)
+<span class='no'>ranger.crank</span> <span class='kw'>=</span> <span class='fu'>crankcompositor</span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"median"</span>)
 <span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>ranger.crank</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
 }</div></pre>
   </div>
