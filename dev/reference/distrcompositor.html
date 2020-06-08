@@ -84,7 +84,7 @@ simplifies graph creation." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -97,7 +97,10 @@ simplifies graph creation." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survival.html">Survival Analysis</a>
+      <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -213,9 +216,10 @@ which may be required for changing the prediction <code>distr</code> from one mo
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
 
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'>distrcompositor</span>(<span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
-                            <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
-                            <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
+<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'>distrcompositor</span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
+  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
+  <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
 
 <span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cvglm.distr</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
 }</div></pre>

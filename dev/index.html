@@ -45,7 +45,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org"></a>
-        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.1.5.9000</small></a>
+        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.1.6.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -58,7 +58,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/survival.html">Survival Analysis</a>
+      <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -169,11 +172,12 @@
 <div id="survival-learners" class="section level3">
 <h3 class="hasAnchor">
 <a href="#survival-learners" class="anchor"></a>Survival Learners</h3>
+<p>Learners are located either in <a href="https://github.com/mlr-org/mlr3proba">mlr3proba</a>, the <a href="https://github.com/mlr-org/mlr3learners">mlr3learners repository</a>, or the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>. See <a href="https://github.com/mlr3learners/mlr3learners.drat">here</a> for instructions in how to install learners from the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>.</p>
 <table class="table">
 <colgroup>
-<col width="42%">
-<col width="25%">
-<col width="31%">
+<col width="40%">
+<col width="27%">
+<col width="32%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">ID</th>
@@ -207,7 +211,7 @@
 <td align="left"><a href="https://CRAN.R-project.org/package=glmnet">glmnet</a></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvFlexible.html">surv.flexible</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.flexsurv">surv.flexible</a></td>
 <td align="left">Flexible Parametric Spline Models</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=flexsurv">flexsurv</a></td>
 </tr>
@@ -252,12 +256,12 @@
 <td align="left"><a href="https://CRAN.R-project.org/package=survival">survival</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvPenalized.html">surv.penalized</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.penalized">surv.penalized</a></td>
 <td align="left">L1 and L2 Penalized Estimation in GLMs</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=penalized">penalized</a></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvRandomForestSRC.html">surv.randomForestSRC</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.randomforestsrc">surv.randomForestSRC</a></td>
 <td align="left">RandomForestSRC Survival Forest</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=randomForestSRC">randomForestSRC</a></td>
 </tr>
@@ -409,11 +413,12 @@
 <div id="density-learners" class="section level3">
 <h3 class="hasAnchor">
 <a href="#density-learners" class="anchor"></a>Density Learners</h3>
+<p>Learners are located either in <a href="https://github.com/mlr-org/mlr3proba">mlr3proba</a>, the <a href="https://github.com/mlr-org/mlr3learners">mlr3learners repository</a>, or the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>. See <a href="https://github.com/mlr3learners/mlr3learners.drat">here</a> for instructions in how to install learners from the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>.</p>
 <table class="table">
 <colgroup>
-<col width="40%">
-<col width="29%">
-<col width="29%">
+<col width="37%">
+<col width="31%">
+<col width="31%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">ID</th>
@@ -432,47 +437,47 @@
 <td align="left"><a href="https://CRAN.R-project.org/package=distr6">distr6</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerDensKDEkd.html">dens.kdeKD</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.kerdiest">dens.kdeKD</a></td>
 <td align="left">Nonparametric KDE Using Plug-in Method of Polansky and Baker</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=kerdiest">kerdiest</a></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerDensKDEks.html">dens.kdeKS</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.ks">dens.kdeKS</a></td>
 <td align="left">Nonparametric Gaussian KDE</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=ks">ks</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerDensLocfit.html">dens.locfit</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.locfit">dens.locfit</a></td>
 <td align="left">Nonparametric KDE Using Gaussian kernel</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=locfit">locfit</a></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerDensLogspline.html">dens.logspline</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.logspline">dens.logspline</a></td>
 <td align="left">Logspline Method for Density Estimation</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=logspline">logspline</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerDensMixed.html">dens.mixed</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.np">dens.mixed</a></td>
 <td align="left">KDE Using Li and Racine Bandwidth Specification</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=np">np</a></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerDensNonparametric.html">dens.nonpar</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.sm">dens.nonpar</a></td>
 <td align="left">Nonparametric KDE Using Normal Optimal Smoothing Parameter</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=sm">sm</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerDensPenalized.html">dens.pen</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.pendensity">dens.pen</a></td>
 <td align="left">Density Estimation with a Penalized Mixture</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=pendensity">pendensity</a></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerDensPlugin.html">dens.plug</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.plugdensity">dens.plug</a></td>
 <td align="left">Density Estimation with Iterative Plug-in Bandwidth Selection</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=plugdensity">plugdensity</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerDensSpline.html">dens.spline</a></td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.gss">dens.spline</a></td>
 <td align="left">Density Estimation Using Smoothing Spline ANOVA</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=gss">gss</a></td>
 </tr>
@@ -543,8 +548,7 @@
 <div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><a href="https://www.r-project.org/Licenses/LGPL-3">LGPL-3</a></li>
 </ul>
 </div>
 <div class="developers">

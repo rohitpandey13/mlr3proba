@@ -86,7 +86,7 @@ The task_type is set to &quot;surv&quot;." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -99,7 +99,10 @@ The task_type is set to &quot;surv&quot;." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survival.html">Survival Analysis</a>
+      <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -295,8 +298,9 @@ Row indices.</p></dd>
 <span class='no'>lung</span> <span class='kw'>=</span> <span class='kw pkg'>mlr3misc</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr3misc.mlr-org.com/reference/load_dataset.html'>load_dataset</a></span>(<span class='st'>"lung"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"survival"</span>)
 <span class='no'>lung</span>$<span class='no'>status</span> <span class='kw'>=</span> (<span class='no'>lung</span>$<span class='no'>status</span> <span class='kw'>==</span> <span class='fl'>2L</span>)
 <span class='no'>b</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/as_data_backend.html'>as_data_backend</a></span>(<span class='no'>lung</span>)
-<span class='no'>task</span> <span class='kw'>=</span> <span class='no'>TaskSurv</span>$<span class='fu'>new</span>(<span class='st'>"lung"</span>, <span class='kw'>backend</span> <span class='kw'>=</span> <span class='no'>b</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"time"</span>,
-   <span class='kw'>event</span> <span class='kw'>=</span> <span class='st'>"status"</span>)
+<span class='no'>task</span> <span class='kw'>=</span> <span class='no'>TaskSurv</span>$<span class='fu'>new</span>(<span class='st'>"lung"</span>,
+  <span class='kw'>backend</span> <span class='kw'>=</span> <span class='no'>b</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"time"</span>,
+  <span class='kw'>event</span> <span class='kw'>=</span> <span class='st'>"status"</span>)
 
 <span class='no'>task</span>$<span class='no'>target_names</span></div><div class='output co'>#&gt; [1] "time"   "status"</div><div class='input'><span class='no'>task</span>$<span class='no'>feature_names</span></div><div class='output co'>#&gt; [1] "age"       "inst"      "meal.cal"  "pat.karno" "ph.ecog"   "ph.karno" 
 #&gt; [7] "sex"       "wt.loss"  </div><div class='input'><span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/stats/formula.html'>formula</a></span>()</div><div class='output co'>#&gt; Surv(time, status, type = "right") ~ .

@@ -92,7 +92,7 @@ compositor to be more flexible." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -105,7 +105,10 @@ compositor to be more flexible." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survival.html">Survival Analysis</a>
+      <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -357,9 +360,10 @@ Internal <code>predict</code> function, will be moved to <code>private</code> in
 <span class='no'>gr</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='no'>gr</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 
 <span class='co'># Method 3 - Syntactic sugar: Wrap the learner in a graph.</span>
-<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'><a href='distrcompositor.html'>distrcompositor</a></span>(<span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
-                            <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
-                            <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
+<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'><a href='distrcompositor.html'>distrcompositor</a></span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
+  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
+  <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
 <span class='no'>cvglm.distr</span>$<span class='fu'>fit</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 }</div></pre>
   </div>

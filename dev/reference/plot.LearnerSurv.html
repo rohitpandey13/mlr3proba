@@ -83,7 +83,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -96,7 +96,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survival.html">Survival Analysis</a>
+      <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -210,9 +213,7 @@ If not missing <code>Learner$predict_newdata</code> is called instead of <code>L
 <span class='no'>learn</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)
 <span class='no'>learn</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>ind</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='img'><img src='plot.LearnerSurv-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>row_ids</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>()[<span class='fl'>1</span>:<span class='fl'>5</span>,])</div><div class='img'><img src='plot.LearnerSurv-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>()[<span class='fl'>1</span>:<span class='fl'>5</span>,], <span class='kw'>ylim</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div><div class='img'><img src='plot.LearnerSurv-3.png' alt='' width='700' height='433' /></div><div class='input'>
-
-</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>ind</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='img'><img src='plot.LearnerSurv-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>row_ids</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>()[<span class='fl'>1</span>:<span class='fl'>5</span>, ])</div><div class='img'><img src='plot.LearnerSurv-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>()[<span class='fl'>1</span>:<span class='fl'>5</span>, ], <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))</div><div class='img'><img src='plot.LearnerSurv-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

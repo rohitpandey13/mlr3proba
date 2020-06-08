@@ -91,7 +91,7 @@ Possible values for predict_types are:
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.5.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -104,7 +104,10 @@ Possible values for predict_types are:
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/survival.html">Survival Analysis</a>
+      <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -276,9 +279,7 @@ The referenced help package can be opened via method <code>$help()</code>.</p></
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='co'># get all density learners from mlr_learners:</span>
 <span class='no'>lrns</span> <span class='kw'>=</span> <span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>mget</a></span>(<span class='no'>mlr_learners</span>$<span class='fu'>keys</span>(<span class='st'>"^dens"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>lrns</span>)</div><div class='output co'>#&gt;  [1] "dens.hist"      "dens.kde"       "dens.kdeKD"     "dens.kdeKS"    
-#&gt;  [5] "dens.locfit"    "dens.logspline" "dens.mixed"     "dens.nonpar"   
-#&gt;  [9] "dens.pen"       "dens.plug"      "dens.spline"   </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>lrns</span>)</div><div class='output co'>#&gt; [1] "dens.hist" "dens.kde" </div><div class='input'>
 <span class='co'># get a specific learner from mlr_learners:</span>
 <span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"dens.hist"</span>)</div><div class='output co'>#&gt; &lt;LearnerDensHistogram:dens.hist&gt;
 #&gt; * Model: -
