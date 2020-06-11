@@ -304,11 +304,13 @@
 <h3 class="hasAnchor">
 <a href="#pipeopdistrcompositor" class="anchor"></a>PipeOpDistrCompositor</h3>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlr3pipelines</span>)
+<span class="co"># installing a learner from the mlr3learners repo</span>
 
 <span class="co"># PipeOpDistrCompositor - Train one model with a baseline distribution,</span>
 <span class="co"># (Kaplan-Meier or Nelson-Aalen), and another with a predicted linear predictor.</span>
 <span class="no">task</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">tgen</a></span>(<span class="st">"simsurv"</span>)$<span class="fu">generate</span>(<span class="fl">30</span>)
-<span class="no">leaner_lp</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"surv.gbm"</span>, <span class="kw">bag.fraction</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">n.trees</span> <span class="kw">=</span> <span class="fl">50L</span>)
+<span class="co"># rpart does return a distr prediction so we will overwrite it with our own composition</span>
+<span class="no">leaner_lp</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"surv.rpart"</span>)
 <span class="no">leaner_distr</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"surv.kaplan"</span>)
 <span class="no">prediction_lp</span> <span class="kw">=</span> <span class="no">leaner_lp</span>$<span class="fu">train</span>(<span class="no">task</span>)$<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">task</span>)
 <span class="no">prediction_distr</span> <span class="kw">=</span> <span class="no">leaner_distr</span>$<span class="fu">train</span>(<span class="no">task</span>)$<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">task</span>)
@@ -317,7 +319,7 @@
 
 <span class="co"># Doesn't need training. Base = baseline distribution. ph = Proportional hazards.</span>
 
-<span class="no">pod</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3pipelines.mlr-org.com//reference/po.html">po</a></span>(<span class="st">"distrcompose"</span>, <span class="kw">param_vals</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">form</span> <span class="kw">=</span> <span class="st">"ph"</span>, <span class="kw">overwrite</span> <span class="kw">=</span> <span class="fl">FALSE</span>))
+<span class="no">pod</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3pipelines.mlr-org.com//reference/po.html">po</a></span>(<span class="st">"distrcompose"</span>, <span class="kw">param_vals</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">form</span> <span class="kw">=</span> <span class="st">"ph"</span>, <span class="kw">overwrite</span> <span class="kw">=</span> <span class="fl">TRUE</span>))
 <span class="no">prediction</span> <span class="kw">=</span> <span class="no">pod</span>$<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">base</span> <span class="kw">=</span> <span class="no">prediction_distr</span>, <span class="kw">pred</span> <span class="kw">=</span> <span class="no">prediction_lp</span>))$<span class="no">output</span>
 
 <span class="co"># Now we have a predicted distr!</span>
@@ -327,20 +329,20 @@
 
 <span class="co"># This can all be simplified by using the distrcompose wrapper</span>
 
-<span class="no">gbm.distr</span> <span class="kw">=</span> <span class="fu"><a href="../reference/distrcompositor.html">distrcompositor</a></span>(<span class="kw">learner</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"surv.gbm"</span>, <span class="kw">bag.fraction</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">n.trees</span> <span class="kw">=</span> <span class="fl">50L</span>),
+<span class="no">rpart.distr</span> <span class="kw">=</span> <span class="fu"><a href="../reference/distrcompositor.html">distrcompositor</a></span>(<span class="kw">learner</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"surv.rpart"</span>),
                              <span class="kw">estimator</span> <span class="kw">=</span> <span class="st">"kaplan"</span>,
-                             <span class="kw">form</span> <span class="kw">=</span> <span class="st">"aft"</span>,
-                             <span class="kw">overwrite</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="no">gbm.distr</span>$<span class="fu">train</span>(<span class="no">task</span>)$<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">task</span>)
+                             <span class="kw">form</span> <span class="kw">=</span> <span class="st">"ph"</span>,
+                             <span class="kw">overwrite</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="no">rpart.distr</span>$<span class="fu">train</span>(<span class="no">task</span>)$<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">task</span>)
 <span class="co">#&gt; &lt;PredictionSurv&gt; for 30 observations:</span>
-<span class="co">#&gt;     row_id     time status       crank                distr          lp</span>
-<span class="co">#&gt;          1 5.000000  FALSE -0.19367047 &lt;VectorDistribution&gt; -0.19367047</span>
-<span class="co">#&gt;          2 3.568860   TRUE -0.66748168 &lt;VectorDistribution&gt; -0.66748168</span>
-<span class="co">#&gt;          3 1.128017   TRUE -0.05205574 &lt;VectorDistribution&gt; -0.05205574</span>
-<span class="co">#&gt; ---                                                                    </span>
-<span class="co">#&gt;         28 1.635774   TRUE -0.17106619 &lt;VectorDistribution&gt; -0.17106619</span>
-<span class="co">#&gt;         29 5.000000  FALSE -0.47381121 &lt;VectorDistribution&gt; -0.47381121</span>
-<span class="co">#&gt;         30 3.155294   TRUE -0.66748168 &lt;VectorDistribution&gt; -0.66748168</span></pre></body></html></div>
+<span class="co">#&gt;     row_id     time status     crank                distr</span>
+<span class="co">#&gt;          1 5.000000  FALSE 1.3654342 &lt;VectorDistribution&gt;</span>
+<span class="co">#&gt;          2 3.568860   TRUE 0.7707907 &lt;VectorDistribution&gt;</span>
+<span class="co">#&gt;          3 1.128017   TRUE 1.3654342 &lt;VectorDistribution&gt;</span>
+<span class="co">#&gt; ---                                                      </span>
+<span class="co">#&gt;         28 1.635774   TRUE 0.7707907 &lt;VectorDistribution&gt;</span>
+<span class="co">#&gt;         29 5.000000  FALSE 0.7707907 &lt;VectorDistribution&gt;</span>
+<span class="co">#&gt;         30 3.155294   TRUE 0.7707907 &lt;VectorDistribution&gt;</span></pre></body></html></div>
 </div>
 <div id="pipeopcrankcompositor" class="section level3">
 <h3 class="hasAnchor">
@@ -388,25 +390,29 @@
 <h2 class="hasAnchor">
 <a href="#all-together-now" class="anchor"></a>All Together Now</h2>
 <p>Putting all of this together we can perform a (overly simplified) benchmark experiment to find the best learner for making predictions on a simulated dataset.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlr3pipelines</span>); <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlr3</span>); <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlr3tuning</span>); <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">paradox</span>)
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlr3</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">42</span>)
 
-<span class="no">task</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">tgen</a></span>(<span class="st">"simsurv"</span>)$<span class="fu">generate</span>(<span class="fl">50</span>)
+<span class="no">task</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">tgen</a></span>(<span class="st">"simsurv"</span>)$<span class="fu">generate</span>(<span class="fl">10</span>)
 
-<span class="no">composed_lrn_gbm</span> <span class="kw">=</span> <span class="fu"><a href="../reference/distrcompositor.html">distrcompositor</a></span>(<span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"surv.gbm"</span>, <span class="kw">bag.fraction</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">n.trees</span> <span class="kw">=</span> <span class="fl">50L</span>),
-                                   <span class="st">"kaplan"</span>, <span class="st">"ph"</span>)
+<span class="no">composed_lrn_rpart</span> <span class="kw">=</span> <span class="fu"><a href="../reference/distrcompositor.html">distrcompositor</a></span>(<span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span>(<span class="st">"surv.rpart"</span>), <span class="st">"kaplan"</span>, <span class="st">"ph"</span>)
 
 <span class="no">lrns</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"surv."</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"kaplan"</span>, <span class="st">"coxph"</span>)), <span class="no">lrn</span>)
 
-<span class="no">design</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark_grid.html">benchmark_grid</a></span>(<span class="kw">tasks</span> <span class="kw">=</span> <span class="no">task</span>, <span class="kw">learners</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">lrns</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">composed_lrn_gbm</span>)),
+<span class="no">design</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark_grid.html">benchmark_grid</a></span>(<span class="kw">tasks</span> <span class="kw">=</span> <span class="no">task</span>, <span class="kw">learners</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">lrns</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">composed_lrn_rpart</span>)),
                         <span class="kw">resamplings</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span>(<span class="st">"cv"</span>, <span class="kw">folds</span> <span class="kw">=</span> <span class="fl">2</span>))
 
 <span class="no">bm</span> <span class="kw">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark.html">benchmark</a></span>(<span class="no">design</span>)
+<span class="co">#&gt; Warning in fitter(X, Y, istrat, offset, init, control, weights = weights, : Ran</span>
+<span class="co">#&gt; out of iterations and did not converge</span>
+
+<span class="co">#&gt; Warning in fitter(X, Y, istrat, offset, init, control, weights = weights, : Ran</span>
+<span class="co">#&gt; out of iterations and did not converge</span>
 <span class="no">bm</span>$<span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"surv.harrellC"</span>,<span class="st">"surv.graf"</span>,<span class="st">"surv.grafSE"</span>), <span class="no">msr</span>))[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>, <span class="fl">7</span>:<span class="fl">9</span>)]
-<span class="co">#&gt;                           learner_id surv.harrellC surv.graf surv.grafSE</span>
-<span class="co">#&gt; 1:                       surv.kaplan     0.5000000 0.2107141  0.02003976</span>
-<span class="co">#&gt; 2:                        surv.coxph     0.5003190 0.2259178  0.03210873</span>
-<span class="co">#&gt; 3: surv.kaplan.surv.gbm.distrcompose     0.4811204 0.2774313  0.04296744</span></pre></body></html></div>
+<span class="co">#&gt;                             learner_id surv.harrellC surv.graf surv.grafSE</span>
+<span class="co">#&gt; 1:                         surv.kaplan     0.5000000 0.2289412  0.06319559</span>
+<span class="co">#&gt; 2:                          surv.coxph     0.5888889 0.3605379  0.14069411</span>
+<span class="co">#&gt; 3: surv.kaplan.surv.rpart.distrcompose     0.5000000 0.2539474  0.08651016</span></pre></body></html></div>
 </div>
   </div>
 

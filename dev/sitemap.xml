@@ -16,31 +16,10 @@
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurv.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvBlackboost.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvCVGlmnet.html</loc>
-  </url>
-  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvCoxPH.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvGBM.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvGamboost.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvGlmboost.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvGlmnet.html</loc>
-  </url>
-  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvKaplan.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvMboost.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/LearnerSurvRpart.html</loc>
