@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Song and Zhou's TPR Survival Measure — MeasureSurvSongTPR • mlr3proba</title>
+<title>Mean Absolute Error Survival Measure — mlr_measures_surv.mae • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,11 +47,12 @@
 
 
 
-<meta property="og:title" content="Song and Zhou's TPR Survival Measure — MeasureSurvSongTPR" />
-<meta property="og:description" content="Calls survAUC::sens.sh().
-Assumes Cox PH model specification.
-times and lp_thresh are arbitrarily set to 0 to prevent crashing, these should be further
-specified." />
+<meta property="og:title" content="Mean Absolute Error Survival Measure — mlr_measures_surv.mae" />
+<meta property="og:description" content="Calculates the mean absolute error (MAE).
+The MAE is defined by
+$$\frac{1}{n} \sum |t - \hat{t}|$$
+where \(t\) is the true value and \(\hat{t}\) is the prediction.
+Censored observations in the test set are ignored." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -156,33 +157,29 @@ specified." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Song and Zhou's TPR Survival Measure</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/MeasureSurvSongTPR.R'><code>R/MeasureSurvSongTPR.R</code></a></small>
-    <div class="hidden name"><code>MeasureSurvSongTPR.Rd</code></div>
+    <h1>Mean Absolute Error Survival Measure</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/MeasureSurvMAE.R'><code>R/MeasureSurvMAE.R</code></a></small>
+    <div class="hidden name"><code>mlr_measures_surv.mae.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calls <code><a href='https://rdrr.io/pkg/survAUC/man/AUC.Song_Zhou.html'>survAUC::sens.sh()</a></code>.</p>
-<p>Assumes Cox PH model specification.</p>
-<p><code>times</code> and <code>lp_thresh</code> are arbitrarily set to <code>0</code> to prevent crashing, these should be further
-specified.</p>
+    <p>Calculates the mean absolute error (MAE).</p>
+<p>The MAE is defined by
+$$\frac{1}{n} \sum |t - \hat{t}|$$
+where \(t\) is the true value and \(\hat{t}\) is the prediction.</p>
+<p>Censored observations in the test set are ignored.</p>
     </div>
 
 
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>All measures implemented from <a href='https://CRAN.R-project.org/package=survAUC'><span class="pkg">survAUC</span></a> should be used with care, we are aware
-of problems in implementation that sometimes cause fatal errors in R. In future updates these
-measures will all be re-written and implemented directly in <code>mlr3proba</code>.</p>
     <h2 class="hasAnchor" id="dictionary"><a class="anchor" href="#dictionary"></a>Dictionary</h2>
 
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Measure.html'>Measure</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='no'>MeasureSurvSongTPR</span>$<span class='fu'>new</span>()
-<span class='no'>mlr_measures</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.songTPR"</span>)
-<span class='fu'>msr</span>(<span class='st'>"surv.songTPR"</span>)</pre>
+<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='no'>MeasureSurvMAE</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_measures</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.mae"</span>)
+<span class='fu'>msr</span>(<span class='st'>"surv.mae"</span>)</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
@@ -190,88 +187,57 @@ measures will all be re-written and implemented directly in <code>mlr3proba</cod
 
 <ul>
 <li><p>Type: <code>"surv"</code></p></li>
-<li><p>Range: \([0, 1]\)</p></li>
-<li><p>Minimize: <code>FALSE</code></p></li>
-<li><p>Required prediction: <code>lp</code></p></li>
+<li><p>Range: \([0, \infty)\)</p></li>
+<li><p>Minimize: <code>TRUE</code></p></li>
+<li><p>Required prediction: <code>response</code></p></li>
 </ul>
 
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Song X, Zhou X (2008).
-&#8220;A semiparametric approach for the covariate specific ROC curve with survival outcome.&#8221;
-<em>Statistica Sinica</em>, <b>18</b>(3), 947--65.
-<a href='http://www.jstor.org/stable/24308524'>http://www.jstor.org/stable/24308524</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other survival measures: 
-<code><a href='MeasureSurvBeggC.html'>MeasureSurvBeggC</a></code>,
-<code><a href='MeasureSurvChamblessAUC.html'>MeasureSurvChamblessAUC</a></code>,
-<code><a href='MeasureSurvGonenC.html'>MeasureSurvGonenC</a></code>,
-<code><a href='MeasureSurvGrafSE.html'>MeasureSurvGrafSE</a></code>,
-<code><a href='MeasureSurvGraf.html'>MeasureSurvGraf</a></code>,
-<code><a href='MeasureSurvHarrellC.html'>MeasureSurvHarrellC</a></code>,
-<code><a href='MeasureSurvHungAUC.html'>MeasureSurvHungAUC</a></code>,
-<code><a href='MeasureSurvIntLoglossSE.html'>MeasureSurvIntLoglossSE</a></code>,
-<code><a href='MeasureSurvIntLogloss.html'>MeasureSurvIntLogloss</a></code>,
-<code><a href='MeasureSurvLoglossSE.html'>MeasureSurvLoglossSE</a></code>,
-<code><a href='MeasureSurvLogloss.html'>MeasureSurvLogloss</a></code>,
-<code><a href='MeasureSurvMAESE.html'>MeasureSurvMAESE</a></code>,
-<code><a href='MeasureSurvMAE.html'>MeasureSurvMAE</a></code>,
-<code><a href='MeasureSurvMSESE.html'>MeasureSurvMSESE</a></code>,
-<code><a href='MeasureSurvMSE.html'>MeasureSurvMSE</a></code>,
-<code><a href='MeasureSurvNagelkR2.html'>MeasureSurvNagelkR2</a></code>,
-<code><a href='MeasureSurvOQuigleyR2.html'>MeasureSurvOQuigleyR2</a></code>,
-<code><a href='MeasureSurvRMSESE.html'>MeasureSurvRMSESE</a></code>,
-<code><a href='MeasureSurvRMSE.html'>MeasureSurvRMSE</a></code>,
-<code><a href='MeasureSurvSongAUC.html'>MeasureSurvSongAUC</a></code>,
-<code><a href='MeasureSurvSongTNR.html'>MeasureSurvSongTNR</a></code>,
-<code><a href='MeasureSurvUnoAUC.html'>MeasureSurvUnoAUC</a></code>,
-<code><a href='MeasureSurvUnoC.html'>MeasureSurvUnoC</a></code>,
-<code><a href='MeasureSurvUnoTNR.html'>MeasureSurvUnoTNR</a></code>,
-<code><a href='MeasureSurvUnoTPR.html'>MeasureSurvUnoTPR</a></code>,
-<code><a href='MeasureSurvXuR2.html'>MeasureSurvXuR2</a></code></p>
-<p>Other AUC survival measures: 
-<code><a href='MeasureSurvChamblessAUC.html'>MeasureSurvChamblessAUC</a></code>,
-<code><a href='MeasureSurvHungAUC.html'>MeasureSurvHungAUC</a></code>,
-<code><a href='MeasureSurvSongAUC.html'>MeasureSurvSongAUC</a></code>,
-<code><a href='MeasureSurvSongTNR.html'>MeasureSurvSongTNR</a></code>,
-<code><a href='MeasureSurvUnoAUC.html'>MeasureSurvUnoAUC</a></code>,
-<code><a href='MeasureSurvUnoTNR.html'>MeasureSurvUnoTNR</a></code>,
-<code><a href='MeasureSurvUnoTPR.html'>MeasureSurvUnoTPR</a></code></p>
-<p>Other lp survival measures: 
-<code><a href='MeasureSurvBeggC.html'>MeasureSurvBeggC</a></code>,
-<code><a href='MeasureSurvChamblessAUC.html'>MeasureSurvChamblessAUC</a></code>,
-<code><a href='MeasureSurvGonenC.html'>MeasureSurvGonenC</a></code>,
-<code><a href='MeasureSurvHungAUC.html'>MeasureSurvHungAUC</a></code>,
-<code><a href='MeasureSurvNagelkR2.html'>MeasureSurvNagelkR2</a></code>,
-<code><a href='MeasureSurvOQuigleyR2.html'>MeasureSurvOQuigleyR2</a></code>,
-<code><a href='MeasureSurvSongAUC.html'>MeasureSurvSongAUC</a></code>,
-<code><a href='MeasureSurvSongTNR.html'>MeasureSurvSongTNR</a></code>,
-<code><a href='MeasureSurvUnoAUC.html'>MeasureSurvUnoAUC</a></code>,
-<code><a href='MeasureSurvUnoTNR.html'>MeasureSurvUnoTNR</a></code>,
-<code><a href='MeasureSurvUnoTPR.html'>MeasureSurvUnoTPR</a></code>,
-<code><a href='MeasureSurvXuR2.html'>MeasureSurvXuR2</a></code></p></div>
+<code><a href='mlr_measures_surv.beggC.html'>mlr_measures_surv.beggC</a></code>,
+<code><a href='mlr_measures_surv.chamblessAUC.html'>mlr_measures_surv.chamblessAUC</a></code>,
+<code><a href='mlr_measures_surv.gonenC.html'>mlr_measures_surv.gonenC</a></code>,
+<code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
+<code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
+<code><a href='mlr_measures_surv.harrellC.html'>mlr_measures_surv.harrellC</a></code>,
+<code><a href='mlr_measures_surv.hungAUC.html'>mlr_measures_surv.hungAUC</a></code>,
+<code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
+<code><a href='mlr_measures_surv.intlogloss.html'>mlr_measures_surv.intlogloss</a></code>,
+<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
+<code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code>,
+<code><a href='mlr_measures_surv.maeSE.html'>mlr_measures_surv.maeSE</a></code>,
+<code><a href='mlr_measures_surv.mseSE.html'>mlr_measures_surv.mseSE</a></code>,
+<code><a href='mlr_measures_surv.mse.html'>mlr_measures_surv.mse</a></code>,
+<code><a href='mlr_measures_surv.nagelkR2.html'>mlr_measures_surv.nagelkR2</a></code>,
+<code><a href='mlr_measures_surv.oquigleyR2.html'>mlr_measures_surv.oquigleyR2</a></code>,
+<code><a href='mlr_measures_surv.rmseSE.html'>mlr_measures_surv.rmseSE</a></code>,
+<code><a href='mlr_measures_surv.rmse.html'>mlr_measures_surv.rmse</a></code>,
+<code><a href='mlr_measures_surv.songAUC.html'>mlr_measures_surv.songAUC</a></code>,
+<code><a href='mlr_measures_surv.songTNR.html'>mlr_measures_surv.songTNR</a></code>,
+<code><a href='mlr_measures_surv.songTPR.html'>mlr_measures_surv.songTPR</a></code>,
+<code><a href='mlr_measures_surv.unoAUC.html'>mlr_measures_surv.unoAUC</a></code>,
+<code><a href='mlr_measures_surv.unoC.html'>mlr_measures_surv.unoC</a></code>,
+<code><a href='mlr_measures_surv.unoTNR.html'>mlr_measures_surv.unoTNR</a></code>,
+<code><a href='mlr_measures_surv.unoTPR.html'>mlr_measures_surv.unoTPR</a></code>,
+<code><a href='mlr_measures_surv.xuR2.html'>mlr_measures_surv.xuR2</a></code></p>
+<p>Other response survival measures: 
+<code><a href='mlr_measures_surv.maeSE.html'>mlr_measures_surv.maeSE</a></code>,
+<code><a href='mlr_measures_surv.mseSE.html'>mlr_measures_surv.mseSE</a></code>,
+<code><a href='mlr_measures_surv.mse.html'>mlr_measures_surv.mse</a></code>,
+<code><a href='mlr_measures_surv.rmseSE.html'>mlr_measures_surv.rmseSE</a></code>,
+<code><a href='mlr_measures_surv.rmse.html'>mlr_measures_surv.rmse</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
-    <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code><a href='MeasureSurvIntegrated.html'>mlr3proba::MeasureSurvIntegrated</a></code> -&gt; <code><a href='MeasureSurvAUC.html'>mlr3proba::MeasureSurvAUC</a></code> -&gt; <code>MeasureSurvSongTPR</code></p>
-    <h2 class="hasAnchor" id="active-bindings"><a class="anchor" href="#active-bindings"></a>Active bindings</h2>
-
-    <p><div class="r6-active-bindings"></p><dl'>
-<dt><code>lp_thresh</code></dt><dd><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code><br />
-Threshold for linear predictor when calculating TPR/TNR.</p></dd>
-
-<dt><code>type</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
-Type of measure, one of: <code>'cumulative'</code>, <code>'incident'</code>.</p></dd>
-
-</dl><p></div></p>
+    <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code>MeasureSurvMAE</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>MeasureSurvSongTPR$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>MeasureSurvSongTPR$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>MeasureSurvMAE$new()</code></a></p></li>
+<li><p><a href='#method-clone'><code>MeasureSurvMAE$clone()</code></a></p></li>
 </ul>
 <p><details open ><summary>Inherited methods</summary>
 <ul>
@@ -286,29 +252,12 @@ Type of measure, one of: <code>'cumulative'</code>, <code>'incident'</code>.</p>
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureSurvSongTPR</span>$<span class='fu'>new</span>(
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>lp_thresh</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"incident"</span>, <span class='st'>"cumulative"</span>)
-)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>MeasureSurvMAE</span>$<span class='fu'>new</span>()</pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
-<dt><code>times</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-If <code>integrate == TRUE</code> then a vector of time-points over which to integrate the score.
-If <code>integrate == FALSE</code> then a single time point at which to return the score.</p></dd>
-
-<dt><code>lp_thresh</code></dt><dd><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code> <br />
-Determines where to threshold the linear predictor for calculating the TPR/TNR.</p></dd>
-
-<dt><code>type</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
-Determines the type of score, one of: <code>'cumulative'</code>, <code>'incident'</code>.</p></dd>
-
-</dl><p></div></p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureSurvSongTPR</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>MeasureSurvMAE</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>

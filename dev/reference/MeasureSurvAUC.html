@@ -189,7 +189,13 @@
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureSurvAUC</span>$<span class='fu'>new</span>(<span class='kw'>integrated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>times</span>, <span class='no'>id</span>, <span class='no'>properties</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>MeasureSurvAUC</span>$<span class='fu'>new</span>(
+  <span class='kw'>integrated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>times</span>,
+  <span class='no'>id</span>,
+  <span class='kw'>properties</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(),
+  <span class='kw'>man</span> <span class='kw'>=</span> <span class='fl'>NA_character_</span>
+)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
@@ -213,6 +219,10 @@ Supported by <code>mlr3</code>:
 <li><p><code>"requires_train_set"</code> (requires the training indices from the Resampling), and</p></li>
 <li><p><code>"na_score"</code> (the measure is expected to occasionally return <code>NA</code> or <code>NaN</code>).</p></li>
 </ul></p></dd>
+
+<dt><code>man</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
+String in the format <code>[pkg]::[topic]</code> pointing to a manual page for this object.
+The referenced help package can be opened via method <code>$help()</code>.</p></dd>
 
 </dl><p></div></p>
 <p><hr>

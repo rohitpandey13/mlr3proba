@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Standard Error of Integrated Graf Score Survival Measure — MeasureSurvGrafSE • mlr3proba</title>
+<title>Integrated Log loss Survival Measure — mlr_measures_surv.intlogloss • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,14 +47,21 @@
 
 
 
-<meta property="og:title" content="Standard Error of Integrated Graf Score Survival Measure — MeasureSurvGrafSE" />
-<meta property="og:description" content="Calculates the standard error of MeasureSurvGraf.
-If integrated == FALSE then the standard error of the loss, L, is approximated via,
-$$se(L) = sd(L)/\sqrt{N}$$
-where \(N\) are the number of observations in the test set, and \(sd\) is the standard deviation.
-If integrated == TRUE then correlations between time-points need to be taken into account, therefore
-$$se(L) = \sqrt{\frac{\sum_{i = 1}^M\sum_{j=1}^M \Sigma_{i,j}}{NT^2}}$$
-where \(\Sigma_{i, j}\) is the sample covariance matrix over \(M\) distinct time-points." />
+<meta property="og:title" content="Integrated Log loss Survival Measure — mlr_measures_surv.intlogloss" />
+<meta property="og:description" content="Calculates the integrated logarithmic (log), loss, aka integrated cross entropy.
+For an individual who dies at time \(t\), with predicted Survival function, \(S\), the
+probabilistic log loss at time \(t^*\) is given by
+$$L(S,t|t^*) = - [log(1 - S(t^*))I(t \le t^*, \delta = 1)(1/G(t))] - [log(S(t^*))I(t &amp;gt; t^*)(1/G(t^*))]$$
+where \(G\) is the Kaplan-Meier estimate of the censoring distribution.
+If integrated == FALSE then the sample mean is taken for the single specified times, \(t^*\), and the returned
+score is given by
+$$L(S,t|t^*) = \frac{1}{N} \sum_{i=1}^N L(S_i,t_i|t^*)$$
+where \(N\) is the number of observations, \(S_i\) is the predicted survival function for
+individual \(i\) and \(t_i\) is their true survival time.
+If integrated == TRUE then an approximation to integration is made by either taking the sample
+mean over all \(T\) unique time-points (method == 1), or by taking a mean weighted by the difference
+between time-points (method == 2). Then the sample mean is taken over all \(N\) observations.
+$$L(S) = \frac{1}{NT} \sum_{i=1}^N \sum_{j=1}^T L(S_i,t_i|t^*_j)$$" />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -159,19 +166,26 @@ where \(\Sigma_{i, j}\) is the sample covariance matrix over \(M\) distinct time
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Standard Error of Integrated Graf Score Survival Measure</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/MeasureSurvGrafSE.R'><code>R/MeasureSurvGrafSE.R</code></a></small>
-    <div class="hidden name"><code>MeasureSurvGrafSE.Rd</code></div>
+    <h1>Integrated Log loss Survival Measure</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/MeasureSurvIntLogloss.R'><code>R/MeasureSurvIntLogloss.R</code></a></small>
+    <div class="hidden name"><code>mlr_measures_surv.intlogloss.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculates the standard error of <a href='MeasureSurvGraf.html'>MeasureSurvGraf</a>.</p>
-<p>If <code>integrated == FALSE</code> then the standard error of the loss, L, is approximated via,
-$$se(L) = sd(L)/\sqrt{N}$$
-where \(N\) are the number of observations in the test set, and \(sd\) is the standard deviation.</p>
-<p>If <code>integrated == TRUE</code> then correlations between time-points need to be taken into account, therefore
-$$se(L) = \sqrt{\frac{\sum_{i = 1}^M\sum_{j=1}^M \Sigma_{i,j}}{NT^2}}$$
-where \(\Sigma_{i, j}\) is the sample covariance matrix over \(M\) distinct time-points.</p>
+    <p>Calculates the integrated logarithmic (log), loss, aka integrated cross entropy.</p>
+<p>For an individual who dies at time \(t\), with predicted Survival function, \(S\), the
+probabilistic log loss at time \(t^*\) is given by
+$$L(S,t|t^*) = - [log(1 - S(t^*))I(t \le t^*, \delta = 1)(1/G(t))] - [log(S(t^*))I(t &gt; t^*)(1/G(t^*))]$$
+where \(G\) is the Kaplan-Meier estimate of the censoring distribution.</p>
+<p>If <code>integrated == FALSE</code> then the sample mean is taken for the single specified <code>times</code>, \(t^*\), and the returned
+score is given by
+$$L(S,t|t^*) = \frac{1}{N} \sum_{i=1}^N L(S_i,t_i|t^*)$$
+where \(N\) is the number of observations, \(S_i\) is the predicted survival function for
+individual \(i\) and \(t_i\) is their true survival time.</p>
+<p>If <code>integrated == TRUE</code> then an approximation to integration is made by either taking the sample
+mean over all \(T\) unique time-points (<code>method == 1</code>), or by taking a mean weighted by the difference
+between time-points (<code>method == 2</code>). Then the sample mean is taken over all \(N\) observations.
+$$L(S) = \frac{1}{NT} \sum_{i=1}^N \sum_{j=1}^T L(S_i,t_i|t^*_j)$$</p>
     </div>
 
 
@@ -181,9 +195,9 @@ where \(\Sigma_{i, j}\) is the sample covariance matrix over \(M\) distinct time
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Measure.html'>Measure</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='no'>MeasureSurvGrafSE</span>$<span class='fu'>new</span>()
-<span class='no'>mlr_measures</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.grafSE"</span>)
-<span class='fu'>msr</span>(<span class='st'>"surv.grafSE"</span>)</pre>
+<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='no'>MeasureSurvIntLogloss</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_measures</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.intlogloss"</span>)
+<span class='fu'>msr</span>(<span class='st'>"surv.intlogloss"</span>)</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
@@ -206,55 +220,62 @@ doi: <a href='https://doi.org/10.1002/(sici)1097-0258(19990915/30)18:17/18&lt;25
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other survival measures: 
-<code><a href='MeasureSurvBeggC.html'>MeasureSurvBeggC</a></code>,
-<code><a href='MeasureSurvChamblessAUC.html'>MeasureSurvChamblessAUC</a></code>,
-<code><a href='MeasureSurvGonenC.html'>MeasureSurvGonenC</a></code>,
-<code><a href='MeasureSurvGraf.html'>MeasureSurvGraf</a></code>,
-<code><a href='MeasureSurvHarrellC.html'>MeasureSurvHarrellC</a></code>,
-<code><a href='MeasureSurvHungAUC.html'>MeasureSurvHungAUC</a></code>,
-<code><a href='MeasureSurvIntLoglossSE.html'>MeasureSurvIntLoglossSE</a></code>,
-<code><a href='MeasureSurvIntLogloss.html'>MeasureSurvIntLogloss</a></code>,
-<code><a href='MeasureSurvLoglossSE.html'>MeasureSurvLoglossSE</a></code>,
-<code><a href='MeasureSurvLogloss.html'>MeasureSurvLogloss</a></code>,
-<code><a href='MeasureSurvMAESE.html'>MeasureSurvMAESE</a></code>,
-<code><a href='MeasureSurvMAE.html'>MeasureSurvMAE</a></code>,
-<code><a href='MeasureSurvMSESE.html'>MeasureSurvMSESE</a></code>,
-<code><a href='MeasureSurvMSE.html'>MeasureSurvMSE</a></code>,
-<code><a href='MeasureSurvNagelkR2.html'>MeasureSurvNagelkR2</a></code>,
-<code><a href='MeasureSurvOQuigleyR2.html'>MeasureSurvOQuigleyR2</a></code>,
-<code><a href='MeasureSurvRMSESE.html'>MeasureSurvRMSESE</a></code>,
-<code><a href='MeasureSurvRMSE.html'>MeasureSurvRMSE</a></code>,
-<code><a href='MeasureSurvSongAUC.html'>MeasureSurvSongAUC</a></code>,
-<code><a href='MeasureSurvSongTNR.html'>MeasureSurvSongTNR</a></code>,
-<code><a href='MeasureSurvSongTPR.html'>MeasureSurvSongTPR</a></code>,
-<code><a href='MeasureSurvUnoAUC.html'>MeasureSurvUnoAUC</a></code>,
-<code><a href='MeasureSurvUnoC.html'>MeasureSurvUnoC</a></code>,
-<code><a href='MeasureSurvUnoTNR.html'>MeasureSurvUnoTNR</a></code>,
-<code><a href='MeasureSurvUnoTPR.html'>MeasureSurvUnoTPR</a></code>,
-<code><a href='MeasureSurvXuR2.html'>MeasureSurvXuR2</a></code></p>
+<code><a href='mlr_measures_surv.beggC.html'>mlr_measures_surv.beggC</a></code>,
+<code><a href='mlr_measures_surv.chamblessAUC.html'>mlr_measures_surv.chamblessAUC</a></code>,
+<code><a href='mlr_measures_surv.gonenC.html'>mlr_measures_surv.gonenC</a></code>,
+<code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
+<code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
+<code><a href='mlr_measures_surv.harrellC.html'>mlr_measures_surv.harrellC</a></code>,
+<code><a href='mlr_measures_surv.hungAUC.html'>mlr_measures_surv.hungAUC</a></code>,
+<code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
+<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
+<code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code>,
+<code><a href='mlr_measures_surv.maeSE.html'>mlr_measures_surv.maeSE</a></code>,
+<code><a href='mlr_measures_surv.mae.html'>mlr_measures_surv.mae</a></code>,
+<code><a href='mlr_measures_surv.mseSE.html'>mlr_measures_surv.mseSE</a></code>,
+<code><a href='mlr_measures_surv.mse.html'>mlr_measures_surv.mse</a></code>,
+<code><a href='mlr_measures_surv.nagelkR2.html'>mlr_measures_surv.nagelkR2</a></code>,
+<code><a href='mlr_measures_surv.oquigleyR2.html'>mlr_measures_surv.oquigleyR2</a></code>,
+<code><a href='mlr_measures_surv.rmseSE.html'>mlr_measures_surv.rmseSE</a></code>,
+<code><a href='mlr_measures_surv.rmse.html'>mlr_measures_surv.rmse</a></code>,
+<code><a href='mlr_measures_surv.songAUC.html'>mlr_measures_surv.songAUC</a></code>,
+<code><a href='mlr_measures_surv.songTNR.html'>mlr_measures_surv.songTNR</a></code>,
+<code><a href='mlr_measures_surv.songTPR.html'>mlr_measures_surv.songTPR</a></code>,
+<code><a href='mlr_measures_surv.unoAUC.html'>mlr_measures_surv.unoAUC</a></code>,
+<code><a href='mlr_measures_surv.unoC.html'>mlr_measures_surv.unoC</a></code>,
+<code><a href='mlr_measures_surv.unoTNR.html'>mlr_measures_surv.unoTNR</a></code>,
+<code><a href='mlr_measures_surv.unoTPR.html'>mlr_measures_surv.unoTPR</a></code>,
+<code><a href='mlr_measures_surv.xuR2.html'>mlr_measures_surv.xuR2</a></code></p>
 <p>Other Probabilistic survival measures: 
-<code><a href='MeasureSurvGraf.html'>MeasureSurvGraf</a></code>,
-<code><a href='MeasureSurvIntLoglossSE.html'>MeasureSurvIntLoglossSE</a></code>,
-<code><a href='MeasureSurvIntLogloss.html'>MeasureSurvIntLogloss</a></code>,
-<code><a href='MeasureSurvLoglossSE.html'>MeasureSurvLoglossSE</a></code>,
-<code><a href='MeasureSurvLogloss.html'>MeasureSurvLogloss</a></code></p>
+<code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
+<code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
+<code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
+<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
+<code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code></p>
 <p>Other distr survival measures: 
-<code><a href='MeasureSurvGraf.html'>MeasureSurvGraf</a></code>,
-<code><a href='MeasureSurvIntLoglossSE.html'>MeasureSurvIntLoglossSE</a></code>,
-<code><a href='MeasureSurvIntLogloss.html'>MeasureSurvIntLogloss</a></code>,
-<code><a href='MeasureSurvLoglossSE.html'>MeasureSurvLoglossSE</a></code>,
-<code><a href='MeasureSurvLogloss.html'>MeasureSurvLogloss</a></code></p></div>
+<code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
+<code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
+<code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
+<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
+<code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
-    <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code><a href='MeasureSurvIntegrated.html'>mlr3proba::MeasureSurvIntegrated</a></code> -&gt; <code>MeasureSurvGrafSE</code></p>
+    <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code><a href='MeasureSurvIntegrated.html'>mlr3proba::MeasureSurvIntegrated</a></code> -&gt; <code>MeasureSurvIntLogloss</code></p>
+    <h2 class="hasAnchor" id="active-bindings"><a class="anchor" href="#active-bindings"></a>Active bindings</h2>
+
+    <p><div class="r6-active-bindings"></p><dl'>
+<dt><code>eps</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>)<br />
+Very small number used to prevent log(0) error.</p></dd>
+
+</dl><p></div></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>MeasureSurvGrafSE$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>MeasureSurvGrafSE$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>MeasureSurvIntLogloss$new()</code></a></p></li>
+<li><p><a href='#method-clone'><code>MeasureSurvIntLogloss$clone()</code></a></p></li>
 </ul>
 <p><details open ><summary>Inherited methods</summary>
 <ul>
@@ -269,7 +290,7 @@ doi: <a href='https://doi.org/10.1002/(sici)1097-0258(19990915/30)18:17/18&lt;25
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureSurvGrafSE</span>$<span class='fu'>new</span>(<span class='kw'>integrated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>times</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>MeasureSurvIntLogloss</span>$<span class='fu'>new</span>(<span class='kw'>integrated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>times</span>, <span class='kw'>eps</span> <span class='kw'>=</span> <span class='fl'>1e-15</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
@@ -280,11 +301,21 @@ If <code>TRUE</code> (default), returns the integrated score; otherwise, not int
 If <code>integrate == TRUE</code> then a vector of time-points over which to integrate the score.
 If <code>integrate == FALSE</code> then a single time point at which to return the score.</p></dd>
 
+<dt><code>eps</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>)<br />
+Very small number to set zero-valued predicted probabilities to in order to prevent errors
+in log(0) calculation.</p></dd>
+
+<dt><code>method</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>)<br />
+If <code>integrate == TRUE</code> selects the integration weighting method.
+<code>method == 1</code> corresponds to weighting each time-point equally and taking the mean score over
+discrete time-points. <code>method == 2</code> corresponds to calculating a mean weighted by the difference
+between time-points. <code>method == 2</code> is default to be in line with other packages.</p></dd>
+
 </dl><p></div></p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureSurvGrafSE</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>MeasureSurvIntLogloss</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>

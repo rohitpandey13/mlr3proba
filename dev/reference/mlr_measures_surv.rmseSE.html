@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Log loss Density Measure — MeasureDensLogloss • mlr3proba</title>
+<title>Standard Error of Root Mean Squared Error Survival Measure — mlr_measures_surv.rmseSE • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,11 +47,11 @@
 
 
 
-<meta property="og:title" content="Log loss Density Measure — MeasureDensLogloss" />
-<meta property="og:description" content="Calculates the cross-entropy, or logarithmic (log), loss.
-The logloss, in the context of probabilistic predictions, is defined as the negative log probability
-density function, \(f\), evaluated at the observed value, \(y\),
-$$L(f, y) = -log(f(y))$$" />
+<meta property="og:title" content="Standard Error of Root Mean Squared Error Survival Measure — mlr_measures_surv.rmseSE" />
+<meta property="og:description" content="Calculates the standard error of MeasureSurvRMSE.
+The standard error of the RMSE, L, is approximated via first order approximation by
+$$sd(RMSE) = Var(\sqrt{MSE})$$
+Censored observations in the test set are ignored." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -156,48 +156,86 @@ $$L(f, y) = -log(f(y))$$" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Log loss Density Measure</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/MeasureDensLogloss.R'><code>R/MeasureDensLogloss.R</code></a></small>
-    <div class="hidden name"><code>MeasureDensLogloss.Rd</code></div>
+    <h1>Standard Error of Root Mean Squared Error Survival Measure</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/MeasureSurvRMSESE.R'><code>R/MeasureSurvRMSESE.R</code></a></small>
+    <div class="hidden name"><code>mlr_measures_surv.rmseSE.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculates the cross-entropy, or logarithmic (log), loss.</p>
-<p>The logloss, in the context of probabilistic predictions, is defined as the negative log probability
-density function, \(f\), evaluated at the observed value, \(y\),
-$$L(f, y) = -log(f(y))$$</p>
+    <p>Calculates the standard error of <a href='mlr_measures_surv.rmse.html'>MeasureSurvRMSE</a>.</p>
+<p>The standard error of the RMSE, L, is approximated via first order approximation by
+$$sd(RMSE) = Var(\sqrt{MSE})$$</p>
+<p>Censored observations in the test set are ignored.</p>
     </div>
 
 
+
+    <h2 class="hasAnchor" id="dictionary"><a class="anchor" href="#dictionary"></a>Dictionary</h2>
+
+    
+
+<p>This <a href='https://mlr3.mlr-org.com/reference/Measure.html'>Measure</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
+<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='no'>MeasureSurvRMSESE</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_measures</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.rmseSE"</span>)
+<span class='fu'>msr</span>(<span class='st'>"surv.rmseSE"</span>)</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
     
 
 <ul>
-<li><p>Type: <code>"density"</code></p></li>
+<li><p>Type: <code>"surv"</code></p></li>
 <li><p>Range: \([0, \infty)\)</p></li>
 <li><p>Minimize: <code>TRUE</code></p></li>
-<li><p>Required prediction: <code>pdf</code></p></li>
+<li><p>Required prediction: <code>response</code></p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other survival measures: 
+<code><a href='mlr_measures_surv.beggC.html'>mlr_measures_surv.beggC</a></code>,
+<code><a href='mlr_measures_surv.chamblessAUC.html'>mlr_measures_surv.chamblessAUC</a></code>,
+<code><a href='mlr_measures_surv.gonenC.html'>mlr_measures_surv.gonenC</a></code>,
+<code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
+<code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
+<code><a href='mlr_measures_surv.harrellC.html'>mlr_measures_surv.harrellC</a></code>,
+<code><a href='mlr_measures_surv.hungAUC.html'>mlr_measures_surv.hungAUC</a></code>,
+<code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
+<code><a href='mlr_measures_surv.intlogloss.html'>mlr_measures_surv.intlogloss</a></code>,
+<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
+<code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code>,
+<code><a href='mlr_measures_surv.maeSE.html'>mlr_measures_surv.maeSE</a></code>,
+<code><a href='mlr_measures_surv.mae.html'>mlr_measures_surv.mae</a></code>,
+<code><a href='mlr_measures_surv.mseSE.html'>mlr_measures_surv.mseSE</a></code>,
+<code><a href='mlr_measures_surv.mse.html'>mlr_measures_surv.mse</a></code>,
+<code><a href='mlr_measures_surv.nagelkR2.html'>mlr_measures_surv.nagelkR2</a></code>,
+<code><a href='mlr_measures_surv.oquigleyR2.html'>mlr_measures_surv.oquigleyR2</a></code>,
+<code><a href='mlr_measures_surv.rmse.html'>mlr_measures_surv.rmse</a></code>,
+<code><a href='mlr_measures_surv.songAUC.html'>mlr_measures_surv.songAUC</a></code>,
+<code><a href='mlr_measures_surv.songTNR.html'>mlr_measures_surv.songTNR</a></code>,
+<code><a href='mlr_measures_surv.songTPR.html'>mlr_measures_surv.songTPR</a></code>,
+<code><a href='mlr_measures_surv.unoAUC.html'>mlr_measures_surv.unoAUC</a></code>,
+<code><a href='mlr_measures_surv.unoC.html'>mlr_measures_surv.unoC</a></code>,
+<code><a href='mlr_measures_surv.unoTNR.html'>mlr_measures_surv.unoTNR</a></code>,
+<code><a href='mlr_measures_surv.unoTPR.html'>mlr_measures_surv.unoTPR</a></code>,
+<code><a href='mlr_measures_surv.xuR2.html'>mlr_measures_surv.xuR2</a></code></p>
+<p>Other response survival measures: 
+<code><a href='mlr_measures_surv.maeSE.html'>mlr_measures_surv.maeSE</a></code>,
+<code><a href='mlr_measures_surv.mae.html'>mlr_measures_surv.mae</a></code>,
+<code><a href='mlr_measures_surv.mseSE.html'>mlr_measures_surv.mseSE</a></code>,
+<code><a href='mlr_measures_surv.mse.html'>mlr_measures_surv.mse</a></code>,
+<code><a href='mlr_measures_surv.rmse.html'>mlr_measures_surv.rmse</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
-    <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureDens.html'>mlr3proba::MeasureDens</a></code> -&gt; <code>MeasureDensLogloss</code></p>
-    <h2 class="hasAnchor" id="active-bindings"><a class="anchor" href="#active-bindings"></a>Active bindings</h2>
-
-    <p><div class="r6-active-bindings"></p><dl'>
-<dt><code>eps</code></dt><dd><p>Returns <code>eps</code> parameter, see <code>initialize</code>.</p></dd>
-
-</dl><p></div></p>
+    <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code>MeasureSurvRMSESE</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>MeasureDensLogloss$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>MeasureDensLogloss$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>MeasureSurvRMSESE$new()</code></a></p></li>
+<li><p><a href='#method-clone'><code>MeasureSurvRMSESE$clone()</code></a></p></li>
 </ul>
 <p><details open ><summary>Inherited methods</summary>
 <ul>
@@ -212,19 +250,12 @@ $$L(f, y) = -log(f(y))$$</p>
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureDensLogloss</span>$<span class='fu'>new</span>(<span class='kw'>eps</span> <span class='kw'>=</span> <span class='fl'>1e-15</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>MeasureSurvRMSESE</span>$<span class='fu'>new</span>()</pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
-<dt><code>eps</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>)<br />
-Very small number to set zero-valued predicted probabilities to in order to prevent errors
-in log(0) calculation.</p></dd>
-
-</dl><p></div></p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureDensLogloss</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>MeasureSurvRMSESE</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
