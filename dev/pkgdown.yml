@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   density: density.html
   survival: survival.html
-last_built: 2020-06-14T04:49Z
+last_built: 2020-06-15T04:33Z
 urls:
   reference: https://mlr3proba.mlr-org.com/reference
   article: https://mlr3proba.mlr-org.com/articles
