@@ -48,10 +48,11 @@
 
 
 <meta property="og:title" content="Standard Error of Log loss Survival Measure — mlr_measures_surv.loglossSE" />
-<meta property="og:description" content="Calculates the standard error of MeasureSurvLogloss().
+<meta property="og:description" content="Calculates the standard error of MeasureSurvLogloss.
 The standard error of the Logloss, L, is approximated via,
 $$se(L) = sd(L)/\sqrt{N}$$
-where \(N\) are the number of observations in the test set, and \(sd\) is the standard deviation.
+where \(N\) are the number of observations in the test set, and \(sd\) is the standard
+deviation.
 Censored observations in the test set are ignored." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
@@ -163,10 +164,11 @@ Censored observations in the test set are ignored." />
     </div>
 
     <div class="ref-description">
-    <p>Calculates the standard error of <code><a href='mlr_measures_surv.logloss.html'>MeasureSurvLogloss()</a></code>.</p>
+    <p>Calculates the standard error of <a href='mlr_measures_surv.logloss.html'>MeasureSurvLogloss</a>.</p>
 <p>The standard error of the Logloss, L, is approximated via,
 $$se(L) = sd(L)/\sqrt{N}$$
-where \(N\) are the number of observations in the test set, and \(sd\) is the standard deviation.</p>
+where \(N\) are the number of observations in the test set, and \(sd\) is the standard
+deviation.</p>
 <p>Censored observations in the test set are ignored.</p>
     </div>
 
@@ -196,7 +198,10 @@ where \(N\) are the number of observations in the test set, and \(sd\) is the st
 
     <div class='dont-index'><p>Other survival measures: 
 <code><a href='mlr_measures_surv.beggC.html'>mlr_measures_surv.beggC</a></code>,
+<code><a href='mlr_measures_surv.calib_alpha.html'>mlr_measures_surv.calib_alpha</a></code>,
+<code><a href='mlr_measures_surv.calib_beta.html'>mlr_measures_surv.calib_beta</a></code>,
 <code><a href='mlr_measures_surv.chamblessAUC.html'>mlr_measures_surv.chamblessAUC</a></code>,
+<code><a href='mlr_measures_surv.cindex.html'>mlr_measures_surv.cindex</a></code>,
 <code><a href='mlr_measures_surv.gonenC.html'>mlr_measures_surv.gonenC</a></code>,
 <code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
 <code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
@@ -213,6 +218,7 @@ where \(N\) are the number of observations in the test set, and \(sd\) is the st
 <code><a href='mlr_measures_surv.oquigleyR2.html'>mlr_measures_surv.oquigleyR2</a></code>,
 <code><a href='mlr_measures_surv.rmseSE.html'>mlr_measures_surv.rmseSE</a></code>,
 <code><a href='mlr_measures_surv.rmse.html'>mlr_measures_surv.rmse</a></code>,
+<code><a href='mlr_measures_surv.schmid.html'>mlr_measures_surv.schmid</a></code>,
 <code><a href='mlr_measures_surv.songAUC.html'>mlr_measures_surv.songAUC</a></code>,
 <code><a href='mlr_measures_surv.songTNR.html'>mlr_measures_surv.songTNR</a></code>,
 <code><a href='mlr_measures_surv.songTPR.html'>mlr_measures_surv.songTPR</a></code>,
@@ -226,13 +232,16 @@ where \(N\) are the number of observations in the test set, and \(sd\) is the st
 <code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
 <code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
 <code><a href='mlr_measures_surv.intlogloss.html'>mlr_measures_surv.intlogloss</a></code>,
-<code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code></p>
+<code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code>,
+<code><a href='mlr_measures_surv.schmid.html'>mlr_measures_surv.schmid</a></code></p>
 <p>Other distr survival measures: 
+<code><a href='mlr_measures_surv.calib_alpha.html'>mlr_measures_surv.calib_alpha</a></code>,
 <code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
 <code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
 <code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
 <code><a href='mlr_measures_surv.intlogloss.html'>mlr_measures_surv.intlogloss</a></code>,
-<code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code></p></div>
+<code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code>,
+<code><a href='mlr_measures_surv.schmid.html'>mlr_measures_surv.schmid</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
     <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code><a href='mlr_measures_surv.logloss.html'>mlr3proba::MeasureSurvLogloss</a></code> -&gt; <code>MeasureSurvLoglossSE</code></p>
@@ -250,8 +259,8 @@ where \(N\) are the number of observations in the test set, and \(sd\) is the st
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="aggregate"><a href='../../mlr3/html/Measure.html#method-aggregate'><code>mlr3::Measure$aggregate()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="format"><a href='../../mlr3/html/Measure.html#method-format'><code>mlr3::Measure$format()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="help"><a href='../../mlr3/html/Measure.html#method-help'><code>mlr3::Measure$help()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="print"><a href='../../mlr3/html/Measure.html#method-print'><code>mlr3::Measure$print()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="score"><a href='../../mlr3/html/Measure.html#method-score'><code>mlr3::Measure$score()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="mlr3proba" data-topic="MeasureSurv" data-id="print"><a href='../../mlr3proba/html/MeasureSurv.html#method-print'><code>mlr3proba::MeasureSurv$print()</code></a></span></p></li>
 </ul>
 </details>
 

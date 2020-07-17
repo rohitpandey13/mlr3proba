@@ -181,21 +181,22 @@ simplifies graph creation.</p>
     </tr>
     <tr>
       <th>estimator</th>
-      <td><p>One of <code>kaplan</code> or <code>nelson</code>, corresponding to the Kaplan-Meier and Nelson-Aalen
-estimators respectively. Used to estimate the baseline survival distribution. Abbreviations allowed.
-Default is <code>kaplan</code>.</p></td>
+      <td><p>One of <code>kaplan</code> (default) or <code>nelson</code>, corresponding to the Kaplan-Meier and
+Nelson-Aalen estimators respectively. Used to estimate the baseline survival distribution.
+Abbreviations allowed.</p></td>
     </tr>
     <tr>
       <th>form</th>
-      <td><p>One of <code>aft</code>, <code>ph</code>, or <code>po</code>, corresponding to accelerated failure time, proportional hazards,
-and proportional odds respectively. Used to determine the form of the composed survival distribution.
-Default is <code>aft</code>.</p></td>
+      <td><p>One of <code>aft</code> (default), <code>ph</code>, or <code>po</code>, corresponding to accelerated failure time,
+proportional hazards, and proportional odds respectively. Used to determine the form of the
+composed survival distribution.</p></td>
     </tr>
     <tr>
       <th>overwrite</th>
       <td><p>logical. If <code>FALSE</code> (default) then if the <code>learner</code> already has a <code>distr</code>,
-the compositor does nothing. If <code>TRUE</code> then the <code>distr</code> is overwritten by the compositor if already present,
-which may be required for changing the prediction <code>distr</code> from one model form to another.</p></td>
+the compositor does nothing. If <code>TRUE</code> then the <code>distr</code> is overwritten by the compositor if
+already present, which may be required for changing the prediction <code>distr</code> from one model form
+to another.</p></td>
     </tr>
     <tr>
       <th>param_vals</th>

@@ -70,7 +70,16 @@
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.beggC.html</loc>
   </url>
   <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.calib_alpha.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.calib_beta.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.chamblessAUC.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.cindex.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.gonenC.html</loc>
@@ -122,6 +131,9 @@
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.rmseSE.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.schmid.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.songAUC.html</loc>
@@ -176,8 +188,5 @@
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/articles/density.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/articles/survival.html</loc>
   </url>
 </urlset>

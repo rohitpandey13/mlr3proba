@@ -168,8 +168,9 @@
 
     
 
-<p>This <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops.html'>mlr3pipelines::mlr_pipeops</a> or with the associated sugar function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>new</span>()
+<p>This <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a> can be instantiated via the
+<a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a> <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops.html'>mlr3pipelines::mlr_pipeops</a> or with the associated sugar
+function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>new</span>()
 <span class='no'>mlr_pipeops</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"crankcompose"</span>)
 <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"crankcompose"</span>)</pre>
 
@@ -205,8 +206,9 @@ Default is <code>mean</code>.</p></li>
 
     
 
-<p>The <code>median</code>, <code>mode</code>, or <code>mean</code> will use analytical expressions if possible but if not they are calculated
-using <a href='https://alan-turing-institute.github.io/distr6/reference/median.Distribution.html'>distr6::median.Distribution</a>, <a href='https://alan-turing-institute.github.io/distr6/reference/mode.html'>distr6::mode</a>, or <a href='https://alan-turing-institute.github.io/distr6/reference/mean.Distribution.html'>distr6::mean.Distribution</a> respectively.</p>
+<p>The <code>median</code>, <code>mode</code>, or <code>mean</code> will use analytical expressions if possible but if not they are
+calculated using <a href='https://alan-turing-institute.github.io/distr6/reference/median.Distribution.html'>distr6::median.Distribution</a>, <a href='https://alan-turing-institute.github.io/distr6/reference/mode.html'>distr6::mode</a>, or <a href='https://alan-turing-institute.github.io/distr6/reference/mean.Distribution.html'>distr6::mean.Distribution</a>
+respectively.</p>
     <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
 
     
@@ -265,7 +267,8 @@ otherwise be set during construction.</p></dd>
 <p><hr>
 <a id="method-train_internal"></a></p><h3>Method <code>train_internal()</code></h3>
 <p>train_internal
-Internal <code>train</code> function, will be moved to <code>private</code> in a near-future update, should be ignored.</p><h3>Usage</h3>
+Internal <code>train</code> function, will be moved to <code>private</code> in a near-future update, should be
+ignored.</p><h3>Usage</h3>
 <p><div class="r"></p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>train_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
@@ -276,7 +279,8 @@ Internal <code>train</code> function, will be moved to <code>private</code> in a
 <p><hr>
 <a id="method-predict_internal"></a></p><h3>Method <code>predict_internal()</code></h3>
 <p>predict_internal
-Internal <code>predict</code> function, will be moved to <code>private</code> in a near-future update, should be ignored.</p><h3>Usage</h3>
+Internal <code>predict</code> function, will be moved to <code>private</code> in a near-future update, should be
+ignored.</p><h3>Usage</h3>
 <p><div class="r"></p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>predict_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
@@ -323,17 +327,17 @@ Internal <code>predict</code> function, will be moved to <code>private</code> in
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Method 2 - Create a graph manually</span>
 <span class='no'>gr</span> <span class='kw'>=</span> <span class='no'>Graph</span>$<span class='fu'>new</span>()$
-  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"learner"</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.ranger"</span>)))$
+  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"learner"</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)))$
   <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"crankcompose"</span>))$
-  <span class='fu'>add_edge</span>(<span class='st'>"surv.ranger"</span>, <span class='st'>"crankcompose"</span>)
+  <span class='fu'>add_edge</span>(<span class='st'>"surv.coxph"</span>, <span class='st'>"crankcompose"</span>)
 <span class='no'>gr</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
 <span class='no'>gr</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 
 <span class='co'># Method 3 - Syntactic sugar: Wrap the learner in a graph</span>
-<span class='no'>ranger.crank</span> <span class='kw'>=</span> <span class='fu'><a href='crankcompositor.html'>crankcompositor</a></span>(
-  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.ranger"</span>),
+<span class='no'>cox.crank</span> <span class='kw'>=</span> <span class='fu'><a href='crankcompositor.html'>crankcompositor</a></span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"median"</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>ranger.crank</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cox.crank</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

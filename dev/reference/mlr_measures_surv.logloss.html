@@ -49,9 +49,13 @@
 
 <meta property="og:title" content="Log loss Survival Measure — mlr_measures_surv.logloss" />
 <meta property="og:description" content="Calculates the cross-entropy, or logarithmic (log), loss.
-The logloss, in the context of probabilistic predictions, is defined as the negative log probability
-density function, \(f\), evaluated at the observation time, \(t\),
+The logloss, in the context of probabilistic predictions, is defined as the negative log
+probability density function, \(f\), evaluated at the observation time, \(t\),
 $$L(f, t) = -log(f(t))$$
+The standard error of the Logloss, L, is approximated via,
+$$se(L) = sd(L)/\sqrt{N}$$
+where \(N\) are the number of observations in the test set, and \(sd\) is the standard
+deviation.
 Censored observations in the test set are ignored." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
@@ -164,9 +168,13 @@ Censored observations in the test set are ignored." />
 
     <div class="ref-description">
     <p>Calculates the cross-entropy, or logarithmic (log), loss.</p>
-<p>The logloss, in the context of probabilistic predictions, is defined as the negative log probability
-density function, \(f\), evaluated at the observation time, \(t\),
+<p>The logloss, in the context of probabilistic predictions, is defined as the negative log
+probability density function, \(f\), evaluated at the observation time, \(t\),
 $$L(f, t) = -log(f(t))$$</p>
+<p>The standard error of the Logloss, L, is approximated via,
+$$se(L) = sd(L)/\sqrt{N}$$
+where \(N\) are the number of observations in the test set, and \(sd\) is the standard
+deviation.</p>
 <p>Censored observations in the test set are ignored.</p>
     </div>
 
@@ -196,7 +204,10 @@ $$L(f, t) = -log(f(t))$$</p>
 
     <div class='dont-index'><p>Other survival measures: 
 <code><a href='mlr_measures_surv.beggC.html'>mlr_measures_surv.beggC</a></code>,
+<code><a href='mlr_measures_surv.calib_alpha.html'>mlr_measures_surv.calib_alpha</a></code>,
+<code><a href='mlr_measures_surv.calib_beta.html'>mlr_measures_surv.calib_beta</a></code>,
 <code><a href='mlr_measures_surv.chamblessAUC.html'>mlr_measures_surv.chamblessAUC</a></code>,
+<code><a href='mlr_measures_surv.cindex.html'>mlr_measures_surv.cindex</a></code>,
 <code><a href='mlr_measures_surv.gonenC.html'>mlr_measures_surv.gonenC</a></code>,
 <code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
 <code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
@@ -213,6 +224,7 @@ $$L(f, t) = -log(f(t))$$</p>
 <code><a href='mlr_measures_surv.oquigleyR2.html'>mlr_measures_surv.oquigleyR2</a></code>,
 <code><a href='mlr_measures_surv.rmseSE.html'>mlr_measures_surv.rmseSE</a></code>,
 <code><a href='mlr_measures_surv.rmse.html'>mlr_measures_surv.rmse</a></code>,
+<code><a href='mlr_measures_surv.schmid.html'>mlr_measures_surv.schmid</a></code>,
 <code><a href='mlr_measures_surv.songAUC.html'>mlr_measures_surv.songAUC</a></code>,
 <code><a href='mlr_measures_surv.songTNR.html'>mlr_measures_surv.songTNR</a></code>,
 <code><a href='mlr_measures_surv.songTPR.html'>mlr_measures_surv.songTPR</a></code>,
@@ -226,13 +238,16 @@ $$L(f, t) = -log(f(t))$$</p>
 <code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
 <code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
 <code><a href='mlr_measures_surv.intlogloss.html'>mlr_measures_surv.intlogloss</a></code>,
-<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code></p>
+<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
+<code><a href='mlr_measures_surv.schmid.html'>mlr_measures_surv.schmid</a></code></p>
 <p>Other distr survival measures: 
+<code><a href='mlr_measures_surv.calib_alpha.html'>mlr_measures_surv.calib_alpha</a></code>,
 <code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
 <code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
 <code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
 <code><a href='mlr_measures_surv.intlogloss.html'>mlr_measures_surv.intlogloss</a></code>,
-<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code></p></div>
+<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
+<code><a href='mlr_measures_surv.schmid.html'>mlr_measures_surv.schmid</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
     <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code>MeasureSurvLogloss</code></p>
@@ -241,6 +256,9 @@ $$L(f, t) = -log(f(t))$$</p>
     <p><div class="r6-active-bindings"></p><dl'>
 <dt><code>eps</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>)<br />
 Very small number used to prevent log(0) error.</p></dd>
+
+<dt><code>se</code></dt><dd><p><code>(logical(1))</code> <br />
+If <code>TRUE</code> returns the standard error of the measure.</p></dd>
 
 </dl><p></div></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
@@ -257,24 +275,27 @@ Very small number used to prevent log(0) error.</p></dd>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="aggregate"><a href='../../mlr3/html/Measure.html#method-aggregate'><code>mlr3::Measure$aggregate()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="format"><a href='../../mlr3/html/Measure.html#method-format'><code>mlr3::Measure$format()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="help"><a href='../../mlr3/html/Measure.html#method-help'><code>mlr3::Measure$help()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="print"><a href='../../mlr3/html/Measure.html#method-print'><code>mlr3::Measure$print()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Measure" data-id="score"><a href='../../mlr3/html/Measure.html#method-score'><code>mlr3::Measure$score()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="mlr3proba" data-topic="MeasureSurv" data-id="print"><a href='../../mlr3proba/html/MeasureSurv.html#method-print'><code>mlr3proba::MeasureSurv$print()</code></a></span></p></li>
 </ul>
 </details>
 
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureSurvLogloss</span>$<span class='fu'>new</span>(<span class='kw'>eps</span> <span class='kw'>=</span> <span class='fl'>1e-15</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"surv.logloss"</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>MeasureSurvLogloss</span>$<span class='fu'>new</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"surv.logloss"</span>, <span class='kw'>eps</span> <span class='kw'>=</span> <span class='fl'>1e-15</span>, <span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
+<dt><code>id</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
+Identifier for the new instance.</p></dd>
+
 <dt><code>eps</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>)<br />
 Very small number to set zero-valued predicted probabilities to in order to prevent errors
 in log(0) calculation.</p></dd>
 
-<dt><code>id</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
-Identifier for the new instance.</p></dd>
+<dt><code>se</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>)<br />
+If <code>TRUE</code> returns the standard error of the measure.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
