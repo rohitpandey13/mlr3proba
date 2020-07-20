@@ -168,6 +168,7 @@ simplifies graph creation.</p>
   <span class='no'>learner</span>,
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"median"</span>, <span class='st'>"mode"</span>),
   <span class='kw'>which</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
 )</pre>
 
@@ -187,6 +188,11 @@ how <code>crank</code> is estimated from the predicted <code>distr</code>. Defau
       <th>which</th>
       <td><p>If <code>method = "mode"</code> then specifies which mode to use if multi-modal, default
 is the first.</p></td>
+    </tr>
+    <tr>
+      <th>response</th>
+      <td><p>If <code>TRUE</code> then the <code>response</code> predict type is imputed with the same values
+as <code>crank</code>.</p></td>
     </tr>
     <tr>
       <th>param_vals</th>

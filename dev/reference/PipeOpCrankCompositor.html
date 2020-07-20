@@ -200,6 +200,10 @@ One of <code>median</code>, <code>mode</code>, or <code>mean</code> correspondin
 survival distribution. Note that for models with a proportional hazards form, the ranking
 implied by <code>mean</code> and <code>median</code> will be identical (but not the value of <code>crank</code> itself).
 Default is <code>mean</code>.</p></li>
+<li><p><code>which</code> :: <code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code><br />
+If <code>method = "mode"</code> then specifies which mode to use if multi-modal, default is the first.</p></li>
+<li><p><code>response</code> :: <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>TRUE</code> then the <code>response</code> predict type is estimated with the same values as <code>crank</code>.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="internals"><a class="anchor" href="#internals"></a>Internals</h2>
