@@ -155,7 +155,7 @@ simplifies graph creation." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compose a Distr Predict Type for Survival Learners</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/distrcompositor.R'><code>R/distrcompositor.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/distr_compositor.R'><code>R/distr_compositor.R</code></a></small>
     <div class="hidden name"><code>distrcompositor.Rd</code></div>
     </div>
 
@@ -217,12 +217,12 @@ to another.</p></td>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
 
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'>distrcompositor</span>(
-  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
+<span class='no'>cox.distr</span> <span class='kw'>=</span> <span class='fu'>distrcompositor</span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
   <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
   <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
 
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cvglm.distr</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cox.distr</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

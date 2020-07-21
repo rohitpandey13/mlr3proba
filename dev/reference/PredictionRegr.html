@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prediction Object for Survival — PredictionSurv • mlr3proba</title>
+<title>Prediction Object for Regression — PredictionRegr • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,9 +47,10 @@
 
 
 
-<meta property="og:title" content="Prediction Object for Survival — PredictionSurv" />
-<meta property="og:description" content="This object stores the predictions returned by a learner of class LearnerSurv.
-The task_type is set to &quot;surv&quot;." />
+<meta property="og:title" content="Prediction Object for Regression — PredictionRegr" />
+<meta property="og:description" content="This object wraps the predictions returned by a learner of class LearnerRegr, i.e.
+the predicted response and standard error.
+This masks the mlr3::PredictionRegr in order to include the distr predict type." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -154,14 +155,15 @@ The task_type is set to &quot;surv&quot;." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Prediction Object for Survival</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/PredictionSurv.R'><code>R/PredictionSurv.R</code></a></small>
-    <div class="hidden name"><code>PredictionSurv.Rd</code></div>
+    <h1>Prediction Object for Regression</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/PredictionRegr.R'><code>R/PredictionRegr.R</code></a></small>
+    <div class="hidden name"><code>PredictionRegr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This object stores the predictions returned by a learner of class <a href='LearnerSurv.html'>LearnerSurv</a>.</p>
-<p>The <code>task_type</code> is set to <code>"surv"</code>.</p>
+    <p>This object wraps the predictions returned by a learner of class LearnerRegr, i.e.
+the predicted response and standard error.</p>
+<p>This masks the <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>mlr3::PredictionRegr</a> in order to include the <code>distr</code> predict type.</p>
     </div>
 
 
@@ -170,27 +172,21 @@ The task_type is set to &quot;surv&quot;." />
 
     <div class='dont-index'><p>Other Prediction: 
 <code><a href='PredictionDens.html'>PredictionDens</a></code>,
-<code><a href='PredictionRegr.html'>PredictionRegr</a></code></p></div>
+<code><a href='PredictionSurv.html'>PredictionSurv</a></code></p></div>
     <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p><code><a href='https://mlr3.mlr-org.com/reference/Prediction.html'>mlr3::Prediction</a></code> -&gt; <code>PredictionSurv</code></p>
+    <p><code><a href='https://mlr3.mlr-org.com/reference/Prediction.html'>mlr3::Prediction</a></code> -&gt; <code>PredictionRegr</code></p>
     <h2 class="hasAnchor" id="active-bindings"><a class="anchor" href="#active-bindings"></a>Active bindings</h2>
 
     <p><div class="r6-active-bindings"></p><dl'>
-<dt><code>truth</code></dt><dd><p>(<code>Surv</code>)<br />
-True (observed) outcome.</p></dd>
+<dt><code>response</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
+Access the stored predicted response.</p></dd>
 
-<dt><code>crank</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-Access the stored predicted continuous ranking.</p></dd>
+<dt><code>se</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
+Access the stored standard error.</p></dd>
 
 <dt><code>distr</code></dt><dd><p>(<a href='https://alan-turing-institute.github.io/distr6/reference/VectorDistribution.html'>VectorDistribution</a>)<br />
 Access the stored predicted survival distribution.</p></dd>
-
-<dt><code>lp</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-Access the stored predicted linear predictor.</p></dd>
-
-<dt><code>response</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-Access the stored predicted survival time.</p></dd>
 
 <dt><code>missing</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code>)<br />
 Returns <code>row_ids</code> for which the predictions are missing or incomplete.</p></dd>
@@ -202,8 +198,7 @@ Returns <code>row_ids</code> for which the predictions are missing or incomplete
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>PredictionSurv$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>PredictionSurv$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>PredictionRegr$new()</code></a></p></li>
 </ul>
 <p><details open ><summary>Inherited methods</summary>
 <ul>
@@ -217,19 +212,18 @@ Returns <code>row_ids</code> for which the predictions are missing or incomplete
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PredictionSurv</span>$<span class='fu'>new</span>(
+<p><div class="r"></p><pre><span class='no'>PredictionRegr</span>$<span class='fu'>new</span>(
   <span class='kw'>task</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>row_ids</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='no'>row_ids</span>,
   <span class='kw'>truth</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'>truth</span>(),
-  <span class='kw'>crank</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>distr</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>response</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>response</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>se</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>distr</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
-<dt><code>task</code></dt><dd><p>(<a href='TaskSurv.html'>TaskSurv</a>)<br />
+<dt><code>task</code></dt><dd><p>(<a href='https://mlr3.mlr-org.com/reference/TaskRegr.html'>TaskRegr</a>)<br />
 Task, used to extract defaults for <code>row_ids</code> and <code>truth</code>.</p></dd>
 
 <dt><code>row_ids</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code>)<br />
@@ -238,34 +232,18 @@ Row ids of the predicted observations, i.e. the row ids of the test set.</p></dd
 <dt><code>truth</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
 True (observed) response.</p></dd>
 
-<dt><code>crank</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-Numeric vector of predicted continuous rankings (or relative risks). One element for each
-observation in the test set. For a pair of continuous ranks, a higher rank indicates that
-the observation is more likely to experience the event.</p></dd>
+<dt><code>response</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
+Vector of numeric response values.
+One element for each observation in the test set.</p></dd>
+
+<dt><code>se</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
+Numeric vector of predicted standard errors.
+One element for each observation in the test set.</p></dd>
 
 <dt><code>distr</code></dt><dd><p>(<a href='https://alan-turing-institute.github.io/distr6/reference/VectorDistribution.html'>VectorDistribution</a>)<br />
 <a href='https://alan-turing-institute.github.io/distr6/reference/VectorDistribution.html'>VectorDistribution</a> from <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a>.
 Each individual distribution in the vector represents the random variable 'survival time'
 for an individual observation.</p></dd>
-
-<dt><code>lp</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-Numeric vector of linear predictor scores. One element for each observation in the test
-set. \(lp = X\beta\) where \(X\) is a matrix of covariates and \(\beta\) is a vector
-of estimated coefficients.</p></dd>
-
-<dt><code>response</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-Numeric vector of predicted survival times.
-One element for each observation in the test set.</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PredictionSurv</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
-<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
 
@@ -273,16 +251,16 @@ One element for each observation in the test set.</p></dd>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>learner</span> <span class='kw'>=</span> <span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.rpart"</span>)
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"boston_housing"</span>)
+<span class='no'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"se"</span>)
 <span class='no'>p</span> <span class='kw'>=</span> <span class='no'>learner</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/as.data.table.html'>as.data.table</a></span>(<span class='no'>p</span>))</div><div class='output co'>#&gt;    row_id     time status     crank
-#&gt; 1:      1 3.539831   TRUE 0.5980462
-#&gt; 2:      2 1.691009   TRUE 1.5787970
-#&gt; 3:      3 5.000000  FALSE 0.5980462
-#&gt; 4:      4 1.784562   TRUE 1.5787970
-#&gt; 5:      5 2.627887   TRUE 1.5787970
-#&gt; 6:      6 2.429627   TRUE 1.5787970</div></pre>
+<span class='no'>p</span>$<span class='no'>predict_types</span></div><div class='output co'>#&gt; [1] "response" "se"      </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/as.data.table.html'>as.data.table</a></span>(<span class='no'>p</span>))</div><div class='output co'>#&gt;    row_id truth response       se
+#&gt; 1:      1  24.0 22.53281 9.197104
+#&gt; 2:      2  21.6 22.53281 9.197104
+#&gt; 3:      3  34.7 22.53281 9.197104
+#&gt; 4:      4  33.4 22.53281 9.197104
+#&gt; 5:      5  36.2 22.53281 9.197104
+#&gt; 6:      6  28.7 22.53281 9.197104</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

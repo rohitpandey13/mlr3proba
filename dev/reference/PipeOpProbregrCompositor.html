@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PipeOpCrankCompositor — PipeOpCrankCompositor • mlr3proba</title>
+<title>PipeOpProbregrCompositor — PipeOpProbregrCompositor • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,7 +47,7 @@
 
 
 
-<meta property="og:title" content="PipeOpCrankCompositor — PipeOpCrankCompositor" />
+<meta property="og:title" content="PipeOpProbregrCompositor — PipeOpProbregrCompositor" />
 <meta property="og:description" content="Uses a predicted distr in a PredictionSurv to estimate (or 'compose') a crank prediction." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
@@ -153,9 +153,9 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>PipeOpCrankCompositor</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/PipeOpCrankCompositor.R'><code>R/PipeOpCrankCompositor.R</code></a></small>
-    <div class="hidden name"><code>PipeOpCrankCompositor.Rd</code></div>
+    <h1>PipeOpProbregrCompositor</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/PipeOpProbRegr.R'><code>R/PipeOpProbRegr.R</code></a></small>
+    <div class="hidden name"><code>PipeOpProbregrCompositor.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -170,17 +170,17 @@
 
 <p>This <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a> can be instantiated via the
 <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a> <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops.html'>mlr3pipelines::mlr_pipeops</a> or with the associated sugar
-function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>new</span>()
-<span class='no'>mlr_pipeops</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"crankcompose"</span>)
-<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"crankcompose"</span>)</pre>
+function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='no'>PipeOpProbregrCompositor</span>$<span class='fu'>new</span>()
+<span class='no'>mlr_pipeops</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"probregr"</span>)
+<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"probregr"</span>)</pre>
 
     <h2 class="hasAnchor" id="input-and-output-channels"><a class="anchor" href="#input-and-output-channels"></a>Input and Output Channels</h2>
 
     
 
-<p>PipeOpCrankCompositor has one input channel named "input", which takes
+<p>PipeOpProbregrCompositor has one input channel named "input", which takes
 <code>NULL</code> during training and <a href='PredictionSurv.html'>PredictionSurv</a> during prediction.</p>
-<p>PipeOpCrankCompositor has one output channel named "output", producing <code>NULL</code> during training
+<p>PipeOpProbregrCompositor has one output channel named "output", producing <code>NULL</code> during training
 and a <a href='PredictionSurv.html'>PredictionSurv</a> during prediction.</p>
 <p>The output during prediction is the <a href='PredictionSurv.html'>PredictionSurv</a> from the "pred" input but with the <code>crank</code>
 predict type overwritten by the given estimation method.</p>
@@ -200,10 +200,6 @@ One of <code>median</code>, <code>mode</code>, or <code>mean</code> correspondin
 survival distribution. Note that for models with a proportional hazards form, the ranking
 implied by <code>mean</code> and <code>median</code> will be identical (but not the value of <code>crank</code> itself).
 Default is <code>mean</code>.</p></li>
-<li><p><code>which</code> :: <code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code><br />
-If <code>method = "mode"</code> then specifies which mode to use if multi-modal, default is the first.</p></li>
-<li><p><code>response</code> :: <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
-If <code>TRUE</code> then the <code>response</code> predict type is estimated with the same values as <code>crank</code>.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="internals"><a class="anchor" href="#internals"></a>Internals</h2>
@@ -227,21 +223,21 @@ respectively.</p>
 
     <div class='dont-index'><p><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a> and <a href='crankcompositor.html'>crankcompositor</a></p>
 <p>Other survival compositors: 
-<code><a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a></code>,
-<code><a href='PipeOpProbregrCompositor.html'>PipeOpProbregrCompositor</a></code></p></div>
+<code><a href='PipeOpCrankCompositor.html'>PipeOpCrankCompositor</a></code>,
+<code><a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a></code></p></div>
     <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code>PipeOpCrankCompositor</code></p>
+    <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code>PipeOpProbregrCompositor</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>PipeOpCrankCompositor$new()</code></a></p></li>
-<li><p><a href='#method-train_internal'><code>PipeOpCrankCompositor$train_internal()</code></a></p></li>
-<li><p><a href='#method-predict_internal'><code>PipeOpCrankCompositor$predict_internal()</code></a></p></li>
-<li><p><a href='#method-clone'><code>PipeOpCrankCompositor$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>PipeOpProbregrCompositor$new()</code></a></p></li>
+<li><p><a href='#method-train_internal'><code>PipeOpProbregrCompositor$train_internal()</code></a></p></li>
+<li><p><a href='#method-predict_internal'><code>PipeOpProbregrCompositor$predict_internal()</code></a></p></li>
+<li><p><a href='#method-clone'><code>PipeOpProbregrCompositor$clone()</code></a></p></li>
 </ul>
 <p><details open ><summary>Inherited methods</summary>
 <ul>
@@ -254,9 +250,9 @@ respectively.</p>
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>new</span>(
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"crankcompose"</span>,
-  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mean"</span>)
+<p><div class="r"></p><pre><span class='no'>PipeOpProbregrCompositor</span>$<span class='fu'>new</span>(
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"probregr_compose"</span>,
+  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"Normal"</span>)
 )</pre><p></div></p>
 
 <h3>Arguments</h3>
@@ -274,7 +270,7 @@ otherwise be set during construction.</p></dd>
 <p>train_internal
 Internal <code>train</code> function, will be moved to <code>private</code> in a near-future update, should be
 ignored.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>train_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>PipeOpProbregrCompositor</span>$<span class='fu'>train_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
@@ -286,7 +282,7 @@ ignored.</p><h3>Usage</h3>
 <p>predict_internal
 Internal <code>predict</code> function, will be moved to <code>private</code> in a near-future update, should be
 ignored.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>predict_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>PipeOpProbregrCompositor</span>$<span class='fu'>predict_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
@@ -296,7 +292,7 @@ ignored.</p><h3>Usage</h3>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>PipeOpProbregrCompositor</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
@@ -312,37 +308,38 @@ ignored.</p><h3>Usage</h3>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
 
 <span class='co'># Three methods to predict a `crank` from `surv.rpart`</span>
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>30</span>)
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"boston_housing"</span>)
 
 <span class='co'># Method 1 - Train and predict separately then compose</span>
-<span class='no'>learn</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
-<span class='no'>poc</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"crankcompose"</span>, <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mean"</span>))
-<span class='no'>poc</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>learn</span>))</div><div class='output co'>#&gt; $output
-#&gt; &lt;PredictionSurv&gt; for 30 observations:
-#&gt;     row_id      time status     crank                distr          lp
-#&gt;          1 5.0000000  FALSE 1.4326828 &lt;VectorDistribution&gt;  0.01031299
-#&gt;          2 0.8433684   TRUE 1.6398177 &lt;VectorDistribution&gt;  0.26069368
-#&gt;          3 0.8070400   TRUE 1.0110342 &lt;VectorDistribution&gt; -0.50690465
-#&gt; ---                                                                   
-#&gt;         28 5.0000000  FALSE 1.3719301 &lt;VectorDistribution&gt; -0.06157584
-#&gt;         29 5.0000000  FALSE 0.8572003 &lt;VectorDistribution&gt; -0.72098848
-#&gt;         30 4.1997027   TRUE 1.6078754 &lt;VectorDistribution&gt;  0.22093276
+<span class='no'>learn</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"se"</span>)
+<span class='no'>pred</span> <span class='kw'>=</span> <span class='no'>learn</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+<span class='no'>poc</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"probregr_compose"</span>)
+<span class='no'>poc</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>pred</span>))</div><div class='output co'>#&gt; $output
+#&gt; &lt;PredictionRegr&gt; for 506 observations:
+#&gt;     row_id truth response       se                distr
+#&gt;          1  24.0 22.53281 9.197104 &lt;VectorDistribution&gt;
+#&gt;          2  21.6 22.53281 9.197104 &lt;VectorDistribution&gt;
+#&gt;          3  34.7 22.53281 9.197104 &lt;VectorDistribution&gt;
+#&gt; ---                                                    
+#&gt;        504  23.9 22.53281 9.197104 &lt;VectorDistribution&gt;
+#&gt;        505  22.0 22.53281 9.197104 &lt;VectorDistribution&gt;
+#&gt;        506  11.9 22.53281 9.197104 &lt;VectorDistribution&gt;
 #&gt; </div><div class='input'>
 <span class='co'># Examples not run to save run-time.</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Method 2 - Create a graph manually</span>
 <span class='no'>gr</span> <span class='kw'>=</span> <span class='no'>Graph</span>$<span class='fu'>new</span>()$
-  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"learner"</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)))$
-  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"crankcompose"</span>))$
-  <span class='fu'>add_edge</span>(<span class='st'>"surv.coxph"</span>, <span class='st'>"crankcompose"</span>)
+  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"learner"</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"se"</span>)))$
+  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"probregr_compose"</span>))$
+  <span class='fu'>add_edge</span>(<span class='st'>"regr.featureless"</span>, <span class='st'>"probregr_compose"</span>)
 <span class='no'>gr</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
 <span class='no'>gr</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 
 <span class='co'># Method 3 - Syntactic sugar: Wrap the learner in a graph</span>
-<span class='no'>cox.crank</span> <span class='kw'>=</span> <span class='fu'><a href='crankcompositor.html'>crankcompositor</a></span>(
-  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"median"</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cox.crank</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
+<span class='no'>feat_distr</span> <span class='kw'>=</span> <span class='fu'><a href='probregr_compose.html'>probregr_compose</a></span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"se"</span>),
+  <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"Logistic"</span>)
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>feat_distr</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

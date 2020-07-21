@@ -28,7 +28,13 @@
     <loc>https://mlr3proba.mlr-org.com/reference/PipeOpDistrCompositor.html</loc>
   </url>
   <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/PipeOpProbregrCompositor.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/PredictionDens.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/PredictionRegr.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/PredictionSurv.html</loc>
@@ -185,6 +191,9 @@
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/plot.LearnerSurv.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/probregr_compose.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/articles/density.html</loc>

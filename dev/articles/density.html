@@ -140,6 +140,15 @@
 <code>truth</code> - the <code>target</code>. This is <em>not</em> the true density which is always unknown.</li>
 </ul>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlr3proba</span>); <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mlr3</span>)
+<span class="co">#&gt; Registered S3 methods overwritten by 'mlr3proba':</span>
+<span class="co">#&gt;   method                       from</span>
+<span class="co">#&gt;   as.data.table.PredictionRegr mlr3</span>
+<span class="co">#&gt;   c.PredictionRegr             mlr3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'mlr3'</span>
+<span class="co">#&gt; The following object is masked from 'package:mlr3proba':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     PredictionRegr</span>
 
 <span class="no">task</span> <span class="kw">=</span> <span class="no">TaskDens</span>$<span class="fu">new</span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">"mpg"</span>, <span class="kw">backend</span> <span class="kw">=</span> <span class="kw pkg">datasets</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/r/datasets/mtcars.html">mtcars</a></span>, <span class="kw">target</span> <span class="kw">=</span> <span class="st">"mpg"</span>)
 
