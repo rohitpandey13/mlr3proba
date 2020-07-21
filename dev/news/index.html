@@ -178,6 +178,8 @@
 <li>
 <code>response</code> parameter added to <code>PipeOpCrankCompositor</code> and <code>crankcompositor</code> to now optionally fill <code>response</code> predict type with same values as <code>crank</code>
 </li>
+<li>Added <code>PipeOpProbregrCompostior</code> and <code>probregr_compose</code> for composition to <code>distr</code> return type from (a) regression learner(s) predicting <code>repsonse</code> and <code>se</code>
+</li>
 </ul>
 </div>
 <div id="deprecated-functionality" class="section level3">
@@ -189,6 +191,7 @@
 <li>
 <code>MeasureSurvGrafSE</code>, <code>MeasureSurvLoglossSE</code>, <code>MeasureSurvIntLoglossSE</code>, <code>MeasureSurvRMSESE</code>, <code>MeasureSurvMSESE</code>, and <code>MeasureSurvMAESE</code> all deprecated and will be deleted in v0.4.0. Use <code>msr("surv.graf", se = TRUE)</code> instead (for example).</li>
 <li>Measures renamed such that <code>surv.nagelkR2</code> is now <code>surv.nagelk_r2</code>, analogously for all R2, AUC, TPR, and TNR measures. Old constructors will be deleted in v0.4.0.</li>
+<li>Renamed <code>distrcompose</code> and <code>crankcompose</code> to <code>distr_compose</code> and <code>crank_compose</code>. Old ids will be deleted in v0.4.0.</li>
 </ul>
 </div>
 <div id="edited-functionality" class="section level3">
