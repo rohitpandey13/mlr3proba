@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Survival Task Generator for Package 'simsurv' — mlr_task_generators_simsurv • mlr3proba</title>
+<title>Average Survival Predictions — surv_averager • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,16 +47,9 @@
 
 
 
-<meta property="og:title" content="Survival Task Generator for Package 'simsurv' — mlr_task_generators_simsurv" />
-<meta property="og:description" content="A mlr3::TaskGenerator calling simsurv::simsurv() from package simsurv.
-This generator currently only exposes a small subset of the flexibility of simsurv,
-and just creates a small data set with the following numerical covariates:
-treatment: Bernoulli distributed with log hazard ratio -0.5.
-height: Normally distributed with log hazard ratio 1.
-weight: normally distributed with log hazard ratio 0.
-
-
-See simsurv::simsurv() for an explanation of the hyperparameters." />
+<meta property="og:title" content="Average Survival Predictions — surv_averager" />
+<meta property="og:description" content="This is a wrapper around the PipeOpSurvAvg pipe operation, which
+simplifies graph creation." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -161,81 +154,51 @@ See simsurv::simsurv() for an explanation of the hyperparameters." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Survival Task Generator for Package 'simsurv'</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/TaskGeneratorSimsurv.R'><code>R/TaskGeneratorSimsurv.R</code></a></small>
-    <div class="hidden name"><code>mlr_task_generators_simsurv.Rd</code></div>
+    <h1>Average Survival Predictions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/surv_average.R'><code>R/surv_average.R</code></a></small>
+    <div class="hidden name"><code>surv_averager.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A <a href='https://mlr3.mlr-org.com/reference/TaskGenerator.html'>mlr3::TaskGenerator</a> calling <code><a href='https://rdrr.io/pkg/simsurv/man/simsurv.html'>simsurv::simsurv()</a></code> from package <a href='https://CRAN.R-project.org/package=simsurv'><span class="pkg">simsurv</span></a>.</p>
-<p>This generator currently only exposes a small subset of the flexibility of <a href='https://CRAN.R-project.org/package=simsurv'><span class="pkg">simsurv</span></a>,
-and just creates a small data set with the following numerical covariates:</p><ul>
-<li><p><code>treatment</code>: Bernoulli distributed with log hazard ratio <code>-0.5</code>.</p></li>
-<li><p><code>height</code>: Normally distributed with log hazard ratio <code>1</code>.</p></li>
-<li><p><code>weight</code>: normally distributed with log hazard ratio <code>0</code>.</p></li>
-</ul>
-
-<p>See <code><a href='https://rdrr.io/pkg/simsurv/man/simsurv.html'>simsurv::simsurv()</a></code> for an explanation of the hyperparameters.</p>
+    <p>This is a wrapper around the <a href='mlr_pipeops_survavg.html'>PipeOpSurvAvg</a> pipe operation, which
+simplifies graph creation.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>surv_averager</span>(<span class='no'>learners</span>, <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>learners</th>
+      <td><p><code>(list())</code> <br />
+List of <a href='LearnerSurv.html'>LearnerSurv</a>s to average.</p></td>
+    </tr>
+    <tr>
+      <th>param_vals</th>
+      <td><p><code>(list())</code> <br />
+Parameters, including weights, to pass to <a href='mlr_pipeops_survavg.html'>PipeOpSurvAvg</a>.</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="dictionary"><a class="anchor" href="#dictionary"></a>Dictionary</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
+    <p><a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-<p>This TaskGenerator can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a> mlr_task_generators or with the associated sugar function <code>tgen()</code>:</p><pre><span class='no'>mlr_task_generators</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"simsurv"</span>)
-<span class='fu'>tgen</span>(<span class='st'>"simsurv"</span>)</pre>
-
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>Dictionary</a> of <a href='https://mlr3.mlr-org.com/reference/TaskGenerator.html'>TaskGenerators</a>: <a href='https://mlr3.mlr-org.com/reference/mlr_task_generators.html'>mlr3::mlr_task_generators</a></p></div>
-    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
-
-    <p><code><a href='https://mlr3.mlr-org.com/reference/TaskGenerator.html'>mlr3::TaskGenerator</a></code> -&gt; <code>TaskGeneratorSimsurv</code></p>
-    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
-
-    
-<h3>Public methods</h3>
-
-<ul>
-<li><p><a href='#method-new'><code>TaskGeneratorSimsurv$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>TaskGeneratorSimsurv$clone()</code></a></p></li>
-</ul>
-<p><details open ><summary>Inherited methods</summary>
-<ul>
-<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="TaskGenerator" data-id="generate"><a href='../../mlr3/html/TaskGenerator.html#method-generate'><code>mlr3::TaskGenerator$generate()</code></a></span></p></li>
-</ul>
-</details>
-
-<hr>
-<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
-<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TaskGeneratorSimsurv</span>$<span class='fu'>new</span>()</pre><p></div></p>
-
-<p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TaskGeneratorSimsurv</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
-<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
-
-</dl><p></div></p>
-
-
+    <p>For full details see <a href='mlr_pipeops_survavg.html'>PipeOpSurvAvg</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>generator</span> <span class='kw'>=</span> <span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_task_generators.html'>mlr_task_generators</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"simsurv"</span>)
-<span class='no'>task</span> <span class='kw'>=</span> <span class='no'>generator</span>$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt;    eventtime status   height treatment    weight
-#&gt; 1: 4.0159029      1 180.7794         0  81.91755
-#&gt; 2: 1.0706242      1 178.5291         0 100.03310
-#&gt; 3: 0.9902496      1 184.8463         0  78.21924
-#&gt; 4: 5.0000000      0 187.5448         0  68.22812
-#&gt; 5: 3.8825155      1 148.1808         0  79.17289
-#&gt; 6: 3.2118958      1 160.8603         1  92.20271</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3"</span>)
+
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>5</span>)
+<span class='no'>avg</span> <span class='kw'>=</span> <span class='fu'>surv_averager</span>(
+  <span class='kw'>learners</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrns</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"surv.kaplan"</span>, <span class='st'>"surv.coxph"</span>)),
+  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>weights</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>, <span class='fl'>0.9</span>))
+ )
+<span class='no'>avg</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
