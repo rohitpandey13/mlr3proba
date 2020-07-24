@@ -52,7 +52,8 @@
 task_type is set to &quot;surv&quot;
 Creates Predictions of class PredictionSurv.
 Possible values for predict_types are:
-&quot;distr&quot;: Predicts a probability distribution for each observation in the test set, uses distr6.
+&quot;distr&quot;: Predicts a probability distribution for each observation in the test set,
+uses distr6.
 &quot;lp&quot;: Predicts a linear predictor for each observation in the test set.
 &quot;crank&quot;: Predicts a continuous ranking for each observation in the test set.
 &quot;response&quot;: Predicts a survival time for each observation in the test set.
@@ -93,7 +94,7 @@ Possible values for predict_types are:
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -173,7 +174,8 @@ Possible values for predict_types are:
 <li><p><code>task_type</code> is set to <code>"surv"</code></p></li>
 <li><p>Creates Predictions of class <a href='PredictionSurv.html'>PredictionSurv</a>.</p></li>
 <li><p>Possible values for <code>predict_types</code> are:</p><ul>
-<li><p><code>"distr"</code>: Predicts a probability distribution for each observation in the test set, uses <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a>.</p></li>
+<li><p><code>"distr"</code>: Predicts a probability distribution for each observation in the test set,
+uses <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a>.</p></li>
 <li><p><code>"lp"</code>: Predicts a linear predictor for each observation in the test set.</p></li>
 <li><p><code>"crank"</code>: Predicts a continuous ranking for each observation in the test set.</p></li>
 <li><p><code>"response"</code>: Predicts a survival time for each observation in the test set.</p></li>
@@ -278,9 +280,7 @@ The referenced help package can be opened via method <code>$help()</code>.</p></
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='co'># get all survival learners from mlr_learners:</span>
 <span class='no'>lrns</span> <span class='kw'>=</span> <span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>mget</a></span>(<span class='no'>mlr_learners</span>$<span class='fu'>keys</span>(<span class='st'>"^surv"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>lrns</span>)</div><div class='output co'>#&gt;  [1] "surv.blackboost" "surv.coxph"      "surv.cvglmnet"   "surv.gamboost"  
-#&gt;  [5] "surv.gbm"        "surv.glmboost"   "surv.glmnet"     "surv.kaplan"    
-#&gt;  [9] "surv.mboost"     "surv.ranger"     "surv.rpart"      "surv.xgboost"   </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>lrns</span>)</div><div class='output co'>#&gt; [1] "surv.coxph"  "surv.kaplan" "surv.rpart" </div><div class='input'>
 <span class='co'># get a specific learner from mlr_learners:</span>
 <span class='no'>mlr_learners</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.coxph"</span>)</div><div class='output co'>#&gt; &lt;LearnerSurvCoxPH:surv.coxph&gt;
 #&gt; * Model: -

@@ -51,7 +51,7 @@
 <meta property="og:description" content="Estimates (or 'composes') a survival distribution from a predicted baseline distr and a
 crank or lp from two PredictionSurvs.
 Compositor Assumptions:
-The baseline distr is a discrete estimator, i.e. surv.kaplan or surv.nelson.
+The baseline distr is a discrete estimator, e.g. surv.kaplan.
 The composed distr is of a linear form
 If lp is missing then crank is equivalent
 
@@ -92,7 +92,7 @@ compositor to be more flexible." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -171,7 +171,7 @@ compositor to be more flexible." />
     <p>Estimates (or 'composes') a survival distribution from a predicted baseline <code>distr</code> and a
 <code>crank</code> or <code>lp</code> from two <a href='PredictionSurv.html'>PredictionSurv</a>s.</p>
 <p>Compositor Assumptions:</p><ul>
-<li><p>The baseline <code>distr</code> is a discrete estimator, i.e. <a href='LearnerSurvKaplan.html'>surv.kaplan</a> or <code>surv.nelson</code>.</p></li>
+<li><p>The baseline <code>distr</code> is a discrete estimator, e.g. <a href='mlr_learners_surv.kaplan.html'>surv.kaplan</a>.</p></li>
 <li><p>The composed <code>distr</code> is of a linear form</p></li>
 <li><p>If <code>lp</code> is missing then <code>crank</code> is equivalent</p></li>
 </ul>
@@ -186,8 +186,9 @@ compositor to be more flexible.</p>
 
     
 
-<p>This <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops.html'>mlr3pipelines::mlr_pipeops</a> or with the associated sugar function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>new</span>()
+<p>This <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a> can be instantiated via the
+<a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a> <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops.html'>mlr3pipelines::mlr_pipeops</a> or with the associated sugar
+function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>new</span>()
 <span class='no'>mlr_pipeops</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"distrcompose"</span>)
 <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"distrcompose"</span>)</pre>
 
@@ -199,9 +200,9 @@ compositor to be more flexible.</p>
 <code>NULL</code> during training and <a href='PredictionSurv.html'>PredictionSurv</a> during prediction.</p>
 <p>PipeOpDistrCompositor has one output channel named "output", producing <code>NULL</code> during training
 and a <a href='PredictionSurv.html'>PredictionSurv</a> during prediction.</p>
-<p>The output during prediction is the <a href='PredictionSurv.html'>PredictionSurv</a> from the "pred" input but with an extra (or overwritten)
-column for <code>distr</code> predict type; which is composed from the <code>distr</code> of "base" and <code>lp</code> or <code>crank</code>
-of "pred".</p>
+<p>The output during prediction is the <a href='PredictionSurv.html'>PredictionSurv</a> from the "pred" input but with an extra
+(or overwritten) column for <code>distr</code> predict type; which is composed from the <code>distr</code> of "base"
+and <code>lp</code> or <code>crank</code> of "pred".</p>
     <h2 class="hasAnchor" id="state"><a class="anchor" href="#state"></a>State</h2>
 
     
@@ -217,10 +218,10 @@ Determines the form that the predicted linear survival model should take. This i
 accelerated-failure time, <code>aft</code>, proportional hazards, <code>ph</code>, or proportional odds, <code>po</code>.
 Default <code>aft</code>.</p></li>
 <li><p><code>overwrite</code> :: <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> <br />
-If <code>FALSE</code> (default) then if the "pred" input already has a <code>distr</code>, the compositor does nothing
-and returns the given <a href='PredictionSurv.html'>PredictionSurv</a>. If <code>TRUE</code> then the <code>distr</code> is overwritten with the <code>distr</code>
-composed from <code>lp</code>/<code>crank</code> - this is useful for changing the prediction <code>distr</code> from one model
-form to another.</p></li>
+If <code>FALSE</code> (default) then if the "pred" input already has a <code>distr</code>, the compositor does
+nothing and returns the given <a href='PredictionSurv.html'>PredictionSurv</a>. If <code>TRUE</code> then the <code>distr</code> is overwritten
+with the <code>distr</code> composed from <code>lp</code>/<code>crank</code> - this is useful for changing the prediction
+<code>distr</code> from one model form to another.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="internals"><a class="anchor" href="#internals"></a>Internals</h2>
@@ -230,10 +231,10 @@ form to another.</p></li>
 <p>The respective <code>form</code>s above have respective survival distributions:
 $$aft: S(t) = S_0(\frac{t}{exp(lp)})$$
 $$ph: S(t) = S_0(t)^{exp(lp)}$$
-$$po: S(t) = \frac{S_0(t)}{exp(-lp) + (1-exp(-lp)) S_0(t)}$$
-where \(S_0\) is the estimated baseline survival distribution, and \(lp\) is the predicted
-linear predictor. If the input model does not predict a linear predictor then <code>crank</code> is
-assumed to be the <code>lp</code> - <strong>this may be a strong and unreasonable assumption.</strong></p>
+$$po: S(t) = \frac{S_0(t)}{exp(-lp) + (1-exp(-lp)) S_0(t)}$$ # nolint
+where \(S_0\) is the estimated baseline survival distribution, and \(lp\) is the
+predicted linear predictor. If the input model does not predict a linear predictor then <code>crank</code>
+is assumed to be the <code>lp</code> - <strong>this may be a strong and unreasonable assumption.</strong></p>
     <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
 
     
@@ -248,7 +249,8 @@ assumed to be the <code>lp</code> - <strong>this may be a strong and unreasonabl
 
     <div class='dont-index'><p><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a> and <a href='distrcompositor.html'>distrcompositor</a></p>
 <p>Other survival compositors: 
-<code><a href='PipeOpCrankCompositor.html'>PipeOpCrankCompositor</a></code></p></div>
+<code><a href='PipeOpCrankCompositor.html'>PipeOpCrankCompositor</a></code>,
+<code><a href='PipeOpProbregrCompositor.html'>PipeOpProbregrCompositor</a></code></p></div>
     <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
     <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code>PipeOpDistrCompositor</code></p>
@@ -292,7 +294,8 @@ otherwise be set during construction.</p></dd>
 <p><hr>
 <a id="method-train_internal"></a></p><h3>Method <code>train_internal()</code></h3>
 <p>train_internal
-Internal <code>train</code> function, will be moved to <code>private</code> in a near-future update, should be ignored.</p><h3>Usage</h3>
+Internal <code>train</code> function, will be moved to <code>private</code> in a near-future update, should be
+ignored.</p><h3>Usage</h3>
 <p><div class="r"></p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>train_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
@@ -303,7 +306,8 @@ Internal <code>train</code> function, will be moved to <code>private</code> in a
 <p><hr>
 <a id="method-predict_internal"></a></p><h3>Method <code>predict_internal()</code></h3>
 <p>predict_internal
-Internal <code>predict</code> function, will be moved to <code>private</code> in a near-future update, should be ignored.</p><h3>Usage</h3>
+Internal <code>predict</code> function, will be moved to <code>private</code> in a near-future update, should be
+ignored.</p><h3>Usage</h3>
 <p><div class="r"></p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>predict_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
@@ -339,32 +343,33 @@ Internal <code>predict</code> function, will be moved to <code>private</code> in
 <span class='no'>pod</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"distrcompose"</span>, <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
 <span class='no'>pod</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>base</span>, <span class='kw'>pred</span> <span class='kw'>=</span> <span class='no'>pred</span>))</div><div class='output co'>#&gt; $output
 #&gt; &lt;PredictionSurv&gt; for 30 observations:
-#&gt;     row_id      time status       crank                distr          lp
-#&gt;          1 3.3190202   TRUE -0.17372647 &lt;VectorDistribution&gt; -0.17372647
-#&gt;          2 0.1632683   TRUE -0.15401996 &lt;VectorDistribution&gt; -0.15401996
-#&gt;          3 3.0805302   TRUE  0.52964550 &lt;VectorDistribution&gt;  0.52964550
-#&gt; ---                                                                     
-#&gt;         28 2.7789159   TRUE -0.17421424 &lt;VectorDistribution&gt; -0.17421424
-#&gt;         29 3.3710556   TRUE  0.06947420 &lt;VectorDistribution&gt;  0.06947420
-#&gt;         30 4.1414291   TRUE  0.01427538 &lt;VectorDistribution&gt;  0.01427538
+#&gt;     row_id      time status       crank                    distr          lp
+#&gt;          1 3.3190202   TRUE -0.17372647 &lt;VectorDistribution[60]&gt; -0.17372647
+#&gt;          2 0.1632683   TRUE -0.15401996 &lt;VectorDistribution[60]&gt; -0.15401996
+#&gt;          3 3.0805302   TRUE  0.52964550 &lt;VectorDistribution[60]&gt;  0.52964550
+#&gt; ---                                                                         
+#&gt;         28 2.7789159   TRUE -0.17421424 &lt;VectorDistribution[60]&gt; -0.17421424
+#&gt;         29 3.3710556   TRUE  0.06947420 &lt;VectorDistribution[60]&gt;  0.06947420
+#&gt;         30 4.1414291   TRUE  0.01427538 &lt;VectorDistribution[60]&gt;  0.01427538
 #&gt; </div><div class='input'>
 <span class='co'># Examples not run to save run-time.</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Method 2 - Create a graph manually</span>
 <span class='no'>gr</span> <span class='kw'>=</span> <span class='no'>Graph</span>$<span class='fu'>new</span>()$
   <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"learner"</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.kaplan"</span>)))$
-  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"learner"</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.glmnet"</span>)))$
+  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"learner"</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)))$
   <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"distrcompose"</span>))$
   <span class='fu'>add_edge</span>(<span class='st'>"surv.kaplan"</span>, <span class='st'>"distrcompose"</span>, <span class='kw'>dst_channel</span> <span class='kw'>=</span> <span class='st'>"base"</span>)$
-  <span class='fu'>add_edge</span>(<span class='st'>"surv.glmnet"</span>, <span class='st'>"distrcompose"</span>, <span class='kw'>dst_channel</span> <span class='kw'>=</span> <span class='st'>"pred"</span>)
-<span class='no'>gr</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='no'>gr</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+  <span class='fu'>add_edge</span>(<span class='st'>"surv.coxph"</span>, <span class='st'>"distrcompose"</span>, <span class='kw'>dst_channel</span> <span class='kw'>=</span> <span class='st'>"pred"</span>)
+<span class='no'>gr</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='no'>gr</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 
 <span class='co'># Method 3 - Syntactic sugar: Wrap the learner in a graph.</span>
-<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'><a href='distrcompositor.html'>distrcompositor</a></span>(
-  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
+<span class='no'>cox.distr</span> <span class='kw'>=</span> <span class='fu'><a href='distrcompositor.html'>distrcompositor</a></span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
   <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
   <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
-<span class='no'>cvglm.distr</span>$<span class='fu'>fit</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+<span class='no'>cox.distr</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

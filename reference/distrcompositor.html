@@ -84,7 +84,7 @@ simplifies graph creation." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -155,7 +155,7 @@ simplifies graph creation." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compose a Distr Predict Type for Survival Learners</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/distrcompositor.R'><code>R/distrcompositor.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/distr_compositor.R'><code>R/distr_compositor.R</code></a></small>
     <div class="hidden name"><code>distrcompositor.Rd</code></div>
     </div>
 
@@ -181,21 +181,22 @@ simplifies graph creation.</p>
     </tr>
     <tr>
       <th>estimator</th>
-      <td><p>One of <code>kaplan</code> or <code>nelson</code>, corresponding to the Kaplan-Meier and Nelson-Aalen
-estimators respectively. Used to estimate the baseline survival distribution. Abbreviations allowed.
-Default is <code>kaplan</code>.</p></td>
+      <td><p>One of <code>kaplan</code> (default) or <code>nelson</code>, corresponding to the Kaplan-Meier and
+Nelson-Aalen estimators respectively. Used to estimate the baseline survival distribution.
+Abbreviations allowed.</p></td>
     </tr>
     <tr>
       <th>form</th>
-      <td><p>One of <code>aft</code>, <code>ph</code>, or <code>po</code>, corresponding to accelerated failure time, proportional hazards,
-and proportional odds respectively. Used to determine the form of the composed survival distribution.
-Default is <code>aft</code>.</p></td>
+      <td><p>One of <code>aft</code> (default), <code>ph</code>, or <code>po</code>, corresponding to accelerated failure time,
+proportional hazards, and proportional odds respectively. Used to determine the form of the
+composed survival distribution.</p></td>
     </tr>
     <tr>
       <th>overwrite</th>
       <td><p>logical. If <code>FALSE</code> (default) then if the <code>learner</code> already has a <code>distr</code>,
-the compositor does nothing. If <code>TRUE</code> then the <code>distr</code> is overwritten by the compositor if already present,
-which may be required for changing the prediction <code>distr</code> from one model form to another.</p></td>
+the compositor does nothing. If <code>TRUE</code> then the <code>distr</code> is overwritten by the compositor if
+already present, which may be required for changing the prediction <code>distr</code> from one model form
+to another.</p></td>
     </tr>
     <tr>
       <th>param_vals</th>
@@ -216,12 +217,12 @@ which may be required for changing the prediction <code>distr</code> from one mo
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
 
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>cvglm.distr</span> <span class='kw'>=</span> <span class='fu'>distrcompositor</span>(
-  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.cvglmnet"</span>),
+<span class='no'>cox.distr</span> <span class='kw'>=</span> <span class='fu'>distrcompositor</span>(
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
   <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
   <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
 
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cvglm.distr</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cox.distr</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

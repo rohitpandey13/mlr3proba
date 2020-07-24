@@ -84,7 +84,7 @@ or a list of trained LearnerSurvs." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -192,12 +192,13 @@ or a list of trained <a href='LearnerSurv.html'>LearnerSurv</a>s.</p>
     <tr>
       <th>measure</th>
       <td><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>) <br />
-Either <code>"graf"</code> for <a href='MeasureSurvGraf.html'>MeasureSurvGraf</a>, or <code>"logloss"</code> for <a href='MeasureSurvIntLogloss.html'>MeasureSurvIntLogloss</a></p></td>
+Either <code>"graf"</code> for <a href='mlr_measures_surv.graf.html'>MeasureSurvGraf</a>, or <code>"logloss"</code> for <a href='mlr_measures_surv.intlogloss.html'>MeasureSurvIntLogloss</a></p></td>
     </tr>
     <tr>
       <th>times</th>
       <td><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>) <br />
-If provided then either a vector of time-points to evaluate <code>measure</code> or a range of time-points.</p></td>
+If provided then either a vector of time-points to evaluate <code>measure</code> or a range of
+time-points.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -208,7 +209,7 @@ If <code>times</code> is missing or given as a range, then <code>n</code> provid
     <tr>
       <th>eps</th>
       <td><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>) <br />
-Small error value to pass to <a href='MeasureSurvIntLogloss.html'>MeasureSurvIntLogloss</a> to prevent errors resulting from a log(0)
+Small error value to pass to <a href='mlr_measures_surv.intlogloss.html'>MeasureSurvIntLogloss</a> to prevent errors resulting from a log(0)
 calculation.</p></td>
     </tr>
     <tr>
@@ -255,7 +256,7 @@ then all time-points between the range are returned.</p>
 <span class='no'>x</span>$<span class='no'>data</span>
 
 <span class='co'># Prediction Error Curves for fitted learners</span>
-<span class='no'>learns</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrns</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"surv.kaplan"</span>, <span class='st'>"surv.coxph"</span>, <span class='st'>"surv.ranger"</span>))
+<span class='no'>learns</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrns</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"surv.kaplan"</span>, <span class='st'>"surv.coxph"</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>learns</span>, <span class='kw'>function</span>(<span class='no'>x</span>) <span class='no'>x</span>$<span class='fu'>train</span>(<span class='no'>task</span>))
 <span class='fu'>pecs</span>(<span class='no'>learns</span>, <span class='kw'>task</span> <span class='kw'>=</span> <span class='no'>task</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"logloss"</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>90</span>), <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 }</div></pre>

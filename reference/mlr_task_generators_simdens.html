@@ -84,7 +84,7 @@ See distr6::distrSimulate() for an explanation of the hyperparameters." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -190,7 +190,9 @@ See <code><a href='https://alan-turing-institute.github.io/distr6/reference/dist
 </ul>
 <p><details open ><summary>Inherited methods</summary>
 <ul>
+<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="TaskGenerator" data-id="format"><a href='../../mlr3/html/TaskGenerator.html#method-format'><code>mlr3::TaskGenerator$format()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="TaskGenerator" data-id="generate"><a href='../../mlr3/html/TaskGenerator.html#method-generate'><code>mlr3::TaskGenerator$generate()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="TaskGenerator" data-id="print"><a href='../../mlr3/html/TaskGenerator.html#method-print'><code>mlr3::TaskGenerator$print()</code></a></span></p></li>
 </ul>
 </details>
 
@@ -215,13 +217,13 @@ See <code><a href='https://alan-turing-institute.github.io/distr6/reference/dist
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>generator</span> <span class='kw'>=</span> <span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_task_generators.html'>mlr_task_generators</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"simdens"</span>)
 <span class='no'>task</span> <span class='kw'>=</span> <span class='no'>generator</span>$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt;             y unimportant
-#&gt; 1: -0.4199051   0.2536785
-#&gt; 2: -1.3060389   0.1828352
-#&gt; 3: -0.6630797   0.1801222
-#&gt; 4:  2.1176009   0.2197002
-#&gt; 5: -1.4763457   0.3839466
-#&gt; 6: -0.1893205   0.4312560</div></pre>
+<span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt;              y unimportant
+#&gt; 1:  1.65627062   0.2650501
+#&gt; 2:  0.38124792   0.6305672
+#&gt; 3: -1.57751942   0.9383095
+#&gt; 4:  0.71640192   0.5952201
+#&gt; 5:  1.68439044   0.5337675
+#&gt; 6: -0.09877669   0.9587997</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -44,7 +44,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org"></a>
-        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.1.6</small></a>
+        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -119,7 +119,7 @@
 <p>Package website: <a href="https://mlr3proba.mlr-org.com/">release</a> | <a href="https://mlr3proba.mlr-org.com/dev">dev</a></p>
 <p>Probabilistic Supervised Learning for <strong><a href="https://github.com/mlr-org/mlr3">mlr3</a></strong>.</p>
 <!-- badges: start -->
-<p><a href="https://github.com/mlr-org/mlr3proba/actions"><img src="https://github.com/mlr-org/mlr3proba/workflows/R%20CMD%20Check%20via%20%7Btic%7D/badge.svg?branch=master" alt="R CMD Check via {tic}"></a> <a href="https://cran.r-project.org/web/checks/check_results_mlr3proba.html"><img src="https://cranchecks.info/badges/worst/mlr3proba" alt="cran checks"></a></p>
+<p><a href="https://github.com/mlr-org/mlr3proba/actions"><img src="https://github.com/mlr-org/mlr3proba/workflows/tic/badge.svg?branch=master" alt="tic"></a> <a href="https://cran.r-project.org/web/checks/check_results_mlr3proba.html"><img src="https://cranchecks.info/badges/worst/mlr3proba" alt="cran checks"></a></p>
 <p><a href="https://cran.r-project.org/package=mlr3proba"><img src="https://www.r-pkg.org/badges/version-ago/mlr3proba" alt="CRAN Status Badge"></a> <a href="https://codecov.io/gh/mlr-org/mlr3proba"><img src="https://codecov.io/gh/mlr-org/mlr3proba/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <a href="https://cran.r-project.org/package=mlr3proba"><img src="https://tinyverse.netlify.com/badge/mlr3proba" alt="Dependencies"></a> <!-- badges: end --></p>
 <div id="what-is-mlr3proba-" class="section level2">
 <h2 class="hasAnchor">
@@ -174,8 +174,8 @@
 <p>Learners are located either in <a href="https://github.com/mlr-org/mlr3proba">mlr3proba</a>, the <a href="https://github.com/mlr-org/mlr3learners">mlr3learners repository</a>, or the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>. See <a href="https://github.com/mlr3learners/mlr3learners.drat">here</a> for instructions in how to install learners from the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>.</p>
 <table class="table">
 <colgroup>
-<col width="40%">
-<col width="27%">
+<col width="41%">
+<col width="25%">
 <col width="32%">
 </colgroup>
 <thead><tr class="header">
@@ -185,102 +185,107 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.proba">surv.akritas</a></td>
+<td align="left">Akritas Conditional Non-Parametric Estimator</td>
+<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.proba">mlr3learners.proba</a></td>
+</tr>
+<tr class="even">
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvBlackboost.html">surv.blackboost</a></td>
 <td align="left">Gradient Boosting with Regression Trees</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=mboost">mboost</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/mlr3learners/mlr3learners.coxboost">surv.coxboost</a></td>
 <td align="left">Cox Model with Likelihood Based Boosting</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=CoxBoost">CoxBoost</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvCoxPH.html">surv.coxph</a></td>
 <td align="left">Cox Proportional Hazards</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=survival">survival</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/mlr3learners/mlr3learners.coxboost">surv.cvcoxboost</a></td>
 <td align="left">Cox Model with Cross-Validation Likelihood Based Boosting</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=CoxBoost">CoxBoost</a></td>
 </tr>
-<tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvCVGlmnet.html">surv.cvglmnet</a></td>
+<tr class="even">
+<td align="left"><a href="https://mlr3learners.mlr-org.com/reference/mlr_learners_surv.cv_glmnet.html">surv.cvglmnet</a></td>
 <td align="left">Cross-Validated GLM with Elastic Net Regularization</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=glmnet">glmnet</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/mlr3learners/mlr3learners.flexsurv">surv.flexible</a></td>
 <td align="left">Flexible Parametric Spline Models</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=flexsurv">flexsurv</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvGamboost.html">surv.gamboost</a></td>
 <td align="left">Gradient Boosting for Additive Models</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=mboost">mboost</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvGBM.html">surv.gbm</a></td>
 <td align="left">Generalized Boosting Regression Modeling</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=gbm">gbm</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvGlmboost.html">surv.glmboost</a></td>
 <td align="left">Gradient Boosting with Component-wise Linear Models</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=mboost">mboost</a></td>
 </tr>
-<tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvGlmnet.html">surv.glmnet</a></td>
+<tr class="odd">
+<td align="left"><a href="https://mlr3learners.mlr-org.com/reference/mlr_learners_surv.glmnet.html">surv.glmnet</a></td>
 <td align="left">GLM with Elastic Net Regularization</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=glmnet">glmnet</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvKaplan.html">surv.kaplan</a></td>
 <td align="left">Kaplan-Meier Estimator</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=survival">survival</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvMboost.html">surv.mboost</a></td>
 <td align="left">Gradient Boosting for Generalized Additive Models</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=mboost">mboost</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://github.com/mlr3learners/mlr3learners.survival">surv.nelson</a></td>
 <td align="left">Nelson-Aalen Estimator</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=survival">survival</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/mlr3learners/mlr3learners.survival">surv.parametric</a></td>
 <td align="left">Fully Parametric Survival Models</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=survival">survival</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://github.com/mlr3learners/mlr3learners.penalized">surv.penalized</a></td>
 <td align="left">L1 and L2 Penalized Estimation in GLMs</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=penalized">penalized</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://github.com/mlr3learners/mlr3learners.randomforestsrc">surv.randomForestSRC</a></td>
 <td align="left">RandomForestSRC Survival Forest</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=randomForestSRC">randomForestSRC</a></td>
 </tr>
-<tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvRanger.html">surv.ranger</a></td>
+<tr class="even">
+<td align="left"><a href="https://mlr3learners.mlr-org.com/reference/mlr_learners_surv.ranger.html">surv.ranger</a></td>
 <td align="left">Ranger Survival Forest</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=ranger">ranger</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvRpart.html">surv.rpart</a></td>
 <td align="left">Rpart Survival Forest</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=rpart">rpart</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="https://github.com/mlr3learners/mlr3learners.survivalsvm">surv.svm</a></td>
 <td align="left">Regression, Ranking and Hybrid Support Vector Machines</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=survivalsvm">survivalsvm</a></td>
 </tr>
-<tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/LearnerSurvXgboost.html">surv.xgboost</a></td>
+<tr class="odd">
+<td align="left"><a href="https://mlr3learners.mlr-org.com/reference/mlr_learners_surv.xgboost.html">surv.xgboost</a></td>
 <td align="left">Cox Model with Gradient Boosting Trees</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=xgboost">xgboost</a></td>
 </tr>
@@ -301,6 +306,16 @@
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/MeasureSurvBeggC.html">surv.beggC</a></td>
 <td align="left">Begg’s C-Index</td>
 <td align="left"><a href="https://CRAN.R-project.org/package=survAUC">survAUC</a></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/MeasureSurvCalibrationAlpha.html">surv.calib_alpha</a></td>
+<td align="left">van Houwelingen’s Alpha Calibration</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=mlr3proba">mlr3proba</a></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/MeasureSurvCalibrationBeta.html">surv.calib_beta</a></td>
+<td align="left">van Houwelingen’s Beta Calibration</td>
+<td align="left"><a href="https://CRAN.R-project.org/package=mlr3proba">mlr3proba</a></td>
 </tr>
 <tr class="even">
 <td align="left"><a href="https://mlr3proba.mlr-org.com/reference/MeasureSurvChamblessAUC.html">surv.chamblessAUC</a></td>
@@ -506,11 +521,7 @@
 <ul>
 <li>Add <code>prob</code> predict type to <code>TaskRegr</code>, and associated learners/measures</li>
 <li>Allow <code>MeasureSurv</code> to return measures at multiple time-points simultaneously</li>
-<li>Improve estimation of integrated scores, and re-implement <strong><a href="https://CRAN.R-project.org/package=survAUC">survAUC</a></strong> scores in <strong>mlr3proba</strong>
-<ul>
 <li>Continue to add survival measures and learners</li>
-</ul>
-</li>
 </ul>
 </div>
 <div id="bugs-questions-feedback" class="section level2">

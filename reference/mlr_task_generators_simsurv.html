@@ -49,7 +49,8 @@
 
 <meta property="og:title" content="Survival Task Generator for Package 'simsurv' — mlr_task_generators_simsurv" />
 <meta property="og:description" content="A mlr3::TaskGenerator calling simsurv::simsurv() from package simsurv.
-This generator currently only exposes a small subset of the flexibility of simsurv, and just creates a small data set with the following numerical covariates:
+This generator currently only exposes a small subset of the flexibility of simsurv,
+and just creates a small data set with the following numerical covariates:
 treatment: Bernoulli distributed with log hazard ratio -0.5.
 height: Normally distributed with log hazard ratio 1.
 weight: normally distributed with log hazard ratio 0.
@@ -90,7 +91,7 @@ See simsurv::simsurv() for an explanation of the hyperparameters." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -167,7 +168,8 @@ See simsurv::simsurv() for an explanation of the hyperparameters." />
 
     <div class="ref-description">
     <p>A <a href='https://mlr3.mlr-org.com/reference/TaskGenerator.html'>mlr3::TaskGenerator</a> calling <code><a href='https://rdrr.io/pkg/simsurv/man/simsurv.html'>simsurv::simsurv()</a></code> from package <a href='https://CRAN.R-project.org/package=simsurv'><span class="pkg">simsurv</span></a>.</p>
-<p>This generator currently only exposes a small subset of the flexibility of <a href='https://CRAN.R-project.org/package=simsurv'><span class="pkg">simsurv</span></a>, and just creates a small data set with the following numerical covariates:</p><ul>
+<p>This generator currently only exposes a small subset of the flexibility of <a href='https://CRAN.R-project.org/package=simsurv'><span class="pkg">simsurv</span></a>,
+and just creates a small data set with the following numerical covariates:</p><ul>
 <li><p><code>treatment</code>: Bernoulli distributed with log hazard ratio <code>-0.5</code>.</p></li>
 <li><p><code>height</code>: Normally distributed with log hazard ratio <code>1</code>.</p></li>
 <li><p><code>weight</code>: normally distributed with log hazard ratio <code>0</code>.</p></li>
@@ -202,7 +204,9 @@ See simsurv::simsurv() for an explanation of the hyperparameters." />
 </ul>
 <p><details open ><summary>Inherited methods</summary>
 <ul>
+<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="TaskGenerator" data-id="format"><a href='../../mlr3/html/TaskGenerator.html#method-format'><code>mlr3::TaskGenerator$format()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="TaskGenerator" data-id="generate"><a href='../../mlr3/html/TaskGenerator.html#method-generate'><code>mlr3::TaskGenerator$generate()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="TaskGenerator" data-id="print"><a href='../../mlr3/html/TaskGenerator.html#method-print'><code>mlr3::TaskGenerator$print()</code></a></span></p></li>
 </ul>
 </details>
 
@@ -227,13 +231,13 @@ See simsurv::simsurv() for an explanation of the hyperparameters." />
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>generator</span> <span class='kw'>=</span> <span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_task_generators.html'>mlr_task_generators</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"simsurv"</span>)
 <span class='no'>task</span> <span class='kw'>=</span> <span class='no'>generator</span>$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt;    eventtime status   height treatment   weight
-#&gt; 1: 4.5297945      1 174.0957         1 73.65133
-#&gt; 2: 5.0000000      0 173.4025         1 90.55724
-#&gt; 3: 0.7461227      1 177.5090         0 95.16039
-#&gt; 4: 0.6122782      1 191.5970         0 72.68510
-#&gt; 5: 3.6795134      1 165.7681         0 76.06471
-#&gt; 6: 5.0000000      0 204.9345         0 71.93132</div></pre>
+<span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt;    eventtime status   height treatment    weight
+#&gt; 1: 4.0159029      1 180.7794         0  81.91755
+#&gt; 2: 1.0706242      1 178.5291         0 100.03310
+#&gt; 3: 0.9902496      1 184.8463         0  78.21924
+#&gt; 4: 5.0000000      0 187.5448         0  68.22812
+#&gt; 5: 3.8825155      1 148.1808         0  79.17289
+#&gt; 6: 3.2118958      1 160.8603         1  92.20271</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
