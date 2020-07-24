@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Uno's TNR Survival Measure — mlr_measures_surv.unoTNR • mlr3proba</title>
+<title>Uno's TNR Survival Measure — mlr_measures_surv.uno_tnr • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,7 +47,7 @@
 
 
 
-<meta property="og:title" content="Uno's TNR Survival Measure — mlr_measures_surv.unoTNR" />
+<meta property="og:title" content="Uno's TNR Survival Measure — mlr_measures_surv.uno_tnr" />
 <meta property="og:description" content="Calls survAUC::spec.uno().
 Assumes random censoring.
 times and lp_thresh are arbitrarily set to 0 to prevent crashing, these should be further
@@ -158,7 +158,7 @@ specified." />
     <div class="page-header">
     <h1>Uno's TNR Survival Measure</h1>
     <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/MeasureSurvUnoTNR.R'><code>R/MeasureSurvUnoTNR.R</code></a></small>
-    <div class="hidden name"><code>mlr_measures_surv.unoTNR.Rd</code></div>
+    <div class="hidden name"><code>mlr_measures_surv.uno_tnr.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -181,8 +181,8 @@ measures will all be re-written and implemented directly in <code>mlr3proba</cod
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Measure.html'>Measure</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
 <a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='no'>MeasureSurvUnoTNR</span>$<span class='fu'>new</span>()
-<span class='no'>mlr_measures</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.unoTNR"</span>)
-<span class='fu'>msr</span>(<span class='st'>"surv.unoTNR"</span>)</pre>
+<span class='no'>mlr_measures</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.uno_tnr"</span>)
+<span class='fu'>msr</span>(<span class='st'>"surv.uno_tnr"</span>)</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
@@ -208,13 +208,13 @@ doi: <a href='https://doi.org/10.1198/016214507000000149'>10.1198/01621450700000
 <code><a href='mlr_measures_surv.beggC.html'>mlr_measures_surv.beggC</a></code>,
 <code><a href='mlr_measures_surv.calib_alpha.html'>mlr_measures_surv.calib_alpha</a></code>,
 <code><a href='mlr_measures_surv.calib_beta.html'>mlr_measures_surv.calib_beta</a></code>,
-<code><a href='mlr_measures_surv.chamblessAUC.html'>mlr_measures_surv.chamblessAUC</a></code>,
+<code><a href='mlr_measures_surv.chambless_auc.html'>mlr_measures_surv.chambless_auc</a></code>,
 <code><a href='mlr_measures_surv.cindex.html'>mlr_measures_surv.cindex</a></code>,
 <code><a href='mlr_measures_surv.gonenC.html'>mlr_measures_surv.gonenC</a></code>,
 <code><a href='mlr_measures_surv.grafSE.html'>mlr_measures_surv.grafSE</a></code>,
 <code><a href='mlr_measures_surv.graf.html'>mlr_measures_surv.graf</a></code>,
 <code><a href='mlr_measures_surv.harrellC.html'>mlr_measures_surv.harrellC</a></code>,
-<code><a href='mlr_measures_surv.hungAUC.html'>mlr_measures_surv.hungAUC</a></code>,
+<code><a href='mlr_measures_surv.hung_auc.html'>mlr_measures_surv.hung_auc</a></code>,
 <code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
 <code><a href='mlr_measures_surv.intlogloss.html'>mlr_measures_surv.intlogloss</a></code>,
 <code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
@@ -223,40 +223,40 @@ doi: <a href='https://doi.org/10.1198/016214507000000149'>10.1198/01621450700000
 <code><a href='mlr_measures_surv.mae.html'>mlr_measures_surv.mae</a></code>,
 <code><a href='mlr_measures_surv.mseSE.html'>mlr_measures_surv.mseSE</a></code>,
 <code><a href='mlr_measures_surv.mse.html'>mlr_measures_surv.mse</a></code>,
-<code><a href='mlr_measures_surv.nagelkR2.html'>mlr_measures_surv.nagelkR2</a></code>,
-<code><a href='mlr_measures_surv.oquigleyR2.html'>mlr_measures_surv.oquigleyR2</a></code>,
+<code><a href='mlr_measures_surv.nagelk_r2.html'>mlr_measures_surv.nagelk_r2</a></code>,
+<code><a href='mlr_measures_surv.oquigley_r2.html'>mlr_measures_surv.oquigley_r2</a></code>,
 <code><a href='mlr_measures_surv.rmseSE.html'>mlr_measures_surv.rmseSE</a></code>,
 <code><a href='mlr_measures_surv.rmse.html'>mlr_measures_surv.rmse</a></code>,
 <code><a href='mlr_measures_surv.schmid.html'>mlr_measures_surv.schmid</a></code>,
-<code><a href='mlr_measures_surv.songAUC.html'>mlr_measures_surv.songAUC</a></code>,
-<code><a href='mlr_measures_surv.songTNR.html'>mlr_measures_surv.songTNR</a></code>,
-<code><a href='mlr_measures_surv.songTPR.html'>mlr_measures_surv.songTPR</a></code>,
-<code><a href='mlr_measures_surv.unoAUC.html'>mlr_measures_surv.unoAUC</a></code>,
+<code><a href='mlr_measures_surv.song_auc.html'>mlr_measures_surv.song_auc</a></code>,
+<code><a href='mlr_measures_surv.song_tnr.html'>mlr_measures_surv.song_tnr</a></code>,
+<code><a href='mlr_measures_surv.song_tpr.html'>mlr_measures_surv.song_tpr</a></code>,
 <code><a href='mlr_measures_surv.unoC.html'>mlr_measures_surv.unoC</a></code>,
-<code><a href='mlr_measures_surv.unoTPR.html'>mlr_measures_surv.unoTPR</a></code>,
-<code><a href='mlr_measures_surv.xuR2.html'>mlr_measures_surv.xuR2</a></code></p>
+<code><a href='mlr_measures_surv.uno_auc.html'>mlr_measures_surv.uno_auc</a></code>,
+<code><a href='mlr_measures_surv.uno_tpr.html'>mlr_measures_surv.uno_tpr</a></code>,
+<code><a href='mlr_measures_surv.xu_r2.html'>mlr_measures_surv.xu_r2</a></code></p>
 <p>Other lp survival measures: 
 <code><a href='mlr_measures_surv.beggC.html'>mlr_measures_surv.beggC</a></code>,
 <code><a href='mlr_measures_surv.calib_beta.html'>mlr_measures_surv.calib_beta</a></code>,
-<code><a href='mlr_measures_surv.chamblessAUC.html'>mlr_measures_surv.chamblessAUC</a></code>,
+<code><a href='mlr_measures_surv.chambless_auc.html'>mlr_measures_surv.chambless_auc</a></code>,
 <code><a href='mlr_measures_surv.gonenC.html'>mlr_measures_surv.gonenC</a></code>,
-<code><a href='mlr_measures_surv.hungAUC.html'>mlr_measures_surv.hungAUC</a></code>,
-<code><a href='mlr_measures_surv.nagelkR2.html'>mlr_measures_surv.nagelkR2</a></code>,
-<code><a href='mlr_measures_surv.oquigleyR2.html'>mlr_measures_surv.oquigleyR2</a></code>,
-<code><a href='mlr_measures_surv.songAUC.html'>mlr_measures_surv.songAUC</a></code>,
-<code><a href='mlr_measures_surv.songTNR.html'>mlr_measures_surv.songTNR</a></code>,
-<code><a href='mlr_measures_surv.songTPR.html'>mlr_measures_surv.songTPR</a></code>,
-<code><a href='mlr_measures_surv.unoAUC.html'>mlr_measures_surv.unoAUC</a></code>,
-<code><a href='mlr_measures_surv.unoTPR.html'>mlr_measures_surv.unoTPR</a></code>,
-<code><a href='mlr_measures_surv.xuR2.html'>mlr_measures_surv.xuR2</a></code></p>
+<code><a href='mlr_measures_surv.hung_auc.html'>mlr_measures_surv.hung_auc</a></code>,
+<code><a href='mlr_measures_surv.nagelk_r2.html'>mlr_measures_surv.nagelk_r2</a></code>,
+<code><a href='mlr_measures_surv.oquigley_r2.html'>mlr_measures_surv.oquigley_r2</a></code>,
+<code><a href='mlr_measures_surv.song_auc.html'>mlr_measures_surv.song_auc</a></code>,
+<code><a href='mlr_measures_surv.song_tnr.html'>mlr_measures_surv.song_tnr</a></code>,
+<code><a href='mlr_measures_surv.song_tpr.html'>mlr_measures_surv.song_tpr</a></code>,
+<code><a href='mlr_measures_surv.uno_auc.html'>mlr_measures_surv.uno_auc</a></code>,
+<code><a href='mlr_measures_surv.uno_tpr.html'>mlr_measures_surv.uno_tpr</a></code>,
+<code><a href='mlr_measures_surv.xu_r2.html'>mlr_measures_surv.xu_r2</a></code></p>
 <p>Other AUC survival measures: 
-<code><a href='mlr_measures_surv.chamblessAUC.html'>mlr_measures_surv.chamblessAUC</a></code>,
-<code><a href='mlr_measures_surv.hungAUC.html'>mlr_measures_surv.hungAUC</a></code>,
-<code><a href='mlr_measures_surv.songAUC.html'>mlr_measures_surv.songAUC</a></code>,
-<code><a href='mlr_measures_surv.songTNR.html'>mlr_measures_surv.songTNR</a></code>,
-<code><a href='mlr_measures_surv.songTPR.html'>mlr_measures_surv.songTPR</a></code>,
-<code><a href='mlr_measures_surv.unoAUC.html'>mlr_measures_surv.unoAUC</a></code>,
-<code><a href='mlr_measures_surv.unoTPR.html'>mlr_measures_surv.unoTPR</a></code></p></div>
+<code><a href='mlr_measures_surv.chambless_auc.html'>mlr_measures_surv.chambless_auc</a></code>,
+<code><a href='mlr_measures_surv.hung_auc.html'>mlr_measures_surv.hung_auc</a></code>,
+<code><a href='mlr_measures_surv.song_auc.html'>mlr_measures_surv.song_auc</a></code>,
+<code><a href='mlr_measures_surv.song_tnr.html'>mlr_measures_surv.song_tnr</a></code>,
+<code><a href='mlr_measures_surv.song_tpr.html'>mlr_measures_surv.song_tpr</a></code>,
+<code><a href='mlr_measures_surv.uno_auc.html'>mlr_measures_surv.uno_auc</a></code>,
+<code><a href='mlr_measures_surv.uno_tpr.html'>mlr_measures_surv.uno_tpr</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
     <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code><a href='MeasureSurvIntegrated.html'>mlr3proba::MeasureSurvIntegrated</a></code> -&gt; <code><a href='MeasureSurvAUC.html'>mlr3proba::MeasureSurvAUC</a></code> -&gt; <code>MeasureSurvUnoTNR</code></p>
