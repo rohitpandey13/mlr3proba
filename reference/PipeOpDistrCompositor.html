@@ -329,7 +329,8 @@ ignored.</p><h3>Usage</h3>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3pipelines</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>42</span>)
 
@@ -341,19 +342,8 @@ ignored.</p><h3>Usage</h3>
 <span class='no'>base</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.kaplan"</span>)$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 <span class='no'>pred</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 <span class='no'>pod</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"distrcompose"</span>, <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
-<span class='no'>pod</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>base</span>, <span class='kw'>pred</span> <span class='kw'>=</span> <span class='no'>pred</span>))</div><div class='output co'>#&gt; $output
-#&gt; &lt;PredictionSurv&gt; for 30 observations:
-#&gt;     row_id      time status       crank                    distr          lp
-#&gt;          1 3.3190202   TRUE -0.17372647 &lt;VectorDistribution[60]&gt; -0.17372647
-#&gt;          2 0.1632683   TRUE -0.15401996 &lt;VectorDistribution[60]&gt; -0.15401996
-#&gt;          3 3.0805302   TRUE  0.52964550 &lt;VectorDistribution[60]&gt;  0.52964550
-#&gt; ---                                                                         
-#&gt;         28 2.7789159   TRUE -0.17421424 &lt;VectorDistribution[60]&gt; -0.17421424
-#&gt;         29 3.3710556   TRUE  0.06947420 &lt;VectorDistribution[60]&gt;  0.06947420
-#&gt;         30 4.1414291   TRUE  0.01427538 &lt;VectorDistribution[60]&gt;  0.01427538
-#&gt; </div><div class='input'>
-<span class='co'># Examples not run to save run-time.</span>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>pod</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>base</span>, <span class='kw'>pred</span> <span class='kw'>=</span> <span class='no'>pred</span>))
+
 <span class='co'># Method 2 - Create a graph manually</span>
 <span class='no'>gr</span> <span class='kw'>=</span> <span class='no'>Graph</span>$<span class='fu'>new</span>()$
   <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"learner"</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.kaplan"</span>)))$
