@@ -82,7 +82,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.1.6.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -156,9 +156,19 @@
       <small>Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="mlr3proba-0169000" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.6.9000">
-<a href="#mlr3proba-0169000" class="anchor"></a>mlr3proba 0.1.6.9000<small> Unreleased </small>
+    <div id="mlr3proba-0209000" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.0.9000">
+<a href="#mlr3proba-0209000" class="anchor"></a>mlr3proba 0.2.0.9000<small> Unreleased </small>
+</h1>
+<ul>
+<li>Removed <code>PredictionRegr</code> causing masking issues with <code>{mlr3}</code>
+</li>
+<li>Bug fix in <code>PipeOpDistrCompositor</code> causing some <code>cdf</code> predictions to be lost</li>
+</ul>
+</div>
+    <div id="mlr3proba-020" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.0">
+<a href="#mlr3proba-020" class="anchor"></a>mlr3proba 0.2.0<small> 2020-07-25 </small>
 </h1>
 <div id="added-functionality" class="section level3">
 <h3 class="hasAnchor">
@@ -166,7 +176,7 @@
 <ul>
 <li>
 <code>MeasureSurvCindex</code> added. Generalises all c-index measures with a fast C++ implementation</li>
-<li>Akritas estimator added to <a href="www.github.com/mlr3learners/mlr3learners.proba">mlr3learners.proba repo</a>
+<li>Akritas estimator added to <a href="https://www.github.com/mlr3learners/mlr3learners.proba">mlr3learners.proba repo</a>
 </li>
 <li>Added scoring rule <code>MeasureSurvSchmid</code>
 </li>
@@ -178,7 +188,7 @@
 <li>
 <code>response</code> parameter added to <code>PipeOpCrankCompositor</code> and <code>crankcompositor</code> to now optionally fill <code>response</code> predict type with same values as <code>crank</code>
 </li>
-<li>Added <code>PipeOpProbregrCompostior</code> and <code>probregr_compose</code> for composition to <code>distr</code> return type from (a) regression learner(s) predicting <code>response</code> and <code>se</code>
+<li>Added <code>PipeOpProbregrCompostior</code> and <code>compose_probregr</code> for composition to <code>distr</code> return type from (a) regression learner(s) predicting <code>response</code> and <code>se</code>
 </li>
 <li>Added <code>PipeOpSurvAvg</code> and <code>surv_averager</code> pipeline for weighted model averaging of distr, lp, crank, and response predictions.</li>
 </ul>
@@ -208,9 +218,9 @@
 <h3 class="hasAnchor">
 <a href="#moved-functionality" class="anchor"></a>Moved Functionality</h3>
 <ul>
-<li><p><code>LearnerSurvGlmnet</code>, <code>LearnerSurvCVGlmnet</code>, <code>LearnerSurvXgboost</code> and <code>LearnerSurvRanger</code> have been moved to the <a href="www.github.com/mlr-org/mlr3learners">mlr3learners repo</a></p></li>
-<li><p><code>LearnerSurvGBM</code> has been moved to www.github.com/mlr3learners/mlr3learners.gbm</p></li>
-<li><p><code>LearnerSurvMboost</code>, <code>LearnerSurvGlmBoost</code>, <code>LearnerSurvGamboost</code>, <code>LearnerSurvBlackboost</code> have been moved to www.github.com/mlr3learners/mlr3learners.mboost</p></li>
+<li><p><code>LearnerSurvGlmnet</code>, <code>LearnerSurvCVGlmnet</code>, <code>LearnerSurvXgboost</code> and <code>LearnerSurvRanger</code> have been moved to the <a href="https://www.github.com/mlr-org/mlr3learners">mlr3learners repo</a></p></li>
+<li><p><code>LearnerSurvGBM</code> has been moved to <a href="https://www.github.com/mlr3learners/mlr3learners.gbm" class="uri">https://www.github.com/mlr3learners/mlr3learners.gbm</a></p></li>
+<li><p><code>LearnerSurvMboost</code>, <code>LearnerSurvGlmBoost</code>, <code>LearnerSurvGamboost</code>, <code>LearnerSurvBlackboost</code> have been moved to <a href="https://www.github.com/mlr3learners/mlr3learners.mboost" class="uri">https://www.github.com/mlr3learners/mlr3learners.mboost</a></p></li>
 </ul>
 </div>
 </div>
