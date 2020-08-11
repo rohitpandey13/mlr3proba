@@ -43,10 +43,19 @@
     <loc>https://mlr3proba.mlr-org.com/reference/TaskSurv.html</loc>
   </url>
   <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/actg.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/crankcompositor.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/distrcompositor.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/gbcs.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/grace.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr3proba-package.html</loc>
@@ -172,7 +181,16 @@
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_task_generators_simsurv.html</loc>
   </url>
   <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_tasks_actg.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_tasks_faithful.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_tasks_gbcs.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_tasks_grace.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_tasks_lung.html</loc>
@@ -187,6 +205,9 @@
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_tasks_unemployment.html</loc>
   </url>
   <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_tasks_whas.html</loc>
+  </url>
+  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/pecs.html</loc>
   </url>
   <url>
@@ -197,6 +218,9 @@
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/surv_averager.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/whas.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/articles/density.html</loc>

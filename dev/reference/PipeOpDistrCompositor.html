@@ -235,16 +235,6 @@ $$po: S(t) = \frac{S_0(t)}{exp(-lp) + (1-exp(-lp)) S_0(t)}$$ # nolint
 where \(S_0\) is the estimated baseline survival distribution, and \(lp\) is the
 predicted linear predictor. If the input model does not predict a linear predictor then <code>crank</code>
 is assumed to be the <code>lp</code> - <strong>this may be a strong and unreasonable assumption.</strong></p>
-    <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
-
-    
-
-<p>Only fields inherited from <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a>.</p>
-    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
-
-    
-
-<p>Only methods inherited from <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a> and <a href='distrcompositor.html'>distrcompositor</a></p>
@@ -261,8 +251,6 @@ is assumed to be the <code>lp</code> - <strong>this may be a strong and unreason
 
 <ul>
 <li><p><a href='#method-new'><code>PipeOpDistrCompositor$new()</code></a></p></li>
-<li><p><a href='#method-train_internal'><code>PipeOpDistrCompositor$train_internal()</code></a></p></li>
-<li><p><a href='#method-predict_internal'><code>PipeOpDistrCompositor$predict_internal()</code></a></p></li>
 <li><p><a href='#method-clone'><code>PipeOpDistrCompositor$clone()</code></a></p></li>
 </ul>
 <p><details open ><summary>Inherited methods</summary>
@@ -289,30 +277,6 @@ Identifier of the resulting  object.</p></dd>
 <dt><code>param_vals</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/list.html'>list()</a></code>)<br />
 List of hyperparameter settings, overwriting the hyperparameter settings that would
 otherwise be set during construction.</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-train_internal"></a></p><h3>Method <code>train_internal()</code></h3>
-<p>train_internal
-Internal <code>train</code> function, will be moved to <code>private</code> in a near-future update, should be
-ignored.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>train_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
-<dt><code>inputs</code></dt><dd><p>Ignore.</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-predict_internal"></a></p><h3>Method <code>predict_internal()</code></h3>
-<p>predict_internal
-Internal <code>predict</code> function, will be moved to <code>private</code> in a near-future update, should be
-ignored.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpDistrCompositor</span>$<span class='fu'>predict_internal</span>(<span class='no'>inputs</span>)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
-<dt><code>inputs</code></dt><dd><p>Ignore.</p></dd>
 
 </dl><p></div></p>
 <p><hr>

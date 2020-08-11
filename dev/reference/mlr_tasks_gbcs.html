@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Annual Precipitation Density Task — mlr_tasks_precip • mlr3proba</title>
+<title>German Breast Cancer Study Survival Task — mlr_tasks_gbcs • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,8 +47,8 @@
 
 
 
-<meta property="og:title" content="Annual Precipitation Density Task — mlr_tasks_precip" />
-<meta property="og:description" content="A density task for the precip data set." />
+<meta property="og:title" content="German Breast Cancer Study Survival Task — mlr_tasks_gbcs" />
+<meta property="og:description" content="A survival task for the gbcs data set." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -153,25 +153,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Annual Precipitation Density Task</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/TaskDens_X.R'><code>R/TaskDens_X.R</code></a></small>
-    <div class="hidden name"><code>mlr_tasks_precip.Rd</code></div>
+    <h1>German Breast Cancer Study Survival Task</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/TaskSurv_X.R'><code>R/TaskSurv_X.R</code></a></small>
+    <div class="hidden name"><code>mlr_tasks_gbcs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A density task for the <a href='https://rdrr.io/r/datasets/precip.html'>precip</a> data set.</p>
+    <p>A survival task for the <a href='gbcs.html'>gbcs</a> data set.</p>
     </div>
 
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6::R6Class</a> inheriting from <a href='TaskDens.html'>TaskDens</a>.</p>
+    <p><a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6::R6Class</a> inheriting from <a href='TaskSurv.html'>TaskSurv</a>.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Column "id" and all date columns removed, as well as "rectime" and "censrec".
+Target is time to death.</p>
     <h2 class="hasAnchor" id="construction"><a class="anchor" href="#construction"></a>Construction</h2>
 
     
-<pre><span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_tasks.html'>mlr_tasks</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"precip"</span>)
-<span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"precip"</span>)</pre>
+<pre><span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_tasks.html'>mlr_tasks</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"gbcs"</span>)
+<span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"gbcs"</span>)</pre>
 
 
   </div>
