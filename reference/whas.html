@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Old Faithful Eruptions Density Task — mlr_tasks_faithful • mlr3proba</title>
+<title>Worcester Heart Attack Study (WHAS) Dataset — whas • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,8 +47,8 @@
 
 
 
-<meta property="og:title" content="Old Faithful Eruptions Density Task — mlr_tasks_faithful" />
-<meta property="og:description" content="A density task for the faithful data set." />
+<meta property="og:title" content="Worcester Heart Attack Study (WHAS) Dataset — whas" />
+<meta property="og:description" content="whas dataset from Hosmer et al." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -153,29 +153,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Old Faithful Eruptions Density Task</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/TaskDens_X.R'><code>R/TaskDens_X.R</code></a></small>
-    <div class="hidden name"><code>mlr_tasks_faithful.Rd</code></div>
+    <h1>Worcester Heart Attack Study (WHAS) Dataset</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>whas.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A density task for the <a href='https://rdrr.io/r/datasets/faithful.html'>faithful</a> data set.</p>
+    <p>whas dataset from Hosmer et al.</p>
     </div>
 
+    <pre class="usage"><span class='no'>whas</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6::R6Class</a> inheriting from <a href='TaskDens.html'>TaskDens</a>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Only the <code>eruptions</code> column is kept in this task.</p>
-    <h2 class="hasAnchor" id="construction"><a class="anchor" href="#construction"></a>Construction</h2>
-
     
-<pre><span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_tasks.html'>mlr_tasks</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"faithful"</span>)
-<span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"faithful"</span>)</pre>
+<dl'>
+<dt>id</dt><dd><p>Identification Code</p></dd>
+<dt>age</dt><dd><p>Age (per chart) (years).</p></dd>
+<dt>sex</dt><dd><p>Sex. 0 = Male. 1 = Female.</p></dd>
+<dt>cpk</dt><dd><p>Peak cardiac enzyme (iu).</p></dd>
+<dt>sho</dt><dd><p>Cardiogenic shock complications. 1 = Yes. 0 = No.</p></dd>
+<dt>chf</dt><dd><p>Left heart failure complications. 1 = Yes. 0 = No.</p></dd>
+<dt>miord</dt><dd><p>MI Order. 1 = Recurrent. 0 = First.</p></dd>
+<dt>mitype</dt><dd><p>MI Type. 1 = Q-wave. 2 = Not Q-wave. 3 = Indeterminate.</p></dd>
+<dt>year</dt><dd><p>Cohort year.</p></dd>
+<dt>yrgrp</dt><dd><p>Grouped cohort year.</p></dd>
+<dt>lenstay</dt><dd><p>Days in hospital.</p></dd>
+<dt>dstat</dt><dd><p>Discharge status from hospital. 1 = Dead. 0 = Alive.</p></dd>
+<dt>lenfol</dt><dd><p>Total length of follow-up from hospital admission (days).</p></dd>
+<dt>fstat</dt><dd><p>Status as of last follow-up. 1 = Dead. 0 = Alive.</p></dd>
 
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='ftp://ftp.wiley.com/public/sci_tech_med/survival'>ftp://ftp.wiley.com/public/sci_tech_med/survival</a></p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Hosmer, D.W. and Lemeshow, S. and May, S. (2008)
+Applied Survival Analysis: Regression Modeling of Time to Event Data: Second
+Edition, John Wiley and Sons Inc., New York, NY</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

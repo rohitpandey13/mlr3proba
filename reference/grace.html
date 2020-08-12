@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Old Faithful Eruptions Density Task — mlr_tasks_faithful • mlr3proba</title>
+<title>GRACE 1000 Dataset — grace • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,8 +47,8 @@
 
 
 
-<meta property="og:title" content="Old Faithful Eruptions Density Task — mlr_tasks_faithful" />
-<meta property="og:description" content="A density task for the faithful data set." />
+<meta property="og:title" content="GRACE 1000 Dataset — grace" />
+<meta property="og:description" content="grace dataset from Hosmer et al." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -153,29 +153,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Old Faithful Eruptions Density Task</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/TaskDens_X.R'><code>R/TaskDens_X.R</code></a></small>
-    <div class="hidden name"><code>mlr_tasks_faithful.Rd</code></div>
+    <h1>GRACE 1000 Dataset</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>grace.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A density task for the <a href='https://rdrr.io/r/datasets/faithful.html'>faithful</a> data set.</p>
+    <p>grace dataset from Hosmer et al.</p>
     </div>
 
+    <pre class="usage"><span class='no'>grace</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6::R6Class</a> inheriting from <a href='TaskDens.html'>TaskDens</a>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Only the <code>eruptions</code> column is kept in this task.</p>
-    <h2 class="hasAnchor" id="construction"><a class="anchor" href="#construction"></a>Construction</h2>
-
     
-<pre><span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_tasks.html'>mlr_tasks</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"faithful"</span>)
-<span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"faithful"</span>)</pre>
+<dl'>
+<dt>id</dt><dd><p>Identification Code</p></dd>
+<dt>days</dt><dd><p>Follow up time.</p></dd>
+<dt>death</dt><dd><p>Censoring indicator. 1 = Death. 0 = Censored.</p></dd>
+<dt>revasc</dt><dd><p>Revascularization Performed. 1 = Yes. 0 = No.</p></dd>
+<dt>revascdays</dt><dd><p>Days to revascularization after admission.</p></dd>
+<dt>los</dt><dd><p>Length of hospital stay (days).</p></dd>
+<dt>age</dt><dd><p>Age at admission (years).</p></dd>
+<dt>sysbp</dt><dd><p>Systolic blood pressure on admission (mm Hg).</p></dd>
+<dt>stchange</dt><dd><p>ST-segment deviation on index ECG. 1 = Yes. 0 = No.</p></dd>
 
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='ftp://ftp.wiley.com/public/sci_tech_med/survival'>ftp://ftp.wiley.com/public/sci_tech_med/survival</a></p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Hosmer, D.W. and Lemeshow, S. and May, S. (2008)
+Applied Survival Analysis: Regression Modeling of Time to Event Data: Second
+Edition, John Wiley and Sons Inc., New York, NY</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

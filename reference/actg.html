@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Old Faithful Eruptions Density Task — mlr_tasks_faithful • mlr3proba</title>
+<title>ACTG 320 Clinical Trial Dataset — actg • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,8 +47,8 @@
 
 
 
-<meta property="og:title" content="Old Faithful Eruptions Density Task — mlr_tasks_faithful" />
-<meta property="og:description" content="A density task for the faithful data set." />
+<meta property="og:title" content="ACTG 320 Clinical Trial Dataset — actg" />
+<meta property="og:description" content="actg dataset from Hosmer et al." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -153,29 +153,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Old Faithful Eruptions Density Task</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/TaskDens_X.R'><code>R/TaskDens_X.R</code></a></small>
-    <div class="hidden name"><code>mlr_tasks_faithful.Rd</code></div>
+    <h1>ACTG 320 Clinical Trial Dataset</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>actg.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A density task for the <a href='https://rdrr.io/r/datasets/faithful.html'>faithful</a> data set.</p>
+    <p>actg dataset from Hosmer et al.</p>
     </div>
 
+    <pre class="usage"><span class='no'>actg</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6::R6Class</a> inheriting from <a href='TaskDens.html'>TaskDens</a>.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Only the <code>eruptions</code> column is kept in this task.</p>
-    <h2 class="hasAnchor" id="construction"><a class="anchor" href="#construction"></a>Construction</h2>
-
     
-<pre><span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_tasks.html'>mlr_tasks</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"faithful"</span>)
-<span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"faithful"</span>)</pre>
+<dl'>
+<dt>id</dt><dd><p>Identification Code</p></dd>
+<dt>time</dt><dd><p>Time to AIDS diagnosis or death (days).</p></dd>
+<dt>censor</dt><dd><p>Event indicator. 1 = AIDS defining diagnosis, 0 = Otherwise.</p></dd>
+<dt>time_d</dt><dd><p>Time to death (days)</p></dd>
+<dt>censor_d</dt><dd><p>Event indicator for death (only). 1 = Death, 0 = Otherwise.</p></dd>
+<dt>tx</dt><dd><p>Treatment indicator. 1 = Treatment includes IDV, 0 = Control group.</p></dd>
+<dt>txgrp</dt><dd><p>Treatment group indicator. 1 = ZDV + 3TC. 2 = ZDV + 3TC + IDV. 3 = d4T + 3TC.
+4 = d4T + 3TC + IDV.</p></dd>
+<dt>strat2</dt><dd><p>CD4 stratum at screening. 0 = CD4 &lt;= 50. 1 = CD4 &gt; 50.</p></dd>
+<dt>sexF</dt><dd><p>0 = Male. 1 = Female.</p></dd>
+<dt>raceth</dt><dd><p>Race/Ethnicity. 1 = White Non-Hispanic. 2 = Black Non-Hispanic. 3 = Hispanic.
+4 = Asian, Pacific Islander. 5 = American Indian, Alaskan Native. 6 = Other/unknown.</p></dd>
+<dt>ivdrug</dt><dd><p>IV drug use history. 1 = Never. 2 = Currently. 3 = Previously.</p></dd>
+<dt>hemophil</dt><dd><p>Hemophiliac. 1 = Yes. 0 = No.</p></dd>
+<dt>karnof</dt><dd><p>Karnofsky Performance Scale. 100 = Normal; no complaint no evidence of disease.
+90 = Normal activity possible; minor signs/symptoms of disease. 80 = Normal activity with
+effort; some signs/symptoms of disease. 70 = Cares for self; normal activity/active work not
+possible.</p></dd>
+<dt>cd4</dt><dd><p>Baseline CD4 count (Cells/Milliliter).</p></dd>
+<dt>priorzdv</dt><dd><p>Months of prior ZDV use (months).</p></dd>
+<dt>age</dt><dd><p>Age at Enrollment (years).</p></dd>
 
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='ftp://ftp.wiley.com/public/sci_tech_med/survival'>ftp://ftp.wiley.com/public/sci_tech_med/survival</a></p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Hosmer, D.W. and Lemeshow, S. and May, S. (2008)
+Applied Survival Analysis: Regression Modeling of Time to Event Data: Second
+Edition, John Wiley and Sons Inc., New York, NY</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
