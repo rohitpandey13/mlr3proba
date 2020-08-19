@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compose a Crank Predict Type for Survival Learners — crankcompositor • mlr3proba</title>
+<title>PipeOpPredSurvRegr — mlr_pipeops_trafopred_survregr • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,9 +47,8 @@
 
 
 
-<meta property="og:title" content="Compose a Crank Predict Type for Survival Learners — crankcompositor" />
-<meta property="og:description" content="This is a wrapper around the PipeOpCrankCompositor pipe operation, which
-simplifies graph creation." />
+<meta property="og:title" content="PipeOpPredSurvRegr — mlr_pipeops_trafopred_survregr" />
+<meta property="og:description" content="Transform PredictionSurv to PredictionRegr." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -154,69 +153,99 @@ simplifies graph creation." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compose a Crank Predict Type for Survival Learners</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/crank_compositor.R'><code>R/crank_compositor.R</code></a></small>
-    <div class="hidden name"><code>crankcompositor.Rd</code></div>
+    <h1>PipeOpPredSurvRegr</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/PipeOpPredSurvRegr.R'><code>R/PipeOpPredSurvRegr.R</code></a></small>
+    <div class="hidden name"><code>mlr_pipeops_trafopred_survregr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a wrapper around the <a href='PipeOpCrankCompositor.html'>PipeOpCrankCompositor</a> pipe operation, which
-simplifies graph creation.</p>
+    <p>Transform <a href='PredictionSurv.html'>PredictionSurv</a> to PredictionRegr.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>crankcompositor</span>(
-  <span class='no'>learner</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"median"</span>, <span class='st'>"mode"</span>),
-  <span class='kw'>which</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
-)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>learner</th>
-      <td><p><a href='LearnerSurv.html'>LearnerSurv</a> object for which a <code>crank</code> is composed (or over-written)</p></td>
-    </tr>
-    <tr>
-      <th>method</th>
-      <td><p>One of <code>mean</code>, <code>mode</code>, or <code>median</code>; abbreviations allowed. Used to determine
-how <code>crank</code> is estimated from the predicted <code>distr</code>. Default is <code>mean</code>.</p></td>
-    </tr>
-    <tr>
-      <th>which</th>
-      <td><p>If <code>method = "mode"</code> then specifies which mode to use if multi-modal, default
-is the first.</p></td>
-    </tr>
-    <tr>
-      <th>response</th>
-      <td><p>If <code>TRUE</code> then the <code>response</code> predict type is imputed with the same values
-as <code>crank</code>.</p></td>
-    </tr>
-    <tr>
-      <th>param_vals</th>
-      <td><p>Additional parameters to pass to the <code>learner</code>.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="input-and-output-channels"><a class="anchor" href="#input-and-output-channels"></a>Input and Output Channels</h2>
 
-    <p><a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    
 
-    <p>For full details see <a href='PipeOpCrankCompositor.html'>PipeOpCrankCompositor</a>.</p>
+<p>Input and output channels are inherited from <a href='PipeOpPredTransformer.html'>PipeOpPredTransformer</a>.</p>
+<p>The output is the input <a href='PredictionSurv.html'>PredictionSurv</a> transformed to a <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>PredictionRegr</a>. Censoring is ignored.
+<code>crank</code> and <code>lp</code> predictions are also ignored.</p>
+    <h2 class="hasAnchor" id="state"><a class="anchor" href="#state"></a>State</h2>
+
+    
+
+<p>The <code>$state</code> is a named <code>list</code> with the <code>$state</code> elements inherited from <a href='PipeOpPredTransformer.html'>PipeOpPredTransformer</a>.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other PipeOps: 
+<code><a href='PipeOpPredTransformer.html'>PipeOpPredTransformer</a></code>,
+<code><a href='PipeOpTaskTransformer.html'>PipeOpTaskTransformer</a></code>,
+<code><a href='PipeOpTransformer.html'>PipeOpTransformer</a></code>,
+<code><a href='mlr_pipeops_survavg.html'>mlr_pipeops_survavg</a></code>,
+<code><a href='mlr_pipeops_trafopred_regrsurv.html'>mlr_pipeops_trafopred_regrsurv</a></code>,
+<code><a href='mlr_pipeops_trafotask_regrsurv.html'>mlr_pipeops_trafotask_regrsurv</a></code>,
+<code><a href='mlr_pipeops_trafotask_survregr.html'>mlr_pipeops_trafotask_survregr</a></code></p>
+<p>Other Transformation PipeOps: 
+<code><a href='mlr_pipeops_trafopred_regrsurv.html'>mlr_pipeops_trafopred_regrsurv</a></code>,
+<code><a href='mlr_pipeops_trafotask_regrsurv.html'>mlr_pipeops_trafotask_regrsurv</a></code>,
+<code><a href='mlr_pipeops_trafotask_survregr.html'>mlr_pipeops_trafotask_survregr</a></code></p></div>
+    <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
+
+    <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code><a href='PipeOpTransformer.html'>mlr3proba::PipeOpTransformer</a></code> -&gt; <code><a href='PipeOpPredTransformer.html'>mlr3proba::PipeOpPredTransformer</a></code> -&gt; <code>PipeOpPredSurvRegr</code></p>
+    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
+
+    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-new'><code>PipeOpPredSurvRegr$new()</code></a></p></li>
+<li><p><a href='#method-clone'><code>PipeOpPredSurvRegr$clone()</code></a></p></li>
+</ul>
+<p><details open ><summary>Inherited methods</summary>
+<ul>
+<li><p><span class="pkg-link" data-pkg="mlr3pipelines" data-topic="PipeOp" data-id="predict"><a href='../../mlr3pipelines/html/PipeOp.html#method-predict'><code>mlr3pipelines::PipeOp$predict()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="mlr3pipelines" data-topic="PipeOp" data-id="print"><a href='../../mlr3pipelines/html/PipeOp.html#method-print'><code>mlr3pipelines::PipeOp$print()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="mlr3pipelines" data-topic="PipeOp" data-id="train"><a href='../../mlr3pipelines/html/PipeOp.html#method-train'><code>mlr3pipelines::PipeOp$train()</code></a></span></p></li>
+</ul>
+</details>
+
+<hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
+<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>PipeOpPredSurvRegr</span>$<span class='fu'>new</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"trafopred_survregr"</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>id</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
+Identifier of the resulting  object.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>PipeOpPredSurvRegr</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3pipelines</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>survival</span>)
 
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>cox.crank</span> <span class='kw'>=</span> <span class='fu'>crankcompositor</span>(
-  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"median"</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cox.crank</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
+<span class='co'># simple example</span>
+<span class='no'>pred</span> <span class='kw'>=</span> <span class='no'>PredictionSurv</span>$<span class='fu'>new</span>(<span class='kw'>row_ids</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>, <span class='kw'>truth</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/survival/man/Surv.html'>Surv</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span>(<span class='fl'>10</span>, <span class='fl'>1</span>, <span class='fl'>0.5</span>)),
+   <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>)
+<span class='no'>po</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafopred_survregr"</span>)
+<span class='no'>new_pred</span> <span class='kw'>=</span> <span class='no'>po</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>pred</span> <span class='kw'>=</span> <span class='no'>pred</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>new_pred</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

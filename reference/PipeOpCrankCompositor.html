@@ -215,10 +215,9 @@ calculated using <a href='https://alan-turing-institute.github.io/distr6/referen
 respectively.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a> and <a href='crankcompositor.html'>crankcompositor</a></p>
+    <div class='dont-index'><p><a href='mlr_graphs_crankcompositor.html'>pipeline_crankcompositor</a></p>
 <p>Other survival compositors: 
-<code><a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a></code>,
-<code><a href='PipeOpProbregrCompositor.html'>PipeOpProbregrCompositor</a></code></p></div>
+<code><a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a></code></p></div>
     <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
     <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code>PipeOpCrankCompositor</code></p>
@@ -243,7 +242,7 @@ respectively.</p>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
 <p><div class="r"></p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>new</span>(
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"crankcompose"</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"compose_crank"</span>,
   <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mean"</span>)
 )</pre><p></div></p>
 
@@ -275,28 +274,11 @@ otherwise be set during construction.</p></dd>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3pipelines</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
 
-<span class='co'># Three methods to predict a `crank` from `surv.rpart`</span>
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>30</span>)
-
-<span class='co'># Method 1 - Train and predict separately then compose</span>
 <span class='no'>learn</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 <span class='no'>poc</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"crankcompose"</span>, <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mean"</span>))
-<span class='no'>poc</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>learn</span>))
-
-<span class='co'># Method 2 - Create a graph manually</span>
-<span class='no'>gr</span> <span class='kw'>=</span> <span class='no'>Graph</span>$<span class='fu'>new</span>()$
-  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"learner"</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)))$
-  <span class='fu'>add_pipeop</span>(<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"crankcompose"</span>))$
-  <span class='fu'>add_edge</span>(<span class='st'>"surv.coxph"</span>, <span class='st'>"crankcompose"</span>)
-<span class='no'>gr</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
-<span class='no'>gr</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
-
-<span class='co'># Method 3 - Syntactic sugar: Wrap the learner in a graph</span>
-<span class='no'>cox.crank</span> <span class='kw'>=</span> <span class='fu'><a href='crankcompositor.html'>crankcompositor</a></span>(
-  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"median"</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cox.crank</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
+<span class='no'>poc</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>learn</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

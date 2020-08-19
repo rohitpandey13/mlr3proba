@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compose a Distr Predict Type for Survival Learners — distrcompositor • mlr3proba</title>
+<title>Survival Prediction Averaging Pipeline — mlr_graphs_survbagging • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,9 +47,8 @@
 
 
 
-<meta property="og:title" content="Compose a Distr Predict Type for Survival Learners — distrcompositor" />
-<meta property="og:description" content="This is a wrapper around the PipeOpDistrCompositor pipe operation, which
-simplifies graph creation." />
+<meta property="og:title" content="Survival Prediction Averaging Pipeline — mlr_graphs_survbagging" />
+<meta property="og:description" content="Wrapper around PipeOpSubsample and PipeOpSurvAvg to simplify Graph creation." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -154,22 +153,22 @@ simplifies graph creation." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compose a Distr Predict Type for Survival Learners</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/distr_compositor.R'><code>R/distr_compositor.R</code></a></small>
-    <div class="hidden name"><code>distrcompositor.Rd</code></div>
+    <h1>Survival Prediction Averaging Pipeline</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/pipelines.R'><code>R/pipelines.R</code></a></small>
+    <div class="hidden name"><code>mlr_graphs_survbagging.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a wrapper around the <a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a> pipe operation, which
-simplifies graph creation.</p>
+    <p>Wrapper around <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops_subsample.html'>PipeOpSubsample</a> and <a href='mlr_pipeops_survavg.html'>PipeOpSurvAvg</a> to simplify <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>Graph</a> creation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>distrcompositor</span>(
+    <pre class="usage"><span class='fu'>pipeline_survbagging</span>(
   <span class='no'>learner</span>,
-  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kaplan"</span>, <span class='st'>"nelson"</span>),
-  <span class='kw'>form</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"aft"</span>, <span class='st'>"ph"</span>, <span class='st'>"po"</span>),
-  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
+  <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>frac</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
+  <span class='kw'>avg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>graph_learner</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -177,52 +176,77 @@ simplifies graph creation.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>learner</th>
-      <td><p><a href='LearnerSurv.html'>LearnerSurv</a> object for which a <code>distr</code> is composed (or over-written).</p></td>
+      <td><p><code>[mlr3::Learner]|[mlr3pipelines::PipeOp]|[mlr3pipelines::Graph]</code> <br />
+Either a <code>Learner</code> which will be wrapped in <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops_learner.html'>mlr3pipelines::PipeOpLearner</a>, a <code>PipeOp</code> which will
+be wrapped in <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>mlr3pipelines::Graph</a> or a <code>Graph</code> itself. Underlying <code>Learner</code> should be
+<a href='LearnerSurv.html'>LearnerSurv</a>.</p></td>
     </tr>
     <tr>
-      <th>estimator</th>
-      <td><p>One of <code>kaplan</code> (default) or <code>nelson</code>, corresponding to the Kaplan-Meier and
-Nelson-Aalen estimators respectively. Used to estimate the baseline survival distribution.
-Abbreviations allowed.</p></td>
+      <th>iterations</th>
+      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code><br />
+Number of bagging iterations. Defaults to 10.</p></td>
     </tr>
     <tr>
-      <th>form</th>
-      <td><p>One of <code>aft</code> (default), <code>ph</code>, or <code>po</code>, corresponding to accelerated failure time,
-proportional hazards, and proportional odds respectively. Used to determine the form of the
-composed survival distribution.</p></td>
+      <th>frac</th>
+      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code><br />
+Percentage of rows to keep during subsampling. See
+<a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops_subsample.html'>PipeOpSubsample</a> for more information. Defaults to 0.7.</p></td>
     </tr>
     <tr>
-      <th>overwrite</th>
-      <td><p>logical. If <code>FALSE</code> (default) then if the <code>learner</code> already has a <code>distr</code>,
-the compositor does nothing. If <code>TRUE</code> then the <code>distr</code> is overwritten by the compositor if
-already present, which may be required for changing the prediction <code>distr</code> from one model form
-to another.</p></td>
+      <th>avg</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>TRUE</code> (default) predictions are aggregated with <a href='mlr_pipeops_survavg.html'>PipeOpSurvAvg</a>, otherwise returned
+as multiple predictions. Can only be <code>FALSE</code> if <code>graph_learner = FALSE</code>.</p></td>
     </tr>
     <tr>
-      <th>param_vals</th>
-      <td><p>Additional parameters to pass to the <code>learner</code>.</p></td>
+      <th>weights</th>
+      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code> <br />
+Weights for model avering, ignored if <code>avg = FALSE</code>. Default is uniform weighting,
+see <a href='mlr_pipeops_survavg.html'>PipeOpSurvAvg</a>.</p></td>
+    </tr>
+    <tr>
+      <th>graph_learner</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>TRUE</code> returns wraps the <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>Graph</a> as a
+<a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>GraphLearner</a> otherwise (default) returns as a <code>Graph</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
+    <p><a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>mlr3pipelines::Graph</a> or <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
+<p><a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>For full details see <a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a>.</p>
+    <p>Bagging (Bootstrap AGGregatING) is the process of bootstrapping data and aggregating
+the final predictions. Bootstrapping splits the data into <code>B</code> smaller datasets of a given size
+and is performed with <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops_subsample.html'>PipeOpSubsample</a>. Aggregation is
+the sample mean of deterministic predictions and a
+<a href='https://alan-turing-institute.github.io/distr6/reference/MixtureDistribution.html'>MixtureDistribution</a> of distribution predictions. This can be
+further enhanced by using a weighted average by supplying <code>weights</code>.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other pipelines: 
+<code><a href='mlr_graphs_crankcompositor.html'>mlr_graphs_crankcompositor</a></code>,
+<code><a href='mlr_graphs_distrcompositor.html'>mlr_graphs_distrcompositor</a></code>,
+<code><a href='mlr_graphs_probregrcompositor.html'>mlr_graphs_probregrcompositor</a></code>,
+<code><a href='mlr_graphs_survaverager.html'>mlr_graphs_survaverager</a></code>,
+<code><a href='mlr_graphs_survtoregr.html'>mlr_graphs_survtoregr</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
 
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>cox.distr</span> <span class='kw'>=</span> <span class='fu'>distrcompositor</span>(
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>10</span>)
+<span class='no'>pipe</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+  <span class='st'>"survbagging"</span>,
   <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
-  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
-  <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"aft"</span>)
-
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>cox.distr</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
+  <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>graph_learner</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+ )
+<span class='no'>pipe</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='no'>pipe</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
