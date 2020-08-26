@@ -167,6 +167,7 @@
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"median"</span>, <span class='st'>"mode"</span>),
   <span class='kw'>which</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>graph_learner</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 
@@ -198,6 +199,11 @@ is the first.</p></td>
       <th>response</th>
       <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
 If <code>TRUE</code> then the <code>response</code> predict type is also estimated with the same values as <code>crank</code>.</p></td>
+    </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>TRUE</code> then existing <code>response</code> and <code>crank</code> predict types are overwritten.</p></td>
     </tr>
     <tr>
       <th>graph_learner</th>

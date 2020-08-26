@@ -204,6 +204,10 @@ Default is <code>mean</code>.</p></li>
 If <code>method = "mode"</code> then specifies which mode to use if multi-modal, default is the first.</p></li>
 <li><p><code>response</code> :: <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
 If <code>TRUE</code> then the <code>response</code> predict type is estimated with the same values as <code>crank</code>.</p></li>
+<li><p><code>overwrite</code> :: <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> <br />
+If <code>FALSE</code> (default) then if the "pred" input already has a <code>crank</code>, the compositor only
+composes a <code>response</code> type if <code>response = TRUE</code> and does not already exist. If <code>TRUE</code> then
+both the <code>crank</code> and <code>response</code> are overwritten.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="internals"><a class="anchor" href="#internals"></a>Internals</h2>
@@ -243,7 +247,7 @@ respectively.</p>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
 <p><div class="r"></p><pre><span class='no'>PipeOpCrankCompositor</span>$<span class='fu'>new</span>(
   <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"compose_crank"</span>,
-  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mean"</span>)
+  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mean"</span>, <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 )</pre><p></div></p>
 
 <h3>Arguments</h3>
