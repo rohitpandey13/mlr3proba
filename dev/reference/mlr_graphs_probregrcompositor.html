@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Distr Predict Type for Regression Learners — probregr_compose • mlr3proba</title>
+<title>Estimate Regression distr Predict Type Pipeline — mlr_graphs_probregrcompositor • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,9 +47,8 @@
 
 
 
-<meta property="og:title" content="Create a Distr Predict Type for Regression Learners — probregr_compose" />
-<meta property="og:description" content="This is a wrapper around the PipeOpProbregrCompositor pipe operation, which
-simplifies graph creation." />
+<meta property="og:title" content="Estimate Regression distr Predict Type Pipeline — mlr_graphs_probregrcompositor" />
+<meta property="og:description" content="Wrapper around PipeOpProbregrCompositor to simplify Graph creation." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -84,7 +83,7 @@ simplifies graph creation." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -154,53 +153,89 @@ simplifies graph creation." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Distr Predict Type for Regression Learners</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/probregr_compose.R'><code>R/probregr_compose.R</code></a></small>
-    <div class="hidden name"><code>probregr_compose.Rd</code></div>
+    <h1>Estimate Regression distr Predict Type Pipeline</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/pipelines.R'><code>R/pipelines.R</code></a></small>
+    <div class="hidden name"><code>mlr_graphs_probregrcompositor.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a wrapper around the <a href='PipeOpProbregrCompositor.html'>PipeOpProbregrCompositor</a> pipe operation, which
-simplifies graph creation.</p>
+    <p>Wrapper around <a href='PipeOpProbregrCompositor.html'>PipeOpProbregrCompositor</a> to simplify <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>Graph</a> creation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>probregr_compose</span>(<span class='no'>learner</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"Normal"</span>, <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())</pre>
+    <pre class="usage"><span class='fu'>pipeline_probregrcompositor</span>(
+  <span class='no'>learner</span>,
+  <span class='kw'>learner_se</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"Normal"</span>,
+  <span class='kw'>graph_learner</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>learner</th>
-      <td><p><a href='LearnerSurv.html'>LearnerSurv</a> object for which a <code>distr</code> is composed.</p></td>
+      <td><p><code>[mlr3::Learner]|[mlr3pipelines::PipeOp]|[mlr3pipelines::Graph]</code> <br />
+Either a <code>Learner</code> which will be wrapped in <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops_learner.html'>mlr3pipelines::PipeOpLearner</a>, a <code>PipeOp</code> which will
+be wrapped in <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>mlr3pipelines::Graph</a> or a <code>Graph</code> itself. Underlying <code>Learner</code> should be
+<a href='https://mlr3.mlr-org.com/reference/LearnerRegr.html'>LearnerRegr</a>.</p></td>
+    </tr>
+    <tr>
+      <th>learner_se</th>
+      <td><p><code>[mlr3::Learner]|[mlr3pipelines::PipeOp]</code> <br />
+Optional <a href='https://mlr3.mlr-org.com/reference/LearnerRegr.html'>LearnerRegr</a> with predict_type <code>se</code> to estimate the standard
+error. If left <code>NULL</code> then <code>learner</code> must have <code>se</code> in predict_types.</p></td>
     </tr>
     <tr>
       <th>dist</th>
-      <td><p>Location-scale distribution to use for composition. Current possibilities are
-<code>"Cauchy", "Gumbel", "Laplace", "Logistic", "Normal</code> (default).</p></td>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code><br />
+Location-scale distribution to use for composition.
+Current possibilities are' <code>"Cauchy", "Gumbel", "Laplace", "Logistic", "Normal</code> (default).</p></td>
     </tr>
     <tr>
-      <th>param_vals</th>
-      <td><p>Additional parameters to pass to the <code>learner</code>.</p></td>
+      <th>graph_learner</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>TRUE</code> returns wraps the <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>Graph</a> as a
+<a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>GraphLearner</a> otherwise (default) returns as a <code>Graph</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p><a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>mlr3pipelines::Graph</a> or <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>For full details see <a href='PipeOpProbregrCompositor.html'>PipeOpProbregrCompositor</a>.</p>
+    <div class='dont-index'><p>Other pipelines: 
+<code><a href='mlr_graphs_crankcompositor.html'>mlr_graphs_crankcompositor</a></code>,
+<code><a href='mlr_graphs_distrcompositor.html'>mlr_graphs_distrcompositor</a></code>,
+<code><a href='mlr_graphs_survaverager.html'>mlr_graphs_survaverager</a></code>,
+<code><a href='mlr_graphs_survbagging.html'>mlr_graphs_survbagging</a></code>,
+<code><a href='mlr_graphs_survtoregr.html'>mlr_graphs_survtoregr</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3pipelines</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
 
 <span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"boston_housing"</span>)
-<span class='no'>feat_distr</span> <span class='kw'>=</span> <span class='fu'>probregr_compose</span>(
+
+<span class='co'># method 1 - one learner for response and se</span>
+<span class='no'>pipe</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+  <span class='st'>"probregrcompositor"</span>,
   <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"se"</span>),
-  <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"Logistic"</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/resample.html'>resample</a></span>(<span class='no'>task</span>, <span class='no'>feat_distr</span>, <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>rsmp</a></span>(<span class='st'>"cv"</span>, <span class='kw'>folds</span> <span class='kw'>=</span> <span class='fl'>2</span>))$<span class='fu'>predictions</span>()
+  <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"Normal"</span>
+)
+<span class='no'>pipe</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='no'>pipe</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+
+<span class='co'># method 2 - one learner for response and one for se</span>
+<span class='no'>pipe</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+  <span class='st'>"probregrcompositor"</span>,
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.rpart"</span>),
+  <span class='kw'>learner_se</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"se"</span>),
+  <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"Logistic"</span>
+)
+<span class='no'>pipe</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='no'>pipe</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

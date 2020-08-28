@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Average Survival Predictions — surv_averager • mlr3proba</title>
+<title>Estimate Survival crank Predict Type Pipeline — mlr_graphs_crankcompositor • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,9 +47,8 @@
 
 
 
-<meta property="og:title" content="Average Survival Predictions — surv_averager" />
-<meta property="og:description" content="This is a wrapper around the PipeOpSurvAvg pipe operation, which
-simplifies graph creation." />
+<meta property="og:title" content="Estimate Survival crank Predict Type Pipeline — mlr_graphs_crankcompositor" />
+<meta property="og:description" content="Wrapper around PipeOpCrankCompositor to simplify Graph creation." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -84,7 +83,7 @@ simplifies graph creation." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -154,50 +153,96 @@ simplifies graph creation." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Average Survival Predictions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/surv_average.R'><code>R/surv_average.R</code></a></small>
-    <div class="hidden name"><code>surv_averager.Rd</code></div>
+    <h1>Estimate Survival crank Predict Type Pipeline</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/pipelines.R'><code>R/pipelines.R</code></a></small>
+    <div class="hidden name"><code>mlr_graphs_crankcompositor.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a wrapper around the <a href='mlr_pipeops_survavg.html'>PipeOpSurvAvg</a> pipe operation, which
-simplifies graph creation.</p>
+    <p>Wrapper around <a href='PipeOpCrankCompositor.html'>PipeOpCrankCompositor</a> to simplify <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>Graph</a> creation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>surv_averager</span>(<span class='no'>learners</span>, <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())</pre>
+    <pre class="usage"><span class='fu'>pipeline_crankcompositor</span>(
+  <span class='no'>learner</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>, <span class='st'>"median"</span>, <span class='st'>"mode"</span>),
+  <span class='kw'>which</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>response</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>graph_learner</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+
+<span class='fu'>crankcompositor</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>learners</th>
-      <td><p><code>(list())</code> <br />
-List of <a href='LearnerSurv.html'>LearnerSurv</a>s to average.</p></td>
+      <th>learner</th>
+      <td><p><code>[mlr3::Learner]|[mlr3pipelines::PipeOp]|[mlr3pipelines::Graph]</code> <br />
+Either a <code>Learner</code> which will be wrapped in <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops_learner.html'>mlr3pipelines::PipeOpLearner</a>, a <code>PipeOp</code> which will
+be wrapped in <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>mlr3pipelines::Graph</a> or a <code>Graph</code> itself. Underlying <code>Learner</code> should be
+<a href='LearnerSurv.html'>LearnerSurv</a>.</p></td>
     </tr>
     <tr>
-      <th>param_vals</th>
-      <td><p><code>(list())</code> <br />
-Parameters, including weights, to pass to <a href='mlr_pipeops_survavg.html'>PipeOpSurvAvg</a>.</p></td>
+      <th>method</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code><br />
+One of <code>mean</code> (default), <code>mode</code>, or <code>median</code>; abbreviations allowed. Used to determine
+how <code>crank</code> is estimated from the predicted <code>distr</code>.</p></td>
+    </tr>
+    <tr>
+      <th>which</th>
+      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code><br />
+If <code>method = "mode"</code> then specifies which mode to use if multi-modal, default
+is the first.</p></td>
+    </tr>
+    <tr>
+      <th>response</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>TRUE</code> then the <code>response</code> predict type is also estimated with the same values as <code>crank</code>.</p></td>
+    </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>TRUE</code> then existing <code>response</code> and <code>crank</code> predict types are overwritten.</p></td>
+    </tr>
+    <tr>
+      <th>graph_learner</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>TRUE</code> returns wraps the <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>Graph</a> as a
+<a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>GraphLearner</a> otherwise (default) returns as a <code>Graph</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p><code>ANY</code><br />
+For use with <code>crankcompositor</code>, now deprecated.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p><a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>mlr3pipelines::Graph</a> or <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>For full details see <a href='mlr_pipeops_survavg.html'>PipeOpSurvAvg</a>.</p>
+    <div class='dont-index'><p>Other pipelines: 
+<code><a href='mlr_graphs_distrcompositor.html'>mlr_graphs_distrcompositor</a></code>,
+<code><a href='mlr_graphs_probregrcompositor.html'>mlr_graphs_probregrcompositor</a></code>,
+<code><a href='mlr_graphs_survaverager.html'>mlr_graphs_survaverager</a></code>,
+<code><a href='mlr_graphs_survbagging.html'>mlr_graphs_survbagging</a></code>,
+<code><a href='mlr_graphs_survtoregr.html'>mlr_graphs_survtoregr</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
 
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>5</span>)
-<span class='no'>avg</span> <span class='kw'>=</span> <span class='fu'>surv_averager</span>(
-  <span class='kw'>learners</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrns</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"surv.kaplan"</span>, <span class='st'>"surv.coxph"</span>)),
-  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>weights</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>, <span class='fl'>0.9</span>))
- )
-<span class='no'>avg</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>10</span>)
+<span class='no'>pipe</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+  <span class='st'>"crankcompositor"</span>,
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"median"</span>
+)
+<span class='no'>pipe</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='no'>pipe</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

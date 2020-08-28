@@ -82,7 +82,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -158,7 +158,7 @@
 
     <div id="mlr3proba-021" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.1">
-<a href="#mlr3proba-021" class="anchor"></a>mlr3proba 0.2.1<small> Unreleased </small>
+<a href="#mlr3proba-021" class="anchor"></a>mlr3proba 0.2.1<small> 2020-08-28 </small>
 </h1>
 <ul>
 <li>Removed <code>PredictionRegr</code> causing masking issues with <code>{mlr3}</code>
@@ -167,6 +167,8 @@
 <li>Internal fixes for <code>mlr3pipelines</code>: public train and predict methods to private</li>
 <li>Added four datasets and tasks: <code>grace</code>, <code>actg</code>, <code>gbcs</code>, <code>whas</code>
 </li>
+<li>Add <code>overwrite</code> to <code>crankcompositor</code> pipeop and pipeline</li>
+<li>Bug fix in <code>surv.kaplan</code> <code>crank</code> prediction</li>
 </ul>
 </div>
     <div id="mlr3proba-020" class="section level1">
@@ -179,7 +181,7 @@
 <ul>
 <li>
 <code>MeasureSurvCindex</code> added. Generalises all c-index measures with a fast C++ implementation</li>
-<li>Akritas estimator added to <a href="https://www.github.com/mlr3learners/mlr3learners.proba">mlr3learners.proba repo</a>
+<li>Akritas estimator added to <code>mlr3learners/mlr3learners.proba</code>
 </li>
 <li>Added scoring rule <code>MeasureSurvSchmid</code>
 </li>
@@ -221,7 +223,7 @@
 <h3 class="hasAnchor">
 <a href="#moved-functionality" class="anchor"></a>Moved Functionality</h3>
 <ul>
-<li><p><code>LearnerSurvGlmnet</code>, <code>LearnerSurvCVGlmnet</code>, <code>LearnerSurvXgboost</code> and <code>LearnerSurvRanger</code> have been moved to the <a href="https://www.github.com/mlr-org/mlr3learners">mlr3learners repo</a></p></li>
+<li><p><code>LearnerSurvGlmnet</code>, <code>LearnerSurvCVGlmnet</code>, <code>LearnerSurvXgboost</code> and <code>LearnerSurvRanger</code> have been moved to <code>mlr-org/mlr3learners</code></p></li>
 <li><p><code>LearnerSurvGBM</code> has been moved to <a href="https://www.github.com/mlr3learners/mlr3learners.gbm" class="uri">https://www.github.com/mlr3learners/mlr3learners.gbm</a></p></li>
 <li><p><code>LearnerSurvMboost</code>, <code>LearnerSurvGlmBoost</code>, <code>LearnerSurvGamboost</code>, <code>LearnerSurvBlackboost</code> have been moved to <a href="https://www.github.com/mlr3learners/mlr3learners.mboost" class="uri">https://www.github.com/mlr3learners/mlr3learners.mboost</a></p></li>
 </ul>

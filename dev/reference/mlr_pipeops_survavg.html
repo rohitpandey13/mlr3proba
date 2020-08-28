@@ -93,7 +93,7 @@ equal weights for each prediction." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.0.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -207,6 +207,16 @@ with a <a href='PredictionSurv.html'>PredictionSurv</a> for inputs and outputs.<
 
 <p>Inherits from <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOpEnsemble.html'>PipeOpEnsemble</a> by implementing the
 <code>private$weighted_avg_predictions()</code> method.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other PipeOps: 
+<code><a href='PipeOpPredTransformer.html'>PipeOpPredTransformer</a></code>,
+<code><a href='PipeOpTaskTransformer.html'>PipeOpTaskTransformer</a></code>,
+<code><a href='PipeOpTransformer.html'>PipeOpTransformer</a></code>,
+<code><a href='mlr_pipeops_trafopred_regrsurv.html'>mlr_pipeops_trafopred_regrsurv</a></code>,
+<code><a href='mlr_pipeops_trafopred_survregr.html'>mlr_pipeops_trafopred_survregr</a></code>,
+<code><a href='mlr_pipeops_trafotask_regrsurv.html'>mlr_pipeops_trafotask_regrsurv</a></code>,
+<code><a href='mlr_pipeops_trafotask_survregr.html'>mlr_pipeops_trafotask_survregr</a></code></p></div>
     <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
 
     <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOpEnsemble.html'>mlr3pipelines::PipeOpEnsemble</a></code> -&gt; <code>PipeOpSurvAvg</code></p>
@@ -240,7 +250,7 @@ If <code>innum</code> is 0 (default), a vararg input channel is created that can
 number of inputs.</p></dd>
 
 <dt><code>id</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
-Identifier of the resulting  object, default <code>"survavg"</code>.</p></dd>
+Identifier of the resulting  object.</p></dd>
 
 <dt><code>param_vals</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/list.html'>list()</a></code>)<br />
 List of hyperparameter settings, overwriting the hyperparameter settings that would

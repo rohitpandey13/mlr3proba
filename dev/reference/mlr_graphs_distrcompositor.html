@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Visualization of fitted <code>LearnerSurv</code> objects — plot.LearnerSurv • mlr3proba</title>
+<title>Estimate Survival distr Predict Type Pipeline — mlr_graphs_distrcompositor • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,8 +47,8 @@
 
 
 
-<meta property="og:title" content="Visualization of fitted <code>LearnerSurv</code> objects — plot.LearnerSurv" />
-<meta property="og:description" content="Wrapper around predict.LearnerSurv and plot.VectorDistribution." />
+<meta property="og:title" content="Estimate Survival distr Predict Type Pipeline — mlr_graphs_distrcompositor" />
+<meta property="og:description" content="Wrapper around PipeOpDistrCompositor to simplify Graph creation." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -153,71 +153,95 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Visualization of fitted <code>LearnerSurv</code> objects</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/plot.R'><code>R/plot.R</code></a></small>
-    <div class="hidden name"><code>plot.LearnerSurv.Rd</code></div>
+    <h1>Estimate Survival distr Predict Type Pipeline</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/pipelines.R'><code>R/pipelines.R</code></a></small>
+    <div class="hidden name"><code>mlr_graphs_distrcompositor.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Wrapper around <code>predict.LearnerSurv</code> and <code>plot.VectorDistribution</code>.</p>
+    <p>Wrapper around <a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a> to simplify <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>Graph</a> creation.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for LearnerSurv</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
-  <span class='no'>x</span>,
-  <span class='no'>task</span>,
-  <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"survival"</span>, <span class='st'>"pdf"</span>, <span class='st'>"cdf"</span>, <span class='st'>"quantile"</span>, <span class='st'>"hazard"</span>, <span class='st'>"cumhazard"</span>),
-  <span class='kw'>row_ids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>newdata</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>pipeline_distrcompositor</span>(
+  <span class='no'>learner</span>,
+  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kaplan"</span>, <span class='st'>"nelson"</span>),
+  <span class='kw'>form</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"aft"</span>, <span class='st'>"ph"</span>, <span class='st'>"po"</span>),
+  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>graph_learner</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+
+<span class='fu'>distrcompositor</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>(<a href='LearnerSurv.html'>LearnerSurv</a>)</p></td>
+      <th>learner</th>
+      <td><p><code>[mlr3::Learner]|[mlr3pipelines::PipeOp]|[mlr3pipelines::Graph]</code> <br />
+Either a <code>Learner</code> which will be wrapped in <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops_learner.html'>mlr3pipelines::PipeOpLearner</a>, a <code>PipeOp</code> which will
+be wrapped in <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>mlr3pipelines::Graph</a> or a <code>Graph</code> itself. Underlying <code>Learner</code> should be
+<a href='LearnerSurv.html'>LearnerSurv</a>.</p></td>
     </tr>
     <tr>
-      <th>task</th>
-      <td><p>(<a href='TaskSurv.html'>TaskSurv</a>)</p></td>
+      <th>estimator</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code><br />
+One of <code>kaplan</code> (default) or <code>nelson</code>, corresponding to the Kaplan-Meier and
+Nelson-Aalen estimators respectively. Used to estimate the baseline survival distribution.</p></td>
     </tr>
     <tr>
-      <th>fun</th>
-      <td><p>(<code>character</code>) <br />
-Passed to <code><a href='https://alan-turing-institute.github.io/distr6/reference/plot.VectorDistribution.html'>distr6::plot.VectorDistribution</a></code></p></td>
+      <th>form</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code><br />
+One of <code>aft</code> (default), <code>ph</code>, or <code>po</code>, corresponding to accelerated failure time,
+proportional hazards, and proportional odds respectively. Used to determine the form of the
+composed survival distribution.</p></td>
     </tr>
     <tr>
-      <th>row_ids</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code>) <br />
-Passed to <code>Learner$predict</code></p></td>
+      <th>overwrite</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>FALSE</code> (default) then if the <code>learner</code> already has a <code>distr</code>, the compositor does nothing.
+If <code>TRUE</code> then the <code>distr</code> is overwritten by the compositor if
+already present, which may be required for changing the prediction <code>distr</code> from one model form
+to another.</p></td>
     </tr>
     <tr>
-      <th>newdata</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame()</a></code>) <br />
-If not missing <code>Learner$predict_newdata</code> is called instead of <code>Learner$predict</code>.</p></td>
+      <th>graph_learner</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
+If <code>TRUE</code> returns wraps the <a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>Graph</a> as a
+<a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>GraphLearner</a> otherwise (default) returns as a <code>Graph</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments passed to <code><a href='https://alan-turing-institute.github.io/distr6/reference/plot.VectorDistribution.html'>distr6::plot.VectorDistribution</a></code></p></td>
+      <td><p><code>ANY</code><br />
+For use with <code>distrcompositor</code>, now deprecated.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><a href='https://mlr3pipelines.mlr-org.com//reference/Graph.html'>mlr3pipelines::Graph</a> or <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_learners_graph.html'>mlr3pipelines::GraphLearner</a></p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other pipelines: 
+<code><a href='mlr_graphs_crankcompositor.html'>mlr_graphs_crankcompositor</a></code>,
+<code><a href='mlr_graphs_probregrcompositor.html'>mlr_graphs_probregrcompositor</a></code>,
+<code><a href='mlr_graphs_survaverager.html'>mlr_graphs_survaverager</a></code>,
+<code><a href='mlr_graphs_survbagging.html'>mlr_graphs_survbagging</a></code>,
+<code><a href='mlr_graphs_survtoregr.html'>mlr_graphs_survtoregr</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>20</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
 
-<span class='co'># Prediction Error Curves for prediction object</span>
-<span class='no'>learn</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)
-<span class='no'>learn</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
-
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>ind</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>row_ids</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>()[<span class='fl'>1</span>:<span class='fl'>5</span>, ])
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>learn</span>, <span class='no'>task</span>, <span class='st'>"survival"</span>, <span class='kw'>newdata</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>()[<span class='fl'>1</span>:<span class='fl'>5</span>, ], <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>10</span>)
+<span class='no'>pipe</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+  <span class='st'>"distrcompositor"</span>,
+  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.rpart"</span>),
+  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
+  <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"ph"</span>
+)
+<span class='no'>pipe</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
+<span class='no'>pipe</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

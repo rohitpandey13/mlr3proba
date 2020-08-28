@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PipeOpProbregrCompositor — PipeOpProbregrCompositor • mlr3proba</title>
+<title>PipeOpPredTransformer — PipeOpPredTransformer • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,9 +47,9 @@
 
 
 
-<meta property="og:title" content="PipeOpProbregrCompositor — PipeOpProbregrCompositor" />
-<meta property="og:description" content="Combines a predicted reponse and se from PredictionRegr with a specified probability
-distribution to estimate (or 'compose') a distr prediction." />
+<meta property="og:title" content="PipeOpPredTransformer — PipeOpPredTransformer" />
+<meta property="og:description" content="Parent class for PipeOps that transform Prediction
+objects to different types." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -154,69 +154,65 @@ distribution to estimate (or 'compose') a distr prediction." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>PipeOpProbregrCompositor</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/PipeOpProbregrCompositor.R'><code>R/PipeOpProbregrCompositor.R</code></a></small>
-    <div class="hidden name"><code>PipeOpProbregrCompositor.Rd</code></div>
+    <h1>PipeOpPredTransformer</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/PipeOpPredTransformer.R'><code>R/PipeOpPredTransformer.R</code></a></small>
+    <div class="hidden name"><code>PipeOpPredTransformer.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Combines a predicted <code>reponse</code> and <code>se</code> from PredictionRegr with a specified probability
-distribution to estimate (or 'compose') a <code>distr</code> prediction.</p>
+    <p>Parent class for <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a>s that transform <a href='https://mlr3.mlr-org.com/reference/Prediction.html'>Prediction</a>
+objects to different types.</p>
     </div>
 
 
-
-    <h2 class="hasAnchor" id="dictionary"><a class="anchor" href="#dictionary"></a>Dictionary</h2>
-
-    
-
-<p>This <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a> can be instantiated via the
-<a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a> <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops.html'>mlr3pipelines::mlr_pipeops</a> or with the associated sugar
-function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='no'>PipeOpProbregrCompositor</span>$<span class='fu'>new</span>()
-<span class='no'>mlr_pipeops</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"compose_probregr"</span>)
-<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"compose_probregr"</span>)</pre>
 
     <h2 class="hasAnchor" id="input-and-output-channels"><a class="anchor" href="#input-and-output-channels"></a>Input and Output Channels</h2>
 
     
 
-<p>PipeOpProbregrCompositor has two input channels named <code>"input_response"</code> and <code>"input_se"</code>,
-which take <code>NULL</code> during training and two <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>PredictionRegr</a>s during prediction, these should
-respectively contain the <code>response</code> and <code>se</code> return type, the same object can be passed twice.</p>
-<p>The output during prediction is a <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>PredictionRegr</a> with the "response" from <code>input_response</code>,
-the "se" from <code>input_se</code> and a "distr" created from combining the two.</p>
+<p><code>PipeOpPredTransformer</code> has one input and output channel named <code>"input"</code> and <code>"output"</code>.
+In training and testing these expect and produce <a href='https://mlr3.mlr-org.com/reference/Prediction.html'>mlr3::Prediction</a> objects with the type
+depending on the transformers.</p>
     <h2 class="hasAnchor" id="state"><a class="anchor" href="#state"></a>State</h2>
 
     
 
-<p>The <code>$state</code> is left empty (<code><a href='https://rdrr.io/r/base/list.html'>list()</a></code>).</p>
-    <h2 class="hasAnchor" id="parameters"><a class="anchor" href="#parameters"></a>Parameters</h2>
-
-    
-
-<ul>
-<li><p><code>dist</code> :: <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> <br />
-Location-scale distribution to use for composition. Current choices are <code>"Normal"</code> (default),
-<code>"Cauchy"</code>, <code>"Gumbel"</code>, <code>"Laplace"</code>, <code>"Logistic"</code>. All implemented via <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a>.</p></li>
+<p>The <code>$state</code> is a named <code>list</code> with the <code>$state</code> elements</p><ul>
+<li><p><code>inpredtypes</code>: Predict types in the input prediction object during training.</p></li>
+<li><p><code>outpredtypes</code> : Predict types in the input prediction object during prediction, checked
+against <code>inpredtypes</code>.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="internals"><a class="anchor" href="#internals"></a>Internals</h2>
 
     
 
-<p>The composition is created by substituting the <code>response</code> and <code>se</code> predictions into the
-distribution location and scale parameters respectively.</p>
-    <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
+<p>Classes inheriting from <code>PipeOpPredTransformer</code> transform <a href='https://mlr3.mlr-org.com/reference/Prediction.html'>Prediction</a>
+objects from one class (e.g. regr, classif) to another.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code>PipeOpProbregrCompositor</code></p>
+    <div class='dont-index'><p>Other PipeOps: 
+<code><a href='PipeOpTaskTransformer.html'>PipeOpTaskTransformer</a></code>,
+<code><a href='PipeOpTransformer.html'>PipeOpTransformer</a></code>,
+<code><a href='mlr_pipeops_survavg.html'>mlr_pipeops_survavg</a></code>,
+<code><a href='mlr_pipeops_trafopred_regrsurv.html'>mlr_pipeops_trafopred_regrsurv</a></code>,
+<code><a href='mlr_pipeops_trafopred_survregr.html'>mlr_pipeops_trafopred_survregr</a></code>,
+<code><a href='mlr_pipeops_trafotask_regrsurv.html'>mlr_pipeops_trafotask_regrsurv</a></code>,
+<code><a href='mlr_pipeops_trafotask_survregr.html'>mlr_pipeops_trafotask_survregr</a></code></p>
+<p>Other Transformers: 
+<code><a href='PipeOpTaskTransformer.html'>PipeOpTaskTransformer</a></code>,
+<code><a href='PipeOpTransformer.html'>PipeOpTransformer</a></code></p></div>
+    <h2 class="hasAnchor" id="super-classes"><a class="anchor" href="#super-classes"></a>Super classes</h2>
+
+    <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code><a href='PipeOpTransformer.html'>mlr3proba::PipeOpTransformer</a></code> -&gt; <code>PipeOpPredTransformer</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
 <h3>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>PipeOpProbregrCompositor$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>PipeOpProbregrCompositor$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>PipeOpPredTransformer$new()</code></a></p></li>
+<li><p><a href='#method-clone'><code>PipeOpPredTransformer$clone()</code></a></p></li>
 </ul>
 <p><details open ><summary>Inherited methods</summary>
 <ul>
@@ -229,9 +225,13 @@ distribution location and scale parameters respectively.</p>
 <hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpProbregrCompositor</span>$<span class='fu'>new</span>(
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"compose_probregr"</span>,
-  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"Normal"</span>)
+<p><div class="r"></p><pre><span class='no'>PipeOpPredTransformer</span>$<span class='fu'>new</span>(
+  <span class='no'>id</span>,
+  <span class='kw'>param_set</span> <span class='kw'>=</span> <span class='no'>ParamSet</span>$<span class='fu'>new</span>(),
+  <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>packages</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>character</a></span>(<span class='fl'>0</span>),
+  <span class='kw'>input</span> <span class='kw'>=</span> <span class='fu'>data.table</span>(),
+  <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'>data.table</span>()
 )</pre><p></div></p>
 
 <h3>Arguments</h3>
@@ -239,15 +239,31 @@ distribution location and scale parameters respectively.</p>
 <dt><code>id</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
 Identifier of the resulting  object.</p></dd>
 
+<dt><code>param_set</code></dt><dd><p>(<a href='https://paradox.mlr-org.com/reference/ParamSet.html'>paradox::ParamSet</a>)<br />
+Set of hyperparameters.</p></dd>
+
 <dt><code>param_vals</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/list.html'>list()</a></code>)<br />
 List of hyperparameter settings, overwriting the hyperparameter settings that would
 otherwise be set during construction.</p></dd>
+
+<dt><code>packages</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character()</a></code>)<br />
+Set of required packages.
+A warning is signaled by the constructor if at least one of the packages is not installed,
+but loaded (not attached) later on-demand via <code><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace()</a></code>.</p></dd>
+
+<dt><code>input</code></dt><dd><p><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table::data.table</a><br />
+<code>data.table</code> with columns <code>name</code> (<code>character</code>), <code>train</code> (<code>character</code>), <code>predict</code> (<code>character</code>).
+Sets the <code>$input</code> slot, see <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a>.</p></dd>
+
+<dt><code>output</code></dt><dd><p><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table::data.table</a><br />
+<code>data.table</code> with columns <code>name</code> (<code>character</code>), <code>train</code> (<code>character</code>), <code>predict</code> (<code>character</code>).
+Sets the <code>$output</code> slot, see <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a>.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpProbregrCompositor</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>PipeOpPredTransformer</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
 <p><div class="arguments"></p><dl'>
@@ -257,27 +273,6 @@ otherwise be set during construction.</p></dd>
 
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3pipelines</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"boston_housing"</span>)
-
-<span class='co'># Option 1: Use a learner that can predict se</span>
-<span class='no'>learn</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"se"</span>)
-<span class='no'>pred</span> <span class='kw'>=</span> <span class='no'>learn</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
-<span class='no'>poc</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"compose_probregr"</span>)
-<span class='no'>poc</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>pred</span>, <span class='no'>pred</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
-
-<span class='co'># Option 2: Use two learners, one for response and the other for se</span>
-<span class='no'>learn_response</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.rpart"</span>)
-<span class='no'>learn_se</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>, <span class='kw'>predict_type</span> <span class='kw'>=</span> <span class='st'>"se"</span>)
-<span class='no'>pred_response</span> <span class='kw'>=</span> <span class='no'>learn_response</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
-<span class='no'>pred_se</span> <span class='kw'>=</span> <span class='no'>learn_se</span>$<span class='fu'>train</span>(<span class='no'>task</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
-<span class='no'>poc</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"compose_probregr"</span>)
-<span class='no'>poc</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>pred_response</span>, <span class='no'>pred_se</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
-}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
