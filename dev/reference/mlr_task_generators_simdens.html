@@ -48,7 +48,7 @@
 
 
 <meta property="og:title" content="Density Task Generator for Package 'distr6' — mlr_task_generators_simdens" />
-<meta property="og:description" content="A mlr3::TaskGenerator calling distr6::distrSimulate() from package simsurv.
+<meta property="og:description" content="A mlr3::TaskGenerator calling distr6::distrSimulate().
 See distr6::distrSimulate() for an explanation of the hyperparameters." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
@@ -98,9 +98,6 @@ See distr6::distrSimulate() for an explanation of the hyperparameters." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
-    </li>
-    <li>
-      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -160,7 +157,7 @@ See distr6::distrSimulate() for an explanation of the hyperparameters." />
     </div>
 
     <div class="ref-description">
-    <p>A <a href='https://mlr3.mlr-org.com/reference/TaskGenerator.html'>mlr3::TaskGenerator</a> calling <code><a href='https://alan-turing-institute.github.io/distr6/reference/distrSimulate.html'>distr6::distrSimulate()</a></code> from package <a href='https://CRAN.R-project.org/package=simsurv'><span class="pkg">simsurv</span></a>.
+    <p>A <a href='https://mlr3.mlr-org.com/reference/TaskGenerator.html'>mlr3::TaskGenerator</a> calling <code><a href='https://alan-turing-institute.github.io/distr6/reference/distrSimulate.html'>distr6::distrSimulate()</a></code>.
 See <code><a href='https://alan-turing-institute.github.io/distr6/reference/distrSimulate.html'>distr6::distrSimulate()</a></code> for an explanation of the hyperparameters.</p>
     </div>
 
@@ -217,13 +214,13 @@ See <code><a href='https://alan-turing-institute.github.io/distr6/reference/dist
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>generator</span> <span class='kw'>=</span> <span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_task_generators.html'>mlr_task_generators</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"simdens"</span>)
 <span class='no'>task</span> <span class='kw'>=</span> <span class='no'>generator</span>$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt;             y unimportant
-#&gt; 1:  0.0206613   0.5055708
-#&gt; 2: -0.2551446   0.4616544
-#&gt; 3: -1.0264661   0.6753391
-#&gt; 4: -1.1171854   0.5534945
-#&gt; 5: -0.3474856   0.5091722
-#&gt; 6:  0.5656975   0.7054168</div></pre>
+<span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt;               y unimportant
+#&gt; 1: -1.400043517  0.68016292
+#&gt; 2:  0.255317055  0.49884561
+#&gt; 3: -2.437263611  0.64167935
+#&gt; 4: -0.005571287  0.66028435
+#&gt; 5:  0.621552721  0.09602416
+#&gt; 6:  1.148411606  0.76560016</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

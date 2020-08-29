@@ -100,9 +100,6 @@ see details." />
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
     </li>
-    <li>
-      <a href="../articles/density.html">Density Estimation</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -310,10 +307,11 @@ predictors of the new data, which can ultimately be composed to a distribution.<
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mlr3pipelines"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
 
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)$<span class='fu'>generate</span>(<span class='fl'>10</span>)
+<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)
 
 <span class='co'># method 1 with censoring deletion, compose to distribution</span>
 <span class='no'>pipe</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
@@ -347,6 +345,7 @@ predictors of the new data, which can ultimately be composed to a distribution.<
 )
 <span class='no'>pipe</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
 <span class='no'>pipe</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+}
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -98,9 +98,6 @@
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
     </li>
-    <li>
-      <a href="../articles/density.html">Density Estimation</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -168,7 +165,8 @@
 
     <p>The default bandwidth uses Silverman's rule-of-thumb for Gaussian kernels, however for
 non-Gaussian kernels it is recommended to use <a href='https://CRAN.R-project.org/package=mlr3tuning'><span class="pkg">mlr3tuning</span></a> to tune the bandwidth with
-cross-validation. Other density learners can be used for automated bandwidth selection.</p>
+cross-validation. Other density learners can be used for automated bandwidth selection.
+The default kernel is Epanechnikov (chosen to reduce dependencies).</p>
     <h2 class="hasAnchor" id="dictionary"><a class="anchor" href="#dictionary"></a>Dictionary</h2>
 
     
