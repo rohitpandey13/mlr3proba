@@ -160,14 +160,14 @@
     </div>
 
     <pre class="usage"><span class='fu'>pipeline_distrcompositor</span>(
-  <span class='no'>learner</span>,
-  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kaplan"</span>, <span class='st'>"nelson"</span>),
-  <span class='kw'>form</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"aft"</span>, <span class='st'>"ph"</span>, <span class='st'>"po"</span>),
-  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>graph_learner</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>learner</span>,
+  estimator = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kaplan"</span>, <span class='st'>"nelson"</span>),
+  form = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"aft"</span>, <span class='st'>"ph"</span>, <span class='st'>"po"</span>),
+  overwrite = <span class='fl'>FALSE</span>,
+  graph_learner = <span class='fl'>FALSE</span>
 )
 
-<span class='fu'>distrcompositor</span>(<span class='no'>...</span>)</pre>
+<span class='fu'>distrcompositor</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,23 +226,24 @@ For use with <code>distrcompositor</code>, now deprecated.</p></td>
 <code><a href='mlr_graphs_survtoregr.html'>mlr_graphs_survtoregr</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mlr3pipelines"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>&amp;&amp;</span>
- <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"rpart"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mlr3pipelines"</span>, quietly = <span class='fl'>TRUE</span>) <span class='op'>&amp;&amp;</span>
+ <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"rpart"</span>, quietly = <span class='fl'>TRUE</span>)) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr3.mlr-org.com'>"mlr3"</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr3pipelines.mlr-org.com'>"mlr3pipelines"</a></span>)
 
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)
-<span class='no'>pipe</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+<span class='kw'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)
+<span class='kw'>pipe</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
   <span class='st'>"distrcompositor"</span>,
-  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.rpart"</span>),
-  <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"kaplan"</span>,
-  <span class='kw'>form</span> <span class='kw'>=</span> <span class='st'>"ph"</span>
+  learner = <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.rpart"</span>),
+  estimator = <span class='st'>"kaplan"</span>,
+  form = <span class='st'>"ph"</span>
 )
-<span class='no'>pipe</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
-<span class='no'>pipe</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'>train</span>(<span class='kw'>task</span>)
+<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>task</span>)
 }
-}</div></pre>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -258,7 +259,7 @@ For use with <code>distrcompositor</code>, now deprecated.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -160,12 +160,12 @@
     </div>
 
     <pre class="usage"><span class='fu'>pipeline_survbagging</span>(
-  <span class='no'>learner</span>,
-  <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>frac</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
-  <span class='kw'>avg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>graph_learner</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>learner</span>,
+  iterations = <span class='fl'>10</span>,
+  frac = <span class='fl'>0.7</span>,
+  avg = <span class='fl'>TRUE</span>,
+  weights = <span class='fl'>1</span>,
+  graph_learner = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -231,22 +231,23 @@ further enhanced by using a weighted average by supplying <code>weights</code>.<
 <code><a href='mlr_graphs_survtoregr.html'>mlr_graphs_survtoregr</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mlr3pipelines"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"mlr3pipelines"</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mlr3pipelines"</span>, quietly = <span class='fl'>TRUE</span>)) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr3.mlr-org.com'>"mlr3"</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr3pipelines.mlr-org.com'>"mlr3pipelines"</a></span>)
 
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)
-<span class='no'>pipe</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+<span class='kw'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)
+<span class='kw'>pipe</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
   <span class='st'>"survbagging"</span>,
-  <span class='kw'>learner</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
-  <span class='kw'>iterations</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>graph_learner</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  learner = <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
+  iterations = <span class='fl'>5</span>,
+  graph_learner = <span class='fl'>FALSE</span>
  )
-<span class='no'>pipe</span>$<span class='fu'>train</span>(<span class='no'>task</span>)
-<span class='no'>pipe</span>$<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>task</span>)
+<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'>train</span>(<span class='kw'>task</span>)
+<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>task</span>)
 }
-}</div></pre>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -262,7 +263,7 @@ further enhanced by using a weighted average by supplying <code>weights</code>.<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
