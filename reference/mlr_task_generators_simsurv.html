@@ -91,7 +91,7 @@ See simsurv::simsurv() for an explanation of the hyperparameters." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.2</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -105,9 +105,6 @@ See simsurv::simsurv() for an explanation of the hyperparameters." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
-    </li>
-    <li>
-      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -184,8 +181,9 @@ and just creates a small data set with the following numerical covariates:</p><u
 
     
 
-<p>This TaskGenerator can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a> mlr_task_generators or with the associated sugar function <code>tgen()</code>:</p><pre><span class='no'>mlr_task_generators</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"simsurv"</span>)
-<span class='fu'>tgen</span>(<span class='st'>"simsurv"</span>)</pre>
+<p>This <a href='https://mlr3.mlr-org.com/reference/TaskGenerator.html'>TaskGenerator</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a> <a href='https://mlr3.mlr-org.com/reference/mlr_task_generators.html'>mlr_task_generators</a> or with the associated sugar function <code><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen()</a></code>:</p><pre><span class='kw'>mlr_task_generators</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"simsurv"</span>)
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tgen</a></span>(<span class='st'>"simsurv"</span>)
+</pre>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -196,7 +194,7 @@ and just creates a small data set with the following numerical covariates:</p><u
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
-<h3>Public methods</h3>
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
 
 <ul>
 <li><p><a href='#method-new'><code>TaskGeneratorSimsurv$new()</code></a></p></li>
@@ -211,17 +209,17 @@ and just creates a small data set with the following numerical covariates:</p><u
 </details>
 
 <hr>
-<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
-<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TaskGeneratorSimsurv</span>$<span class='fu'>new</span>()</pre><p></div></p>
+<a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
+<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='kw'>TaskGeneratorSimsurv</span><span class='op'>$</span><span class='fu'>new</span>()</pre><p></div></p>
 
 <p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>TaskGeneratorSimsurv</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='kw'>TaskGeneratorSimsurv</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>FALSE</span>)</pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -229,15 +227,18 @@ and just creates a small data set with the following numerical covariates:</p><u
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>generator</span> <span class='kw'>=</span> <span class='kw pkg'>mlr3</span><span class='kw ns'>::</span><span class='no'><a href='https://mlr3.mlr-org.com/reference/mlr_task_generators.html'>mlr_task_generators</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"simsurv"</span>)
-<span class='no'>task</span> <span class='kw'>=</span> <span class='no'>generator</span>$<span class='fu'>generate</span>(<span class='fl'>20</span>)
-<span class='no'>task</span>$<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()</div><div class='output co'>#&gt;    eventtime status   height treatment   weight
-#&gt; 1:  3.699725      1 179.4739         1 55.28397
-#&gt; 2:  4.151946      1 158.5995         0 74.69513
-#&gt; 3:  4.917073      1 184.4334         1 80.79174
-#&gt; 4:  4.778394      1 189.9942         1 84.09717
-#&gt; 5:  4.079561      1 176.1869         1 86.93851
-#&gt; 6:  5.000000      0 168.7874         1 86.60657</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"simsurv"</span>, quietly = <span class='fl'>TRUE</span>)) {
+<span class='kw'>generator</span> <span class='op'>=</span> <span class='kw'>mlr3</span>::<span class='kw'><a href='https://mlr3.mlr-org.com/reference/mlr_task_generators.html'>mlr_task_generators</a></span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"simsurv"</span>)
+<span class='kw'>task</span> <span class='op'>=</span> <span class='kw'>generator</span><span class='op'>$</span><span class='fu'>generate</span>(<span class='fl'>20</span>)
+<span class='kw'>task</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>()
+}
+</div><div class='output co'>#&gt;    eventtime status   height treatment   weight
+#&gt; 1:  5.000000      0 181.0505         1 90.74346
+#&gt; 2:  5.000000      0 170.4132         0 73.34912
+#&gt; 3:  5.000000      0 179.2505         1 91.13952
+#&gt; 4:  5.000000      0 176.2277         0 77.54104
+#&gt; 5:  3.139963      1 186.6720         1 68.22437
+#&gt; 6:  4.051794      1 221.3313         0 70.24149</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -253,7 +254,7 @@ and just creates a small data set with the following numerical covariates:</p><u
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

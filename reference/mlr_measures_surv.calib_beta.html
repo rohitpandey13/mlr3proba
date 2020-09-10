@@ -88,7 +88,7 @@ Assumes fitted model is Cox PH." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.2</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -102,9 +102,6 @@ Assumes fitted model is Cox PH." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
-    </li>
-    <li>
-      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -179,9 +176,10 @@ where \(l\) is the predicted linear predictor.</p>
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Measure.html'>Measure</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='no'>MeasureSurvCalibrationBeta</span>$<span class='fu'>new</span>()
-<span class='no'>mlr_measures</span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.calib_beta"</span>)
-<span class='fu'>msr</span>(<span class='st'>"surv.calib_beta"</span>)</pre>
+<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='kw'>MeasureSurvCalibrationBeta</span><span class='op'>$</span><span class='fu'>new</span>()
+<span class='kw'>mlr_measures</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.calib_beta"</span>)
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr</a></span>(<span class='st'>"surv.calib_beta"</span>)
+</pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
 
@@ -256,7 +254,7 @@ ISSN 02776715, doi: <a href='https://doi.org/10.1002/1097-0258(20001230)19:24&lt
     <p><code><a href='https://mlr3.mlr-org.com/reference/Measure.html'>mlr3::Measure</a></code> -&gt; <code><a href='MeasureSurv.html'>mlr3proba::MeasureSurv</a></code> -&gt; <code>MeasureSurvCalibrationBeta</code></p>
     <h2 class="hasAnchor" id="active-bindings"><a class="anchor" href="#active-bindings"></a>Active bindings</h2>
 
-    <p><div class="r6-active-bindings"></p><dl'>
+    <p><div class="r6-active-bindings"></p><dl>
 <dt><code>se</code></dt><dd><p><code>(logical(1))</code> <br />
 If <code>TRUE</code> returns the standard error of the measure.</p></dd>
 
@@ -264,7 +262,7 @@ If <code>TRUE</code> returns the standard error of the measure.</p></dd>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
-<h3>Public methods</h3>
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
 
 <ul>
 <li><p><a href='#method-new'><code>MeasureSurvCalibrationBeta$new()</code></a></p></li>
@@ -281,23 +279,23 @@ If <code>TRUE</code> returns the standard error of the measure.</p></dd>
 </details>
 
 <hr>
-<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
-<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureSurvCalibrationBeta</span>$<span class='fu'>new</span>(<span class='kw'>se</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
+<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='kw'>MeasureSurvCalibrationBeta</span><span class='op'>$</span><span class='fu'>new</span>(se = <span class='fl'>FALSE</span>)</pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
 <dt><code>se</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>)<br />
 If <code>TRUE</code> returns the standard error of the measure.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>MeasureSurvCalibrationBeta</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='kw'>MeasureSurvCalibrationBeta</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>FALSE</span>)</pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -319,7 +317,7 @@ If <code>TRUE</code> returns the standard error of the measure.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -44,7 +44,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org"></a>
-        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.2.1</small></a>
+        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.2.2</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -58,9 +58,6 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
-    </li>
-    <li>
-      <a href="articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -120,7 +117,7 @@
 <p>Probabilistic Supervised Learning for <strong><a href="https://github.com/mlr-org/mlr3/">mlr3</a></strong>.</p>
 <!-- badges: start -->
 <p><a href="https://github.com/mlr-org/mlr3proba/actions"><img src="https://github.com/mlr-org/mlr3proba/workflows/tic/badge.svg?branch=master" alt="tic"></a> <a href="https://cran.r-project.org/web/checks/check_results_mlr3proba.html"><img src="https://cranchecks.info/badges/worst/mlr3proba" alt="cran checks"></a></p>
-<p><a href="https://cran.r-project.org/package=mlr3proba"><img src="https://www.r-pkg.org/badges/version-ago/mlr3proba" alt="CRAN Status Badge"></a> <a href="https://codecov.io/gh/mlr-org/mlr3proba"><img src="https://codecov.io/gh/mlr-org/mlr3proba/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <a href="https://cran.r-project.org/package=mlr3proba"><img src="https://tinyverse.netlify.com/badge/mlr3proba" alt="Dependencies"></a> <!-- badges: end --></p>
+<p><a href="https://arxiv.org/abs/2008.08080"><img src="https://img.shields.io/badge/arXiv-2008.08080-brightgreen.svg" alt="arXiv"></a> <a href="https://cran.r-project.org/package=mlr3proba"><img src="https://www.r-pkg.org/badges/version-ago/mlr3proba" alt="CRAN Status Badge"></a> <a href="https://codecov.io/gh/mlr-org/mlr3proba"><img src="https://codecov.io/gh/mlr-org/mlr3proba/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <a href="https://cran.r-project.org/package=mlr3proba"><img src="https://tinyverse.netlify.com/badge/mlr3proba" alt="Dependencies"></a> <!-- badges: end --></p>
 <div id="what-is-mlr3proba-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#what-is-mlr3proba-" class="anchor"></a>What is mlr3proba ?</h2>
@@ -161,9 +158,13 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install the last release from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"mlr3proba"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"mlr3proba"</span>)
+</pre></div>
 <p>Install the development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"mlr-org/mlr3proba"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"mlr-org/mlr3proba"</span>)
+</pre></div>
 </div>
 <div id="survival-analysis" class="section level2">
 <h2 class="hasAnchor">
@@ -528,7 +529,7 @@
 <div id="similar-projects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#similar-projects" class="anchor"></a>Similar Projects</h2>
-<p>Predecessors to this package are previous instances of survival modelling in <strong><a href="https://github.com/mlr-org/mlr">mlr</a></strong>. The <strong><a href="https://github.com/alan-turing-institute/skpro">skpro</a></strong> package in the python/scikit-learn ecosystem follows a similar interface for probabilistic supervised learning and is an architectural predecessor. Several packages exist which allow probabilistic predictive modelling with a Bayesian model specific general interface, such as <strong><a href="http://mcmc-jags.sourceforge.net/">jags</a></strong> and <strong><a href="https://github.com/stan-dev/rstan">stan</a></strong>. For implementation of a few survival models and measures, a central package is <strong><a href="https://github.com/therneau/survival">survival</a></strong>. There does not appear to be a package that provides an architectural framework for distribution/density estimation, see <strong><a href="https://vita.had.co.nz/papers/density-estimation.pdf">this list</a></strong> for a review of density estimation packages in R.</p>
+<p>Predecessors to this package are previous instances of survival modelling in <strong><a href="https://github.com/mlr-org/mlr">mlr</a></strong>. The <strong><a href="https://github.com/alan-turing-institute/skpro">skpro</a></strong> package in the python/scikit-learn ecosystem follows a similar interface for probabilistic supervised learning and is an architectural predecessor. Several packages exist which allow probabilistic predictive modelling with a Bayesian model specific general interface, such as <strong><a href="https://CRAN.R-project.org/package=rjags">rjags</a></strong> and <strong><a href="https://github.com/stan-dev/rstan">stan</a></strong>. For implementation of a few survival models and measures, a central package is <strong><a href="https://github.com/therneau/survival">survival</a></strong>. There does not appear to be a package that provides an architectural framework for distribution/density estimation, see <strong><a href="https://vita.had.co.nz/papers/density-estimation.pdf">this list</a></strong> for a review of density estimation packages in R.</p>
 </div>
 <div id="acknowledgements" class="section level2">
 <h2 class="hasAnchor">
@@ -575,7 +576,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

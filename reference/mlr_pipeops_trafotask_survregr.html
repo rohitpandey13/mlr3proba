@@ -83,7 +83,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.2</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -97,9 +97,6 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
-    </li>
-    <li>
-      <a href="../articles/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -191,7 +188,7 @@ probability of the censoring distribution evaluated at survival time;
 <code>"mrl"</code> (Klein and Moeschberger, 2003): survival time of censored
 observations is transformed to the observed time plus the mean residual life-time at the moment
 of censoring; <code>"bj"</code> (Buckley and James, 1979): Buckley-James imputation assuming an AFT
-model form, calls bujar::bujar; <code>"delete"</code>: censored observations are deleted from the
+model form, calls <a href='https://rdrr.io/pkg/bujar/man/bujar.html'>bujar::bujar</a>; <code>"delete"</code>: censored observations are deleted from the
 data-set - should be used with caution if censoring is informative; <code>"omit"</code>: the censoring
 status column is deleted - again should be used with caution; <code>"reorder"</code>: selects features and
 targets and sets the target in the new task object. Note that <code>"mrl"</code> and <code>"ipcw"</code> will perform
@@ -209,11 +206,11 @@ deleted, weighting only the non-censored observations. A weight for an observati
 <li><p><code>eps::numeric(1)</code><br />
 Small value to replace <code>0</code> survival probabilities with in IPCW to prevent infinite weights.</p></li>
 <li><p><code>lambda::(numeric(1))</code><br />
-Nearest neighbours parameter for akritas estimator, default <code>0.5</code>.</p></li>
+Nearest neighbours parameter for <code>mlr3learners.proba::akritas</code> estimator, default <code>0.5</code>.</p></li>
 <li><p><code>features, target :: character())</code><br />
 For <code>"reorder"</code> method, specify which columns become features and targets.</p></li>
 <li><p><code>learner cneter, mimpu, iter.bj, max.cycle, mstop, nu</code><br />
-Passed to bujar::bujar.</p></li>
+Passed to <a href='https://rdrr.io/pkg/bujar/man/bujar.html'>bujar::bujar</a>.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -231,7 +228,7 @@ ISBN 0387216456.</p>
 &#8220;Adapting machine learning techniques to censored time-to-event health record data: A general-purpose approach using inverse probability of censoring weighting.&#8221;
 <em>Journal of Biomedical Informatics</em>, <b>61</b>, 119--131.
 ISSN 1532-0464, doi: <a href='https://doi.org/10.1016/j.jbi.2016.03.009'>10.1016/j.jbi.2016.03.009</a>
-, <a href='http://www.sciencedirect.com/science/article/pii/S1532046416000496'>http://www.sciencedirect.com/science/article/pii/S1532046416000496</a>.</p>
+, <a href='https://www.sciencedirect.com/science/article/pii/S1532046416000496'>https://www.sciencedirect.com/science/article/pii/S1532046416000496</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other PipeOps: 
@@ -252,7 +249,7 @@ ISSN 1532-0464, doi: <a href='https://doi.org/10.1016/j.jbi.2016.03.009'>10.1016
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
-<h3>Public methods</h3>
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
 
 <ul>
 <li><p><a href='#method-new'><code>PipeOpTaskSurvRegr$new()</code></a></p></li>
@@ -267,12 +264,12 @@ ISSN 1532-0464, doi: <a href='https://doi.org/10.1016/j.jbi.2016.03.009'>10.1016
 </details>
 
 <hr>
-<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
-<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpTaskSurvRegr</span>$<span class='fu'>new</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"trafotask_survregr"</span>, <span class='kw'>param_vals</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())</pre><p></div></p>
+<a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
+<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='kw'>PipeOpTaskSurvRegr</span><span class='op'>$</span><span class='fu'>new</span>(id = <span class='st'>"trafotask_survregr"</span>, param_vals = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())</pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
 <dt><code>id</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>)<br />
 Identifier of the resulting  object.</p></dd>
 
@@ -282,12 +279,12 @@ otherwise be set during construction.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>PipeOpTaskSurvRegr</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+<a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='kw'>PipeOpTaskSurvRegr</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>FALSE</span>)</pre><p></div></p>
 
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -295,53 +292,57 @@ otherwise be set during construction.</p></dd>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mlr3pipelines</span>)
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mlr3pipelines"</span>, quietly = <span class='fl'>TRUE</span>)) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://mlr3.mlr-org.com'>mlr3</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://mlr3pipelines.mlr-org.com'>mlr3pipelines</a></span>)
 
 <span class='co'># these methods are generally only successful if censoring is not too high</span>
 <span class='co'># create survival task by undersampling</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='no'>task</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(
-   <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)$<span class='fu'>truth</span>()[,<span class='fl'>2</span>]<span class='kw'>==</span><span class='fl'>1</span>),
-   <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)$<span class='fu'>truth</span>()[,<span class='fl'>2</span>]<span class='kw'>==</span><span class='fl'>0</span>), <span class='fl'>42</span>))
+<span class='kw'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)<span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span>(
+   <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)<span class='op'>$</span><span class='fu'>truth</span>()[,<span class='fl'>2</span>]<span class='op'>==</span><span class='fl'>1</span>),
+   <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)<span class='op'>$</span><span class='fu'>truth</span>()[,<span class='fl'>2</span>]<span class='op'>==</span><span class='fl'>0</span>), <span class='fl'>42</span>))
    )
 
 <span class='co'># deletion</span>
-<span class='no'>po</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"delete"</span>)
-<span class='no'>po</span>$<span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>task</span>, <span class='kw'>NULL</span>))<span class='kw'>[[</span><span class='fl'>1</span>]] <span class='co'># 42 deleted</span>
+<span class='kw'>po</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, method = <span class='st'>"delete"</span>)
+<span class='kw'>po</span><span class='op'>$</span><span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>task</span>, <span class='kw'>NULL</span>))[[<span class='fl'>1</span>]] <span class='co'># 42 deleted</span>
 
 <span class='co'># omission</span>
-<span class='no'>po</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"omit"</span>)
-<span class='no'>po</span>$<span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>task</span>, <span class='kw'>NULL</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
+<span class='kw'>po</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, method = <span class='st'>"omit"</span>)
+<span class='kw'>po</span><span class='op'>$</span><span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>task</span>, <span class='kw'>NULL</span>))[[<span class='fl'>1</span>]]
 
 <span class='co'># ipcw with Akritas</span>
-<span class='no'>po</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"ipcw"</span>, <span class='kw'>estimator</span> <span class='kw'>=</span> <span class='st'>"akritas"</span>, <span class='kw'>lambda</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0</span>)
-<span class='no'>new_task</span> <span class='kw'>=</span> <span class='no'>po</span>$<span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>task</span>, <span class='kw'>NULL</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>new_task</span>)
-<span class='no'>new_task</span>$<span class='no'>weights</span>
+<span class='kw'>po</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, method = <span class='st'>"ipcw"</span>, estimator = <span class='st'>"akritas"</span>, lambda = <span class='fl'>0.4</span>, alpha = <span class='fl'>0</span>)
+<span class='kw'>new_task</span> <span class='op'>=</span> <span class='kw'>po</span><span class='op'>$</span><span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>task</span>, <span class='kw'>NULL</span>))[[<span class='fl'>1</span>]]
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>new_task</span>)
+<span class='kw'>new_task</span><span class='op'>$</span><span class='kw'>weights</span>
 
 <span class='co'># mrl with Kaplan-Meier</span>
-<span class='no'>po</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mrl"</span>)
-<span class='no'>new_task</span> <span class='kw'>=</span> <span class='no'>po</span>$<span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>task</span>, <span class='kw'>NULL</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>new</span> <span class='kw'>=</span> <span class='no'>new_task</span>$<span class='fu'>truth</span>(), <span class='kw'>old</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'>truth</span>())
+<span class='kw'>po</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, method = <span class='st'>"mrl"</span>)
+<span class='kw'>new_task</span> <span class='op'>=</span> <span class='kw'>po</span><span class='op'>$</span><span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>task</span>, <span class='kw'>NULL</span>))[[<span class='fl'>1</span>]]
+<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(new = <span class='kw'>new_task</span><span class='op'>$</span><span class='fu'>truth</span>(), old = <span class='kw'>task</span><span class='op'>$</span><span class='fu'>truth</span>())
 
 <span class='co'># Buckley-James imputation</span>
-<span class='no'>po</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"bj"</span>)
-<span class='no'>new_task</span> <span class='kw'>=</span> <span class='no'>po</span>$<span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>task</span>, <span class='kw'>NULL</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>new</span> <span class='kw'>=</span> <span class='no'>new_task</span>$<span class='fu'>truth</span>(), <span class='kw'>old</span> <span class='kw'>=</span> <span class='no'>task</span>$<span class='fu'>truth</span>())
+<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"bujar"</span>, quietly = <span class='fl'>TRUE</span>)) {
+<span class='kw'>po</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, method = <span class='st'>"bj"</span>)
+<span class='kw'>new_task</span> <span class='op'>=</span> <span class='kw'>po</span><span class='op'>$</span><span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>task</span>, <span class='kw'>NULL</span>))[[<span class='fl'>1</span>]]
+<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(new = <span class='kw'>new_task</span><span class='op'>$</span><span class='fu'>truth</span>(), old = <span class='kw'>task</span><span class='op'>$</span><span class='fu'>truth</span>())
+}
 
 <span class='co'># reorder - in practice this will be only be used in a few graphs</span>
-<span class='no'>po</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"reorder"</span>, <span class='kw'>features</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"rx"</span>, <span class='st'>"time"</span>, <span class='st'>"status"</span>),
-       <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"litter"</span>)
-<span class='no'>new_task</span> <span class='kw'>=</span> <span class='no'>po</span>$<span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>task</span>, <span class='kw'>NULL</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>new_task</span>)
+<span class='kw'>po</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, method = <span class='st'>"reorder"</span>, features = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sex"</span>, <span class='st'>"rx"</span>, <span class='st'>"time"</span>, <span class='st'>"status"</span>),
+       target = <span class='st'>"litter"</span>)
+<span class='kw'>new_task</span> <span class='op'>=</span> <span class='kw'>po</span><span class='op'>$</span><span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>task</span>, <span class='kw'>NULL</span>))[[<span class='fl'>1</span>]]
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>new_task</span>)
 
 <span class='co'># reorder using another task for feature names</span>
-<span class='no'>po</span> <span class='kw'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"reorder"</span>, <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"litter"</span>)
-<span class='no'>new_task</span> <span class='kw'>=</span> <span class='no'>po</span>$<span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>task</span>, <span class='no'>task</span>))<span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>new_task</span>)
-}</div></pre>
+<span class='kw'>po</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"trafotask_survregr"</span>, method = <span class='st'>"reorder"</span>, target = <span class='st'>"litter"</span>)
+<span class='kw'>new_task</span> <span class='op'>=</span> <span class='kw'>po</span><span class='op'>$</span><span class='fu'>train</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>task</span>, <span class='kw'>task</span>))[[<span class='fl'>1</span>]]
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>new_task</span>)
+}
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -357,7 +358,7 @@ otherwise be set during construction.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
