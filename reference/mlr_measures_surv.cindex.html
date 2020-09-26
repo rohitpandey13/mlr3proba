@@ -192,9 +192,9 @@ estimate of the training censoring distribution, G:</p>
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Measure.html'>Measure</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='kw'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>new</span>()
-<span class='kw'>mlr_measures</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.cindex"</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr</a></span>(<span class='st'>"surv.cindex"</span>)
+<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='va'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>mlr_measures</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"surv.cindex"</span><span class='op'>)</span>
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr</a></span><span class='op'>(</span><span class='st'>"surv.cindex"</span><span class='op'>)</span>
 </pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
@@ -303,11 +303,11 @@ Cut-off time to evaluate concordance up to.</p></dd>
 <hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
 <p>This is an abstract class that should not be constructed directly.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>new</span>(
-  cutoff = <span class='kw'>NULL</span>,
-  weight_meth = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"I"</span>, <span class='st'>"G"</span>, <span class='st'>"G2"</span>, <span class='st'>"SG"</span>, <span class='st'>"S"</span>, <span class='st'>"GH"</span>),
-  tiex = <span class='fl'>0.5</span>
-)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>
+  cutoff <span class='op'>=</span> <span class='cn'>NULL</span>,
+  weight_meth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"I"</span>, <span class='st'>"G"</span>, <span class='st'>"G2"</span>, <span class='st'>"SG"</span>, <span class='st'>"S"</span>, <span class='st'>"GH"</span><span class='op'>)</span>,
+  tiex <span class='op'>=</span> <span class='fl'>0.5</span>
+<span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -324,7 +324,7 @@ Weighting applied to tied rankings, default is to give them half weighting.</p><
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
