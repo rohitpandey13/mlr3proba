@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Concordance Statistics Survival Measure — mlr_measures_surv.cindex • mlr3proba</title>
+<title>Concordance Statistics Survival Measure — mlr_measures_surv.harrell_c • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,7 +47,7 @@
 
 
 
-<meta property="og:title" content="Concordance Statistics Survival Measure — mlr_measures_surv.cindex" />
+<meta property="og:title" content="Concordance Statistics Survival Measure — mlr_measures_surv.harrell_c" />
 <meta property="og:description" content="Calculates weighted concordance statistics, which, depending on the chosen weighting method
 and tied times solution, are equivalent to several proposed methods.
 For the Kaplan-Meier estimate of the training survival distribution, S, and the Kaplan-Meier
@@ -165,7 +165,7 @@ The last three require training data." />
     <div class="page-header">
     <h1>Concordance Statistics Survival Measure</h1>
     <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/MeasureSurvCindex.R'><code>R/MeasureSurvCindex.R</code></a></small>
-    <div class="hidden name"><code>mlr_measures_surv.cindex.Rd</code></div>
+    <div class="hidden name"><code>mlr_measures_surv.harrell_c.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -193,8 +193,8 @@ estimate of the training censoring distribution, G:</p>
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Measure.html'>Measure</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
 <a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='va'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>mlr_measures</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"surv.cindex"</span><span class='op'>)</span>
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr</a></span><span class='op'>(</span><span class='st'>"surv.cindex"</span><span class='op'>)</span>
+<span class='va'>mlr_measures</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"surv.harrell_c"</span><span class='op'>)</span>
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr</a></span><span class='op'>(</span><span class='st'>"surv.harrell_c"</span><span class='op'>)</span>
 </pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
@@ -210,24 +210,23 @@ estimate of the training censoring distribution, G:</p>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Peto R, Peto J (1972).
-&#8220;Asymptotically efficient rank invariant test procedures.&#8221;
-<em>Journal of the Royal Statistical Society: Series A (General)</em>, <b>135</b>(2), 185--198.
-ISSN 0035-9238.</p>
-<p>Harrell FE, Califf RM, Pryor DB, Lee KL, Rosati RA (1982).
-&#8220;Evaluating the yield of medical tests.&#8221;
-<em>Jama</em>, <b>247</b>(18), 2543--2546.</p>
-<p>Gönen M, Heller G (2005).
+    <p>Gönen M, Heller G (2005).
 &#8220;Concordance probability and discriminatory power in proportional hazards regression.&#8221;
 <em>Biometrika</em>, <b>92</b>(4), 965--970.
 doi: <a href='https://doi.org/10.1093/biomet/92.4.965'>10.1093/biomet/92.4.965</a>
-.</p>
-<p>Schemper M, Wakounig S, Heinze G (2009).
+.
+Harrell, E F, Califf, M R, Pryor, B D, Lee, L K, Rosati, A R (1982).
+&#8220;Evaluating the yield of medical tests.&#8221;
+<em>Jama</em>, <b>247</b>(18), 2543--2546.
+Peto, Richard, Peto, Julian (1972).
+&#8220;Asymptotically efficient rank invariant test procedures.&#8221;
+<em>Journal of the Royal Statistical Society: Series A (General)</em>, <b>135</b>(2), 185--198.
+Schemper, Michael, Wakounig, Samo, Heinze, Georg (2009).
 &#8220;The estimation of average hazard ratios by weighted Cox regression.&#8221;
 <em>Statistics in Medicine</em>, <b>28</b>(19), 2473--2489.
-ISSN 0277-6715, doi: <a href='https://doi.org/10.1002/sim.3623'>10.1002/sim.3623</a>
-, <a href='https://doi.org/10.1002/sim.3623'>https://doi.org/10.1002/sim.3623</a>.</p>
-<p>Uno H, Cai T, Pencina MJ, D'Agostino RB, Wei LJ (2011).
+doi: <a href='https://doi.org/10.1002/sim.3623'>10.1002/sim.3623</a>
+, <a href='https://doi.org/10.1002/sim.3623'>https://doi.org/10.1002/sim.3623</a>.
+Uno H, Cai T, Pencina MJ, D'Agostino RB, Wei LJ (2011).
 &#8220;On the C-statistics for evaluating overall adequacy of risk prediction procedures with censored survival data.&#8221;
 <em>Statistics in Medicine</em>, n/a--n/a.
 doi: <a href='https://doi.org/10.1002/sim.4154'>10.1002/sim.4154</a>

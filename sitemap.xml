@@ -103,9 +103,6 @@
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.chambless_auc.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.cindex.html</loc>
-  </url>
-  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.gonenC.html</loc>
   </url>
   <url>
@@ -116,6 +113,9 @@
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.harrellC.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.harrell_c.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.hung_auc.html</loc>
