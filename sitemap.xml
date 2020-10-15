@@ -130,7 +130,7 @@
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.logloss.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.loglossSE.html</loc>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.logloss_se.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.mae.html</loc>
