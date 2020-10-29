@@ -197,7 +197,7 @@ Regression learner to fit to the transformed <a href='https://mlr3.mlr-org.com/r
     <tr>
       <th>distrcompose</th>
       <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
-For methods <code>1</code> and <code>3</code> if <code>TRUE</code> (default) then <a href='mlr_pipeops_distrcompose.html'>PipeOpDistrCompositor</a> is utilised to
+For methods <code>1</code> and <code>3</code> if <code>TRUE</code> (default) then <a href='mlr_pipeops_compose_distr.html'>PipeOpDistrCompositor</a> is utilised to
 transform the deterministic predictions to a survival distribution.</p></td>
     </tr>
     <tr>
@@ -226,7 +226,7 @@ via <code>ipcw</code>, with weighting determined by Kaplan-Meier and no addition
     <tr>
       <th>distrcompose_params</th>
       <td><p><code><a href='https://rdrr.io/r/base/list.html'>list()</a></code><br />
-Parameters passed to <a href='mlr_pipeops_distrcompose.html'>PipeOpDistrCompositor</a>, default is accelerated failure time model form.</p></td>
+Parameters passed to <a href='mlr_pipeops_compose_distr.html'>PipeOpDistrCompositor</a>, default is accelerated failure time model form.</p></td>
     </tr>
     <tr>
       <th>probregr_params</th>
@@ -260,7 +260,7 @@ If <code>TRUE</code> returns wraps the <a href='https://mlr3pipelines.mlr-org.co
 <li><p>A <a href='https://mlr3.mlr-org.com/reference/LearnerRegr.html'>LearnerRegr</a> is fit and predicted on the new <code>TaskRegr</code>.</p></li>
 <li><p><a href='mlr_pipeops_trafopred_regrsurv.html'>PipeOpPredRegrSurv</a> transforms the resulting <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>PredictionRegr</a>
 to <a href='PredictionSurv.html'>PredictionSurv</a>.</p></li>
-<li><p>Optionally: <a href='mlr_pipeops_distrcompose.html'>PipeOpDistrCompositor</a> is used to compose a <code>distr</code> predict_type from the
+<li><p>Optionally: <a href='mlr_pipeops_compose_distr.html'>PipeOpDistrCompositor</a> is used to compose a <code>distr</code> predict_type from the
 predicted <code>response</code> predict_type.</p></li>
 </ol></li>
 <li><p>Survival to Probabilistic Regression</p><ol>
@@ -279,7 +279,7 @@ a linear <a href='LearnerSurv.html'>LearnerSurv</a> with <code>lp</code> predict
 <li><p>A <a href='https://mlr3.mlr-org.com/reference/LearnerRegr.html'>LearnerRegr</a> is fit and predicted on the new <code>TaskRegr</code>.</p></li>
 <li><p><a href='mlr_pipeops_trafopred_regrsurv.html'>PipeOpPredRegrSurv</a> transforms the resulting <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>PredictionRegr</a>
 to <a href='PredictionSurv.html'>PredictionSurv</a>.</p></li>
-<li><p>Optionally: <a href='mlr_pipeops_distrcompose.html'>PipeOpDistrCompositor</a> is used to compose a <code>distr</code> predict_type from the
+<li><p>Optionally: <a href='mlr_pipeops_compose_distr.html'>PipeOpDistrCompositor</a> is used to compose a <code>distr</code> predict_type from the
 predicted <code>lp</code> predict_type.</p></li>
 </ol></li>
 </ol>
