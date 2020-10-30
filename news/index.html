@@ -173,6 +173,7 @@
 <li>Added calibration plot for comparing average predicted survival distribution to Kaplan-Meier to <a href="https://github.com/mlr-org/mlr3viz">mlr3viz</a>
 </li>
 <li>Removed unneccessary <code>pracma</code> dependency in learners</li>
+<li>Fix in <code>PipeOpDistrCompositor</code>, previously base distribution was only using the first predicted distribution, now the baseline is taken by averaging over all predictions with uniform weights</li>
 </ul>
 </div>
     <div id="mlr3proba-022" class="section level1">
