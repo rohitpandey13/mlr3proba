@@ -22,7 +22,8 @@
 <meta property="og:description" content="Provides extensions for probabilistic supervised
     learning for mlr3.  This includes extending the regression task to
     probabilistic and interval regression, adding a survival task, and
-    other specialized models, predictions, and measures.">
+    other specialized models, predictions, and measures. mlr3extralearners is available
+    from &lt;https://github.com/mlr-org/mlr3extralearners&gt;.">
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg">
 <meta name="twitter:card" content="summary">
 <meta name="robots" content="noindex">
@@ -45,7 +46,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org"></a>
-        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.2.1.9000</small></a>
+        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.2.4.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -59,6 +60,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="https://mlr3book.mlr-org.com/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -117,8 +121,7 @@
 <p>Package website: <a href="https://mlr3proba.mlr-org.com/">release</a> | <a href="https://mlr3proba.mlr-org.com/dev/">dev</a></p>
 <p>Probabilistic Supervised Learning for <strong><a href="https://github.com/mlr-org/mlr3/">mlr3</a></strong>.</p>
 <!-- badges: start -->
-<p><a href="https://github.com/mlr-org/mlr3proba/actions"><img src="https://github.com/mlr-org/mlr3proba/workflows/tic/badge.svg?branch=master" alt="tic"></a> <a href="https://cran.r-project.org/web/checks/check_results_mlr3proba.html"><img src="https://cranchecks.info/badges/worst/mlr3proba" alt="cran checks"></a></p>
-<p><a href="https://arxiv.org/abs/2008.08080"><img src="https://img.shields.io/badge/arXiv-2008.08080-brightgreen.svg" alt="arXiv"></a> <a href="https://cran.r-project.org/package=mlr3proba"><img src="https://www.r-pkg.org/badges/version-ago/mlr3proba" alt="CRAN Status Badge"></a> <a href="https://codecov.io/gh/mlr-org/mlr3proba"><img src="https://codecov.io/gh/mlr-org/mlr3proba/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <a href="https://cran.r-project.org/package=mlr3proba"><img src="https://tinyverse.netlify.com/badge/mlr3proba" alt="Dependencies"></a> <!-- badges: end --></p>
+<p><a href="https://github.com/mlr-org/mlr3proba/actions"><img src="https://github.com/mlr-org/mlr3proba/workflows/tic/badge.svg?branch=master" alt="tic"></a> <a href="https://www.codefactor.io/repository/github/mlr-org/mlr3proba"><img src="https://www.codefactor.io/repository/github/mlr-org/mlr3proba/badge" alt="CodeFactor"></a> <a href="https://cran.r-project.org/web/checks/check_results_mlr3proba.html"><img src="https://cranchecks.info/badges/worst/mlr3proba" alt="cran checks"></a> <a href="https://arxiv.org/abs/2008.08080"><img src="https://img.shields.io/badge/arXiv-2008.08080-brightgreen.svg" alt="arXiv"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <a href="https://lmmisld-lmu-stats-slds.srv.mwn.de/mlr_invite/"><img src="https://img.shields.io/badge/chat-mattermost-orange.svg" alt="Mattermost"></a> <!-- badges: end --></p>
 <div id="what-is-mlr3proba-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#what-is-mlr3proba-" class="anchor"></a>What is mlr3proba ?</h2>
@@ -159,174 +162,21 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install the last release from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"mlr3proba"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"mlr3proba"</span><span class="op">)</span></code></pre></div>
 <p>Install the development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"mlr-org/mlr3proba"</span>)
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mlr-org/mlr3proba"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="survival-analysis" class="section level2">
+<div id="learners" class="section level2">
 <h2 class="hasAnchor">
-<a href="#survival-analysis" class="anchor"></a>Survival Analysis</h2>
-<div id="survival-learners" class="section level3">
-<h3 class="hasAnchor">
-<a href="#survival-learners" class="anchor"></a>Survival Learners</h3>
-<p>Learners are located either in <a href="https://github.com/mlr-org/mlr3proba">mlr3proba</a>, the <a href="https://github.com/mlr-org/mlr3learners">mlr3learners repository</a>, or the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>. See <a href="https://github.com/mlr3learners/mlr3learners.drat">here</a> for instructions in how to install learners from the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>.</p>
-<table class="table">
-<colgroup>
-<col width="39%">
-<col width="26%">
-<col width="33%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">ID</th>
-<th align="left">Learner</th>
-<th align="left">Package</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.proba">surv.akritas</a></td>
-<td align="left">Akritas Conditional Non-Parametric Estimator</td>
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.proba">mlr3learners.proba</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.mboost">surv.blackboost</a></td>
-<td align="left">Gradient Boosting with Regression Trees</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=mboost">mboost</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.coxboost">surv.coxboost</a></td>
-<td align="left">Cox Model with Likelihood Based Boosting</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=CoxBoost">CoxBoost</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/mlr_learners_surv.coxph.html">surv.coxph</a></td>
-<td align="left">Cox Proportional Hazards</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=survival">survival</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.pycox">surv.coxtime</a></td>
-<td align="left">Non-Linear Cox Neural Network</td>
-<td align="left"><a href="https://pypi.org/project/pycox/">pycox</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.coxboost">surv.cvcoxboost</a></td>
-<td align="left">Cox Model with Cross-Validation Likelihood Based Boosting</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=CoxBoost">CoxBoost</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://mlr3learners.mlr-org.com/">surv.cvglmnet</a></td>
-<td align="left">Cross-Validated GLM with Elastic Net Regularization</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=glmnet">glmnet</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.pycox">surv.deephit</a></td>
-<td align="left">Discerete Deep Ranking Neural Network</td>
-<td align="left"><a href="https://pypi.org/project/pycox/">pycox</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.pycox">surv.deepsurv</a></td>
-<td align="left">Deep Cox Proportional Hazards</td>
-<td align="left"><a href="https://pypi.org/project/pycox/">pycox</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.proba">surv.dnn</a></td>
-<td align="left">Deep Neural Network with Pseudo Values</td>
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.proba">mlr3learners.proba</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.flexsurv">surv.flexible</a></td>
-<td align="left">Flexible Parametric Spline Models</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=flexsurv">flexsurv</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.mboost">surv.gamboost</a></td>
-<td align="left">Gradient Boosting for Additive Models</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=mboost">mboost</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.gbm">surv.gbm</a></td>
-<td align="left">Generalized Boosting Regression Modeling</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=gbm">gbm</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.mboost">surv.glmboost</a></td>
-<td align="left">Gradient Boosting with Component-wise Linear Models</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=mboost">mboost</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://mlr3learners.mlr-org.com/">surv.glmnet</a></td>
-<td align="left">GLM with Elastic Net Regularization</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=glmnet">glmnet</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/mlr_learners_surv.kaplan.html">surv.kaplan</a></td>
-<td align="left">Kaplan-Meier Estimator</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=survival">survival</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.pycox">surv.loghaz</a></td>
-<td align="left">Logistic Hazard Neural Network</td>
-<td align="left"><a href="https://pypi.org/project/pycox/">pycox</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.mboost">surv.mboost</a></td>
-<td align="left">Gradient Boosting for Generalized Additive Models</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=mboost">mboost</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.survival">surv.nelson</a></td>
-<td align="left">Nelson-Aalen Estimator</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=survival">survival</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.survival">surv.parametric</a></td>
-<td align="left">Fully Parametric Survival Models</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=survival">survival</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.penalized">surv.penalized</a></td>
-<td align="left">L1 and L2 Penalized Estimation in GLMs</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=penalized">penalized</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.pycox">surv.pchazard</a></td>
-<td align="left">Piecewise Constant Hazard Neural Network</td>
-<td align="left"><a href="https://pypi.org/project/pycox/">pycox</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.randomforestsrc">surv.randomForestSRC</a></td>
-<td align="left">RandomForestSRC Survival Forest</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=randomForestSRC">randomForestSRC</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr-org/mlr3learners/">surv.ranger</a></td>
-<td align="left">Ranger Survival Forest</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=ranger">ranger</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/mlr_learners_surv.rpart.html">surv.rpart</a></td>
-<td align="left">Rpart Survival Forest</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=rpart">rpart</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.survivalsvm">surv.svm</a></td>
-<td align="left">Regression, Ranking and Hybrid Support Vector Machines</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=survivalsvm">survivalsvm</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr-org/mlr3learners/">surv.xgboost</a></td>
-<td align="left">Cox Model with Gradient Boosting Trees</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=xgboost">xgboost</a></td>
-</tr>
-</tbody>
-</table>
+<a href="#learners" class="anchor"></a>Learners</h2>
+<p>Core learners are implemented in <a href="https://github.com/mlr-org/mlr3proba">mlr3proba</a>, recommended common learners are implemented in <a href="https://github.com/mlr-org/mlr3learners">mlr3learners</a>, and many more are implemented in <a href="https://github.com/mlr-org/mlr3extralearners">mlr3extralearners</a>. Use the <a href="https://mlr3extralearners.mlr-org.com/articles/learners/list_learners.html">interactive search table</a> to search for available learners and see the <a href="https://mlr3extralearners.mlr-org.com/articles/learners/learner_status.html">learner status page</a> for their live status.</p>
 </div>
-<div id="survival-measures" class="section level3">
-<h3 class="hasAnchor">
-<a href="#survival-measures" class="anchor"></a>Survival Measures</h3>
+<div id="measures" class="section level2">
+<h2 class="hasAnchor">
+<a href="#measures" class="anchor"></a>Measures</h2>
+<p>For density estimation only the log-loss is currently implemented, for survival analysis, the following measures are implemented:</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">ID</th>
@@ -417,101 +267,6 @@
 </tbody>
 </table>
 </div>
-</div>
-<div id="density-estimation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#density-estimation" class="anchor"></a>Density Estimation</h2>
-<div id="density-learners" class="section level3">
-<h3 class="hasAnchor">
-<a href="#density-learners" class="anchor"></a>Density Learners</h3>
-<p>Learners are located either in <a href="https://github.com/mlr-org/mlr3proba">mlr3proba</a>, the <a href="https://github.com/mlr-org/mlr3learners">mlr3learners repository</a>, or the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>. See <a href="https://github.com/mlr3learners/mlr3learners.drat">here</a> for instructions in how to install learners from the <a href="https://github.com/mlr3learners">mlr3learners organisation</a>.</p>
-<table class="table">
-<colgroup>
-<col width="39%">
-<col width="30%">
-<col width="30%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">ID</th>
-<th align="left">Learner</th>
-<th align="left">Package</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/mlr_learners_dens.hist.html">dens.hist</a></td>
-<td align="left">Univariate Histogram Density Estimator</td>
-<td align="left">graphics</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/mlr_learners_dens.kde.html">dens.kde</a></td>
-<td align="left">Univariate KDE for Different Kernels</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=distr6">distr6</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.kerdiest">dens.kdeKD</a></td>
-<td align="left">Nonparametric KDE Using Plug-in Method of Polansky and Baker</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=kerdiest">kerdiest</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.ks">dens.kdeKS</a></td>
-<td align="left">Nonparametric Gaussian KDE</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=ks">ks</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.locfit">dens.locfit</a></td>
-<td align="left">Nonparametric KDE Using Gaussian kernel</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=locfit">locfit</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.logspline">dens.logspline</a></td>
-<td align="left">Logspline Method for Density Estimation</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=logspline">logspline</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.np">dens.mixed</a></td>
-<td align="left">KDE Using Li and Racine Bandwidth Specification</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=np">np</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.sm">dens.nonpar</a></td>
-<td align="left">Nonparametric KDE Using Normal Optimal Smoothing Parameter</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=sm">sm</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.pendensity">dens.pen</a></td>
-<td align="left">Density Estimation with a Penalized Mixture</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=pendensity">pendensity</a></td>
-</tr>
-<tr class="even">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.plugdensity">dens.plug</a></td>
-<td align="left">Density Estimation with Iterative Plug-in Bandwidth Selection</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=plugdensity">plugdensity</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://github.com/mlr3learners/mlr3learners.gss">dens.spline</a></td>
-<td align="left">Density Estimation Using Smoothing Spline ANOVA</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=gss">gss</a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="density-measures" class="section level3">
-<h3 class="hasAnchor">
-<a href="#density-measures" class="anchor"></a>Density Measures</h3>
-<table class="table">
-<thead><tr class="header">
-<th align="left">ID</th>
-<th align="left">Measure</th>
-<th align="left">Package</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="left"><a href="https://mlr3proba.mlr-org.com/reference/mlr_measures_dens.logloss.html">dens.logloss</a></td>
-<td align="left">Log Loss</td>
-<td align="left"><a href="https://CRAN.R-project.org/package=mlr3proba">mlr3proba</a></td>
-</tr></tbody>
-</table>
-</div>
-</div>
 <div id="near-future-plans" class="section level2">
 <h2 class="hasAnchor">
 <a href="#near-future-plans" class="anchor"></a>Near-Future Plans</h2>
@@ -577,7 +332,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

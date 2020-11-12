@@ -84,7 +84,7 @@ The task_type is set to &quot;dens&quot;." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.4.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -98,6 +98,9 @@ The task_type is set to &quot;dens&quot;." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="https://mlr3book.mlr-org.com/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -200,40 +203,39 @@ Access the stored predicted cumulative distribution function.</p></dd>
 
 <hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
-<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>PredictionDens</span><span class='op'>$</span><span class='fu'>new</span>(
-  task = <span class='kw'>NULL</span>,
-  row_ids = <span class='kw'>task</span><span class='op'>$</span><span class='kw'>row_ids</span>,
-  truth = <span class='kw'>task</span><span class='op'>$</span><span class='fu'>truth</span>(),
-  pdf = <span class='kw'>NULL</span>,
-  cdf = <span class='kw'>NULL</span>,
-  check = <span class='fl'>TRUE</span>
-)</pre><p></div></p>
+<p>Creates a new instance of this <a href='https://r6.r-lib.org/reference/R6Class.html'>R6</a> class.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>PredictionDens</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>
+  task <span class='op'>=</span> <span class='cn'>NULL</span>,
+  row_ids <span class='op'>=</span> <span class='va'>task</span><span class='op'>$</span><span class='va'>row_ids</span>,
+  pdf <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cdf <span class='op'>=</span> <span class='cn'>NULL</span>,
+  check <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
 <dt><code>task</code></dt><dd><p>(<a href='TaskSurv.html'>TaskSurv</a>)<br />
-Task, used to extract defaults for <code>row_ids</code> and <code>truth</code>.</p></dd>
+Task, used to extract defaults for <code>row_ids</code>.</p></dd>
 
 <dt><code>row_ids</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code>)<br />
 Row ids of the predicted observations, i.e. the row ids of the test set.</p></dd>
 
-<dt><code>truth</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-True (observed) response.</p></dd>
-
 <dt><code>pdf</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-Numeric vector of estimated probability density function, evaluated at 'target' column of
-test set. One element for each observation in the test set.</p></dd>
+Numeric vector of estimated probability density function, evaluated at values in test set.
+One element for each observation in the test set.</p></dd>
 
 <dt><code>cdf</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
-Numeric vector of estimated cumulative distribution function, evaluated at 'target' column
-of test set. One element for each observation in the test set.</p></dd>
+Numeric vector of estimated cumulative distribution function, evaluated at values in test
+set. One element for each observation in the test set.</p></dd>
+
+<dt><code>check</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>)<br />
+If <code>TRUE</code>, performs argument checks and predict type conversions.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>PredictionDens</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>PredictionDens</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -244,18 +246,18 @@ of test set. One element for each observation in the test set.</p></dd>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://mlr3.mlr-org.com'>mlr3</a></span>)
-<span class='kw'>task</span> <span class='op'>=</span> <span class='kw'>mlr_tasks</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"precip"</span>)
-<span class='kw'>learner</span> <span class='op'>=</span> <span class='kw'>mlr_learners</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"dens.hist"</span>)
-<span class='kw'>p</span> <span class='op'>=</span> <span class='kw'>learner</span><span class='op'>$</span><span class='fu'>train</span>(<span class='kw'>task</span>)<span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>task</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'><a href='https://mlr3.mlr-org.com/reference/as.data.table.html'>as.data.table</a></span>(<span class='kw'>p</span>))
-</div><div class='output co'>#&gt;    row_id truth         pdf       cdf
-#&gt; 1:      1  67.0 0.001428571 0.9957143
-#&gt; 2:      2  54.7 0.007142857 0.9478571
-#&gt; 3:      3   7.0 0.005714286 0.0400000
-#&gt; 4:      4  48.5 0.030000000 0.8692857
-#&gt; 5:      5  14.0 0.012857143 0.1085714
-#&gt; 6:      6  17.2 0.012857143 0.1497143</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3.mlr-org.com'>mlr3</a></span><span class='op'>)</span>
+<span class='va'>task</span> <span class='op'>=</span> <span class='va'>mlr_tasks</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"precip"</span><span class='op'>)</span>
+<span class='va'>learner</span> <span class='op'>=</span> <span class='va'>mlr_learners</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"dens.hist"</span><span class='op'>)</span>
+<span class='va'>p</span> <span class='op'>=</span> <span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    row_id         pdf       cdf
+#&gt; 1:      1 0.001428571 0.9957143
+#&gt; 2:      2 0.007142857 0.9478571
+#&gt; 3:      3 0.005714286 0.0400000
+#&gt; 4:      4 0.030000000 0.8692857
+#&gt; 5:      5 0.012857143 0.1085714
+#&gt; 6:      6 0.012857143 0.1497143</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -271,7 +273,7 @@ of test set. One element for each observation in the test set.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

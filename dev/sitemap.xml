@@ -22,16 +22,7 @@
     <loc>https://mlr3proba.mlr-org.com/reference/MeasureSurvIntegrated.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/PipeOpCrankCompositor.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/PipeOpDistrCompositor.html</loc>
-  </url>
-  <url>
     <loc>https://mlr3proba.mlr-org.com/reference/PipeOpPredTransformer.html</loc>
-  </url>
-  <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/PipeOpProbregrCompositor.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/PipeOpTaskTransformer.html</loc>
@@ -139,7 +130,7 @@
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.logloss.html</loc>
   </url>
   <url>
-    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.loglossSE.html</loc>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.logloss_se.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.mae.html</loc>
@@ -191,6 +182,15 @@
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_measures_surv.xu_r2.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_pipeops_compose_crank.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_pipeops_compose_distr.html</loc>
+  </url>
+  <url>
+    <loc>https://mlr3proba.mlr-org.com/reference/mlr_pipeops_compose_probregr.html</loc>
   </url>
   <url>
     <loc>https://mlr3proba.mlr-org.com/reference/mlr_pipeops_survavg.html</loc>

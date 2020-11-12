@@ -96,7 +96,7 @@ The last three require training data." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.4.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -110,6 +110,9 @@ The last three require training data." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="https://mlr3book.mlr-org.com/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -192,9 +195,9 @@ estimate of the training censoring distribution, G:</p>
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Measure.html'>Measure</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='kw'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>new</span>()
-<span class='kw'>mlr_measures</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.cindex"</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr</a></span>(<span class='st'>"surv.cindex"</span>)
+<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='va'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>mlr_measures</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"surv.cindex"</span><span class='op'>)</span>
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr</a></span><span class='op'>(</span><span class='st'>"surv.cindex"</span><span class='op'>)</span>
 </pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
@@ -210,11 +213,10 @@ estimate of the training censoring distribution, G:</p>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Peto R, Peto J (1972).
+    <p>Peto, Richard, Peto, Julian (1972).
 &#8220;Asymptotically efficient rank invariant test procedures.&#8221;
-<em>Journal of the Royal Statistical Society: Series A (General)</em>, <b>135</b>(2), 185--198.
-ISSN 0035-9238.</p>
-<p>Harrell FE, Califf RM, Pryor DB, Lee KL, Rosati RA (1982).
+<em>Journal of the Royal Statistical Society: Series A (General)</em>, <b>135</b>(2), 185--198.</p>
+<p>Harrell, E F, Califf, M R, Pryor, B D, Lee, L K, Rosati, A R (1982).
 &#8220;Evaluating the yield of medical tests.&#8221;
 <em>Jama</em>, <b>247</b>(18), 2543--2546.</p>
 <p>Gönen M, Heller G (2005).
@@ -222,10 +224,10 @@ ISSN 0035-9238.</p>
 <em>Biometrika</em>, <b>92</b>(4), 965--970.
 doi: <a href='https://doi.org/10.1093/biomet/92.4.965'>10.1093/biomet/92.4.965</a>
 .</p>
-<p>Schemper M, Wakounig S, Heinze G (2009).
+<p>Schemper, Michael, Wakounig, Samo, Heinze, Georg (2009).
 &#8220;The estimation of average hazard ratios by weighted Cox regression.&#8221;
 <em>Statistics in Medicine</em>, <b>28</b>(19), 2473--2489.
-ISSN 0277-6715, doi: <a href='https://doi.org/10.1002/sim.3623'>10.1002/sim.3623</a>
+doi: <a href='https://doi.org/10.1002/sim.3623'>10.1002/sim.3623</a>
 , <a href='https://doi.org/10.1002/sim.3623'>https://doi.org/10.1002/sim.3623</a>.</p>
 <p>Uno H, Cai T, Pencina MJ, D'Agostino RB, Wei LJ (2011).
 &#8220;On the C-statistics for evaluating overall adequacy of risk prediction procedures with censored survival data.&#8221;
@@ -246,7 +248,7 @@ doi: <a href='https://doi.org/10.1002/sim.4154'>10.1002/sim.4154</a>
 <code><a href='mlr_measures_surv.hung_auc.html'>mlr_measures_surv.hung_auc</a></code>,
 <code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
 <code><a href='mlr_measures_surv.intlogloss.html'>mlr_measures_surv.intlogloss</a></code>,
-<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
+<code><a href='mlr_measures_surv.logloss_se.html'>mlr_measures_surv.logloss_se</a></code>,
 <code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code>,
 <code><a href='mlr_measures_surv.maeSE.html'>mlr_measures_surv.maeSE</a></code>,
 <code><a href='mlr_measures_surv.mae.html'>mlr_measures_surv.mae</a></code>,
@@ -303,11 +305,11 @@ Cut-off time to evaluate concordance up to.</p></dd>
 <hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
 <p>This is an abstract class that should not be constructed directly.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>new</span>(
-  cutoff = <span class='kw'>NULL</span>,
-  weight_meth = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"I"</span>, <span class='st'>"G"</span>, <span class='st'>"G2"</span>, <span class='st'>"SG"</span>, <span class='st'>"S"</span>, <span class='st'>"GH"</span>),
-  tiex = <span class='fl'>0.5</span>
-)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>
+  cutoff <span class='op'>=</span> <span class='cn'>NULL</span>,
+  weight_meth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"I"</span>, <span class='st'>"G"</span>, <span class='st'>"G2"</span>, <span class='st'>"SG"</span>, <span class='st'>"S"</span>, <span class='st'>"GH"</span><span class='op'>)</span>,
+  tiex <span class='op'>=</span> <span class='fl'>0.5</span>
+<span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -324,7 +326,7 @@ Weighting applied to tied rankings, default is to give them half weighting.</p><
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>MeasureSurvCindex</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -349,7 +351,7 @@ Weighting applied to tied rankings, default is to give them half weighting.</p><
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

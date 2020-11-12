@@ -85,7 +85,7 @@ see details." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.4.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -99,6 +99,9 @@ see details." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="https://mlr3book.mlr-org.com/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -163,19 +166,19 @@ of complex survival to reduction methods. Three reductions are currently impleme
 see details.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pipeline_survtoregr</span>(
-  method = <span class='fl'>1</span>,
-  regr_learner = <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>),
-  distrcompose = <span class='fl'>TRUE</span>,
-  distr_estimator = <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.kaplan"</span>),
-  regr_se_learner = <span class='kw'>NULL</span>,
-  surv_learner = <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
-  survregr_params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(method = <span class='st'>"ipcw"</span>, estimator = <span class='st'>"kaplan"</span>, alpha = <span class='fl'>1</span>),
-  distrcompose_params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(form = <span class='st'>"aft"</span>),
-  probregr_params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(dist = <span class='st'>"Normal"</span>),
-  learnercv_params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(resampling.method = <span class='st'>"insample"</span>),
-  graph_learner = <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>pipeline_survtoregr</span><span class='op'>(</span>
+  method <span class='op'>=</span> <span class='fl'>1</span>,
+  regr_learner <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"regr.featureless"</span><span class='op'>)</span>,
+  distrcompose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  distr_estimator <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"surv.kaplan"</span><span class='op'>)</span>,
+  regr_se_learner <span class='op'>=</span> <span class='cn'>NULL</span>,
+  surv_learner <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"surv.coxph"</span><span class='op'>)</span>,
+  survregr_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"ipcw"</span>, estimator <span class='op'>=</span> <span class='st'>"kaplan"</span>, alpha <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+  distrcompose_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>form <span class='op'>=</span> <span class='st'>"aft"</span><span class='op'>)</span>,
+  probregr_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>dist <span class='op'>=</span> <span class='st'>"Normal"</span><span class='op'>)</span>,
+  learnercv_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>resampling.method <span class='op'>=</span> <span class='st'>"insample"</span><span class='op'>)</span>,
+  graph_learner <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,7 +197,7 @@ Regression learner to fit to the transformed <a href='https://mlr3.mlr-org.com/r
     <tr>
       <th>distrcompose</th>
       <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
-For methods <code>1</code> and <code>3</code> if <code>TRUE</code> (default) then <a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a> is utilised to
+For methods <code>1</code> and <code>3</code> if <code>TRUE</code> (default) then <a href='mlr_pipeops_compose_distr.html'>PipeOpDistrCompositor</a> is utilised to
 transform the deterministic predictions to a survival distribution.</p></td>
     </tr>
     <tr>
@@ -223,12 +226,12 @@ via <code>ipcw</code>, with weighting determined by Kaplan-Meier and no addition
     <tr>
       <th>distrcompose_params</th>
       <td><p><code><a href='https://rdrr.io/r/base/list.html'>list()</a></code><br />
-Parameters passed to <a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a>, default is accelerated failure time model form.</p></td>
+Parameters passed to <a href='mlr_pipeops_compose_distr.html'>PipeOpDistrCompositor</a>, default is accelerated failure time model form.</p></td>
     </tr>
     <tr>
       <th>probregr_params</th>
       <td><p><code><a href='https://rdrr.io/r/base/list.html'>list()</a></code><br />
-Parameters passed to <a href='PipeOpProbregrCompositor.html'>PipeOpProbregrCompositor</a>, default is <a href='https://alan-turing-institute.github.io/distr6/reference/Normal.html'>Normal</a>
+Parameters passed to <a href='mlr_pipeops_compose_probregr.html'>PipeOpProbregrCompositor</a>, default is <a href='https://alan-turing-institute.github.io/distr6/reference/Normal.html'>Normal</a>
 distribution for composition.</p></td>
     </tr>
     <tr>
@@ -257,14 +260,14 @@ If <code>TRUE</code> returns wraps the <a href='https://mlr3pipelines.mlr-org.co
 <li><p>A <a href='https://mlr3.mlr-org.com/reference/LearnerRegr.html'>LearnerRegr</a> is fit and predicted on the new <code>TaskRegr</code>.</p></li>
 <li><p><a href='mlr_pipeops_trafopred_regrsurv.html'>PipeOpPredRegrSurv</a> transforms the resulting <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>PredictionRegr</a>
 to <a href='PredictionSurv.html'>PredictionSurv</a>.</p></li>
-<li><p>Optionally: <a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a> is used to compose a <code>distr</code> predict_type from the
+<li><p>Optionally: <a href='mlr_pipeops_compose_distr.html'>PipeOpDistrCompositor</a> is used to compose a <code>distr</code> predict_type from the
 predicted <code>response</code> predict_type.</p></li>
 </ol></li>
 <li><p>Survival to Probabilistic Regression</p><ol>
 <li><p><a href='mlr_pipeops_trafotask_survregr.html'>PipeOpTaskSurvRegr</a> Converts <a href='TaskSurv.html'>TaskSurv</a> to <a href='https://mlr3.mlr-org.com/reference/TaskRegr.html'>TaskRegr</a>.</p></li>
 <li><p>A <a href='https://mlr3.mlr-org.com/reference/LearnerRegr.html'>LearnerRegr</a> is fit on the new <code>TaskRegr</code> to predict <code>response</code>, optionally a second
 <code>LearnerRegr</code> can be fit to predict <code>se</code>.</p></li>
-<li><p><a href='PipeOpProbregrCompositor.html'>PipeOpProbregrCompositor</a> composes a <code>distr</code> prediction from the learner(s).</p></li>
+<li><p><a href='mlr_pipeops_compose_probregr.html'>PipeOpProbregrCompositor</a> composes a <code>distr</code> prediction from the learner(s).</p></li>
 <li><p><a href='mlr_pipeops_trafopred_regrsurv.html'>PipeOpPredRegrSurv</a> transforms the resulting <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>PredictionRegr</a>
 to <a href='PredictionSurv.html'>PredictionSurv</a>.</p></li>
 </ol></li>
@@ -276,7 +279,7 @@ a linear <a href='LearnerSurv.html'>LearnerSurv</a> with <code>lp</code> predict
 <li><p>A <a href='https://mlr3.mlr-org.com/reference/LearnerRegr.html'>LearnerRegr</a> is fit and predicted on the new <code>TaskRegr</code>.</p></li>
 <li><p><a href='mlr_pipeops_trafopred_regrsurv.html'>PipeOpPredRegrSurv</a> transforms the resulting <a href='https://mlr3.mlr-org.com/reference/PredictionRegr.html'>PredictionRegr</a>
 to <a href='PredictionSurv.html'>PredictionSurv</a>.</p></li>
-<li><p>Optionally: <a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a> is used to compose a <code>distr</code> predict_type from the
+<li><p>Optionally: <a href='mlr_pipeops_compose_distr.html'>PipeOpDistrCompositor</a> is used to compose a <code>distr</code> predict_type from the
 predicted <code>lp</code> predict_type.</p></li>
 </ol></li>
 </ol>
@@ -306,47 +309,47 @@ predictors of the new data, which can ultimately be composed to a distribution.<
 <code><a href='mlr_graphs_survbagging.html'>mlr_graphs_survbagging</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mlr3pipelines"</span>, quietly = <span class='fl'>TRUE</span>)) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr3.mlr-org.com'>"mlr3"</a></span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'><a href='https://mlr3pipelines.mlr-org.com'>"mlr3pipelines"</a></span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"mlr3pipelines"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://mlr3.mlr-org.com'>"mlr3"</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://mlr3pipelines.mlr-org.com'>"mlr3pipelines"</a></span><span class='op'>)</span>
 
-<span class='kw'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)
+<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"rats"</span><span class='op'>)</span>
 
 <span class='co'># method 1 with censoring deletion, compose to distribution</span>
-<span class='kw'>pipe</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+<span class='va'>pipe</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span><span class='op'>(</span>
   <span class='st'>"survtoregr"</span>,
-  method = <span class='fl'>1</span>,
-  regr_learner = <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>),
-  distrcompose = <span class='fl'>TRUE</span>,
-  survregr_params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(method = <span class='st'>"delete"</span>)
-)
-<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'>train</span>(<span class='kw'>task</span>)
-<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>task</span>)
+  method <span class='op'>=</span> <span class='fl'>1</span>,
+  regr_learner <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"regr.featureless"</span><span class='op'>)</span>,
+  distrcompose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  survregr_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"delete"</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='va'>pipe</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+<span class='va'>pipe</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
 
 <span class='co'># method 2 with censoring imputation (mrl), one regr learner</span>
-<span class='kw'>pipe</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+<span class='va'>pipe</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span><span class='op'>(</span>
   <span class='st'>"survtoregr"</span>,
-  method = <span class='fl'>2</span>,
-  regr_learner = <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>, predict_type = <span class='st'>"se"</span>),
-  survregr_params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(method = <span class='st'>"mrl"</span>)
-)
-<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'>train</span>(<span class='kw'>task</span>)
-<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>task</span>)
+  method <span class='op'>=</span> <span class='fl'>2</span>,
+  regr_learner <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"regr.featureless"</span>, predict_type <span class='op'>=</span> <span class='st'>"se"</span><span class='op'>)</span>,
+  survregr_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"mrl"</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='va'>pipe</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+<span class='va'>pipe</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
 
 <span class='co'># method 3 with censoring omission and no composition, insample resampling</span>
-<span class='kw'>pipe</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span>(
+<span class='va'>pipe</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/ppl.html'>ppl</a></span><span class='op'>(</span>
   <span class='st'>"survtoregr"</span>,
-  method = <span class='fl'>3</span>,
-  regr_learner = <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"regr.featureless"</span>),
-  distrcompose = <span class='fl'>FALSE</span>,
-  surv_learner = <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>),
-  survregr_params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(method = <span class='st'>"omission"</span>)
-)
-<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'>train</span>(<span class='kw'>task</span>)
-<span class='kw'>pipe</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>task</span>)
-}
-}
+  method <span class='op'>=</span> <span class='fl'>3</span>,
+  regr_learner <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"regr.featureless"</span><span class='op'>)</span>,
+  distrcompose <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  surv_learner <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"surv.coxph"</span><span class='op'>)</span>,
+  survregr_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"omission"</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='va'>pipe</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+<span class='va'>pipe</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -363,7 +366,7 @@ predictors of the new data, which can ultimately be composed to a distribution.<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

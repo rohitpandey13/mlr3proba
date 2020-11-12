@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PipeOpCrankCompositor — PipeOpCrankCompositor • mlr3proba</title>
+<title>PipeOpDistrCompositor — mlr_pipeops_compose_distr • mlr3proba</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,8 +47,17 @@
 
 
 
-<meta property="og:title" content="PipeOpCrankCompositor — PipeOpCrankCompositor" />
-<meta property="og:description" content="Uses a predicted distr in a PredictionSurv to estimate (or 'compose') a crank prediction." />
+<meta property="og:title" content="PipeOpDistrCompositor — mlr_pipeops_compose_distr" />
+<meta property="og:description" content="Estimates (or 'composes') a survival distribution from a predicted baseline distr and a
+crank or lp from two PredictionSurvs.
+Compositor Assumptions:
+The baseline distr is a discrete estimator, e.g. surv.kaplan.
+The composed distr is of a linear form
+If lp is missing then crank is equivalent
+
+
+These assumptions are strong and may not be reasonable. Future updates will upgrade this
+compositor to be more flexible." />
 <meta property="og:image" content="https://mlr3proba.mlr-org.com/logo.svg" />
 <meta name="twitter:card" content="summary" />
 
@@ -83,7 +92,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.4.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -97,6 +106,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="https://mlr3book.mlr-org.com/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -150,13 +162,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>PipeOpCrankCompositor</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/PipeOpCrankCompositor.R'><code>R/PipeOpCrankCompositor.R</code></a></small>
-    <div class="hidden name"><code>PipeOpCrankCompositor.Rd</code></div>
+    <h1>PipeOpDistrCompositor</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/R/PipeOpDistrCompositor.R'><code>R/PipeOpDistrCompositor.R</code></a></small>
+    <div class="hidden name"><code>mlr_pipeops_compose_distr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Uses a predicted <code>distr</code> in a <a href='PredictionSurv.html'>PredictionSurv</a> to estimate (or 'compose') a <code>crank</code> prediction.</p>
+    <p>Estimates (or 'composes') a survival distribution from a predicted baseline <code>distr</code> and a
+<code>crank</code> or <code>lp</code> from two <a href='PredictionSurv.html'>PredictionSurv</a>s.</p>
+<p>Compositor Assumptions:</p><ul>
+<li><p>The baseline <code>distr</code> is a discrete estimator, e.g. <a href='mlr_learners_surv.kaplan.html'>surv.kaplan</a>.</p></li>
+<li><p>The composed <code>distr</code> is of a linear form</p></li>
+<li><p>If <code>lp</code> is missing then <code>crank</code> is equivalent</p></li>
+</ul>
+
+<p>These assumptions are strong and may not be reasonable. Future updates will upgrade this
+compositor to be more flexible.</p>
     </div>
 
 
@@ -167,21 +188,22 @@
 
 <p>This <a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>PipeOp</a> can be instantiated via the
 <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a> <a href='https://mlr3pipelines.mlr-org.com//reference/mlr_pipeops.html'>mlr3pipelines::mlr_pipeops</a> or with the associated sugar
-function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='kw'>PipeOpCrankCompositor</span><span class='op'>$</span><span class='fu'>new</span>()
-<span class='kw'>mlr_pipeops</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"crankcompose"</span>)
-<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"crankcompose"</span>)
+function <code><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>mlr3pipelines::po()</a></code>:</p><pre><span class='va'>PipeOpDistrCompositor</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>mlr_pipeops</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"distrcompose"</span><span class='op'>)</span>
+<span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span><span class='op'>(</span><span class='st'>"distrcompose"</span><span class='op'>)</span>
 </pre>
 
     <h2 class="hasAnchor" id="input-and-output-channels"><a class="anchor" href="#input-and-output-channels"></a>Input and Output Channels</h2>
 
     
 
-<p>PipeOpCrankCompositor has one input channel named "input", which takes
+<p>PipeOpDistrCompositor has two input channels, "base" and "pred". Both input channels take
 <code>NULL</code> during training and <a href='PredictionSurv.html'>PredictionSurv</a> during prediction.</p>
-<p>PipeOpCrankCompositor has one output channel named "output", producing <code>NULL</code> during training
+<p>PipeOpDistrCompositor has one output channel named "output", producing <code>NULL</code> during training
 and a <a href='PredictionSurv.html'>PredictionSurv</a> during prediction.</p>
-<p>The output during prediction is the <a href='PredictionSurv.html'>PredictionSurv</a> from the "pred" input but with the <code>crank</code>
-predict type overwritten by the given estimation method.</p>
+<p>The output during prediction is the <a href='PredictionSurv.html'>PredictionSurv</a> from the "pred" input but with an extra
+(or overwritten) column for <code>distr</code> predict type; which is composed from the <code>distr</code> of "base"
+and <code>lp</code> or <code>crank</code> of "pred".</p>
     <h2 class="hasAnchor" id="state"><a class="anchor" href="#state"></a>State</h2>
 
     
@@ -191,46 +213,45 @@ predict type overwritten by the given estimation method.</p>
 
     
 
-<ul>
-<li><p><code>method</code> :: <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> <br />
-Determines what method should be used to produce a continuous ranking from the distribution.
-One of <code>median</code>, <code>mode</code>, or <code>mean</code> corresponding to the respective functions in the predicted
-survival distribution. Note that for models with a proportional hazards form, the ranking
-implied by <code>mean</code> and <code>median</code> will be identical (but not the value of <code>crank</code> itself).
-Default is <code>mean</code>.</p></li>
-<li><p><code>which</code> :: <code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code><br />
-If <code>method = "mode"</code> then specifies which mode to use if multi-modal, default is the first.</p></li>
-<li><p><code>response</code> :: <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code><br />
-If <code>TRUE</code> then the <code>response</code> predict type is estimated with the same values as <code>crank</code>.</p></li>
+<p>The parameters are:</p><ul>
+<li><p><code>form</code> :: <code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> <br />
+Determines the form that the predicted linear survival model should take. This is either,
+accelerated-failure time, <code>aft</code>, proportional hazards, <code>ph</code>, or proportional odds, <code>po</code>.
+Default <code>aft</code>.</p></li>
 <li><p><code>overwrite</code> :: <code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> <br />
-If <code>FALSE</code> (default) then if the "pred" input already has a <code>crank</code>, the compositor only
-composes a <code>response</code> type if <code>response = TRUE</code> and does not already exist. If <code>TRUE</code> then
-both the <code>crank</code> and <code>response</code> are overwritten.</p></li>
+If <code>FALSE</code> (default) then if the "pred" input already has a <code>distr</code>, the compositor does
+nothing and returns the given <a href='PredictionSurv.html'>PredictionSurv</a>. If <code>TRUE</code> then the <code>distr</code> is overwritten
+with the <code>distr</code> composed from <code>lp</code>/<code>crank</code> - this is useful for changing the prediction
+<code>distr</code> from one model form to another.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="internals"><a class="anchor" href="#internals"></a>Internals</h2>
 
     
 
-<p>The <code>median</code>, <code>mode</code>, or <code>mean</code> will use analytical expressions if possible but if not they are
-calculated using <a href='https://alan-turing-institute.github.io/distr6/reference/median.Distribution.html'>distr6::median.Distribution</a>, <a href='https://alan-turing-institute.github.io/distr6/reference/mode.html'>distr6::mode</a>, or <a href='https://alan-turing-institute.github.io/distr6/reference/mean.Distribution.html'>distr6::mean.Distribution</a>
-respectively.</p>
+<p>The respective <code>form</code>s above have respective survival distributions:
+$$aft: S(t) = S_0(\frac{t}{exp(lp)})$$
+$$ph: S(t) = S_0(t)^{exp(lp)}$$
+$$po: S(t) = \frac{S_0(t)}{exp(-lp) + (1-exp(-lp)) S_0(t)}$$ # nolint
+where \(S_0\) is the estimated baseline survival distribution, and \(lp\) is the
+predicted linear predictor. If the input model does not predict a linear predictor then <code>crank</code>
+is assumed to be the <code>lp</code> - <strong>this may be a strong and unreasonable assumption.</strong></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='mlr_graphs_crankcompositor.html'>pipeline_crankcompositor</a></p>
+    <div class='dont-index'><p><a href='mlr_graphs_distrcompositor.html'>pipeline_distrcompositor</a></p>
 <p>Other survival compositors: 
-<code><a href='PipeOpDistrCompositor.html'>PipeOpDistrCompositor</a></code></p></div>
+<code><a href='mlr_pipeops_compose_crank.html'>mlr_pipeops_compose_crank</a></code></p></div>
     <h2 class="hasAnchor" id="super-class"><a class="anchor" href="#super-class"></a>Super class</h2>
 
-    <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code>PipeOpCrankCompositor</code></p>
+    <p><code><a href='https://mlr3pipelines.mlr-org.com//reference/PipeOp.html'>mlr3pipelines::PipeOp</a></code> -&gt; <code>PipeOpDistrCompositor</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
 <h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>PipeOpCrankCompositor$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>PipeOpCrankCompositor$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>PipeOpDistrCompositor$new()</code></a></p></li>
+<li><p><a href='#method-clone'><code>PipeOpDistrCompositor$clone()</code></a></p></li>
 </ul>
 <p><details open ><summary>Inherited methods</summary>
 <ul>
@@ -242,11 +263,11 @@ respectively.</p>
 
 <hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
-<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>PipeOpCrankCompositor</span><span class='op'>$</span><span class='fu'>new</span>(
-  id = <span class='st'>"compose_crank"</span>,
-  param_vals = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(method = <span class='st'>"mean"</span>, response = <span class='fl'>FALSE</span>, overwrite = <span class='fl'>FALSE</span>)
-)</pre><p></div></p>
+<p>Creates a new instance of this <a href='https://r6.r-lib.org/reference/R6Class.html'>R6</a> class.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>PipeOpDistrCompositor</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>
+  id <span class='op'>=</span> <span class='st'>"compose_distr"</span>,
+  param_vals <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>form <span class='op'>=</span> <span class='st'>"aft"</span>, overwrite <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -261,7 +282,7 @@ otherwise be set during construction.</p></dd>
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>PipeOpCrankCompositor</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>PipeOpDistrCompositor</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -272,17 +293,18 @@ otherwise be set during construction.</p></dd>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mlr3pipelines"</span>, quietly = <span class='fl'>TRUE</span>)) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://mlr3.mlr-org.com'>mlr3</a></span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://mlr3pipelines.mlr-org.com'>mlr3pipelines</a></span>)
-<span class='kw'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span>(<span class='st'>"rats"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"mlr3pipelines"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3.mlr-org.com'>mlr3</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3pipelines.mlr-org.com'>mlr3pipelines</a></span><span class='op'>)</span>
+<span class='va'>task</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>tsk</a></span><span class='op'>(</span><span class='st'>"rats"</span><span class='op'>)</span>
 
-<span class='kw'>learn</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span>(<span class='st'>"surv.coxph"</span>)<span class='op'>$</span><span class='fu'>train</span>(<span class='kw'>task</span>)<span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='kw'>task</span>)
-<span class='kw'>poc</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span>(<span class='st'>"crankcompose"</span>, param_vals = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(method = <span class='st'>"mean"</span>))
-<span class='kw'>poc</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>learn</span>))[[<span class='fl'>1</span>]]
-}
-}
+<span class='va'>base</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"surv.kaplan"</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+<span class='va'>pred</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>lrn</a></span><span class='op'>(</span><span class='st'>"surv.coxph"</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
+<span class='va'>pod</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3pipelines.mlr-org.com//reference/po.html'>po</a></span><span class='op'>(</span><span class='st'>"distrcompose"</span>, param_vals <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>form <span class='op'>=</span> <span class='st'>"aft"</span>, overwrite <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>pod</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>base <span class='op'>=</span> <span class='va'>base</span>, pred <span class='op'>=</span> <span class='va'>pred</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+<span class='op'>}</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -299,7 +321,7 @@ otherwise be set during construction.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

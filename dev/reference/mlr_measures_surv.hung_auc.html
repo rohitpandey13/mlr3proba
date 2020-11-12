@@ -84,7 +84,7 @@ Assumes random censoring." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.1.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.4.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -98,6 +98,9 @@ Assumes random censoring." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="https://mlr3book.mlr-org.com/survival.html">Survival Analysis</a>
+    </li>
+    <li>
+      <a href="https://mlr3book.mlr-org.com/density.html">Density Estimation</a>
     </li>
   </ul>
 </li>
@@ -173,9 +176,9 @@ measures will all be re-written and implemented directly in <code>mlr3proba</cod
     
 
 <p>This <a href='https://mlr3.mlr-org.com/reference/Measure.html'>Measure</a> can be instantiated via the <a href='https://mlr3misc.mlr-org.com/reference/Dictionary.html'>dictionary</a>
-<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='kw'>MeasureSurvHungAUC</span><span class='op'>$</span><span class='fu'>new</span>()
-<span class='kw'>mlr_measures</span><span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"surv.hung_auc"</span>)
-<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr</a></span>(<span class='st'>"surv.hung_auc"</span>)
+<a href='https://mlr3.mlr-org.com/reference/mlr_measures.html'>mlr_measures</a> or with the associated sugar function <a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr()</a>:</p><pre><span class='va'>MeasureSurvHungAUC</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>mlr_measures</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"surv.hung_auc"</span><span class='op'>)</span>
+<span class='fu'><a href='https://mlr3.mlr-org.com/reference/mlr_sugar.html'>msr</a></span><span class='op'>(</span><span class='st'>"surv.hung_auc"</span><span class='op'>)</span>
 </pre>
 
     <h2 class="hasAnchor" id="meta-information"><a class="anchor" href="#meta-information"></a>Meta Information</h2>
@@ -194,7 +197,7 @@ measures will all be re-written and implemented directly in <code>mlr3proba</cod
     <p>Hung H, Chiang C (2010).
 &#8220;Estimation methods for time-dependent AUC models with survival data.&#8221;
 <em>The Canadian Journal of Statistics / La Revue Canadienne de Statistique</em>, <b>38</b>(1), 8--26.
-<a href='http://www.jstor.org/stable/27805213'>http://www.jstor.org/stable/27805213</a>.</p>
+<a href='https://www.jstor.org/stable/27805213'>https://www.jstor.org/stable/27805213</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other survival measures: 
@@ -209,7 +212,7 @@ measures will all be re-written and implemented directly in <code>mlr3proba</cod
 <code><a href='mlr_measures_surv.harrellC.html'>mlr_measures_surv.harrellC</a></code>,
 <code><a href='mlr_measures_surv.intloglossSE.html'>mlr_measures_surv.intloglossSE</a></code>,
 <code><a href='mlr_measures_surv.intlogloss.html'>mlr_measures_surv.intlogloss</a></code>,
-<code><a href='mlr_measures_surv.loglossSE.html'>mlr_measures_surv.loglossSE</a></code>,
+<code><a href='mlr_measures_surv.logloss_se.html'>mlr_measures_surv.logloss_se</a></code>,
 <code><a href='mlr_measures_surv.logloss.html'>mlr_measures_surv.logloss</a></code>,
 <code><a href='mlr_measures_surv.maeSE.html'>mlr_measures_surv.maeSE</a></code>,
 <code><a href='mlr_measures_surv.mae.html'>mlr_measures_surv.mae</a></code>,
@@ -274,8 +277,8 @@ measures will all be re-written and implemented directly in <code>mlr3proba</cod
 
 <hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
-<p>Creates a new instance of this <a href='https://rdrr.io/pkg/R6/man/R6Class.html'>R6</a> class.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>MeasureSurvHungAUC</span><span class='op'>$</span><span class='fu'>new</span>(integrated = <span class='fl'>TRUE</span>, <span class='kw'>times</span>)</pre><p></div></p>
+<p>Creates a new instance of this <a href='https://r6.r-lib.org/reference/R6Class.html'>R6</a> class.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>MeasureSurvHungAUC</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>integrated <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>times</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -290,7 +293,7 @@ If <code>integrate == FALSE</code> then a single time point at which to return t
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='kw'>MeasureSurvHungAUC</span><span class='op'>$</span><span class='fu'>clone</span>(deep = <span class='fl'>FALSE</span>)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>MeasureSurvHungAUC</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
@@ -315,7 +318,7 @@ If <code>integrate == FALSE</code> then a single time point at which to return t
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
