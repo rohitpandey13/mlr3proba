@@ -164,6 +164,8 @@
 <li>
 <code>PipeOpCrankCompositor</code> updated to fix bottleneck in computation via <code>mean</code>. Now <code>Inf</code> or <code>NA</code> is replaced by <code>0</code> for <code>response</code> and <code>1000</code> for <code>crank</code>
 </li>
+<li>Bug in <code>distr</code> predict types fixed that lead to fitting degenerate distributions and returning incorrect values for mean survival time and <code>crank</code>
+</li>
 </ul>
 </div>
     <div id="mlr3proba-024" class="section level1">
