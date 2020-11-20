@@ -82,7 +82,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.4.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.5.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -156,13 +156,21 @@
       <small>Source: <a href='https://github.com/mlr-org/mlr3proba/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="mlr3proba-0249000" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.4.9000">
-<a href="#mlr3proba-0249000" class="anchor"></a>mlr3proba 0.2.4.9000<small> Unreleased </small>
+    <div id="mlr3proba-0259000" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.5.9000">
+<a href="#mlr3proba-0259000" class="anchor"></a>mlr3proba 0.2.5.9000<small> Unreleased </small>
+</h1>
+<ul>
+<li>Minor internal fixes</li>
+</ul>
+</div>
+    <div id="mlr3proba-025" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.5">
+<a href="#mlr3proba-025" class="anchor"></a>mlr3proba 0.2.5<small> 2020-11-18 </small>
 </h1>
 <ul>
 <li>
-<code>PipeOpCrankCompositor</code> updated to fix bottleneck in computation via <code>mean</code>. Now <code>Inf</code> or <code>NA</code> is replaced by <code>0</code> for <code>response</code> and <code>1000</code> for <code>crank</code>
+<code>PipeOpCrankCompositor</code> updated to fix bottleneck in computation via <code>mean</code>. Now <code>Inf</code> or <code>NA</code> is replaced by <code>0</code> for <code>response</code> and imputed with the median for <code>crank</code>
 </li>
 <li>Bug in <code>distr</code> predict types fixed that lead to fitting degenerate distributions and returning incorrect values for mean survival time and <code>crank</code>
 </li>
@@ -288,9 +296,9 @@
 <li>Minor updates to <code>mboost</code> family of learners: added <code>gehan</code> family, fixed parameters for <code>cindex</code>, added support for: <code>weights</code>, <code>response</code> predict type, <code>importance</code>, <code>selected_features</code>
 </li>
 <li>Minor internal changes</li>
-<li>All density learners except <code>LearnerDensHist</code> and <code>LearnerDensKDE</code> have been moved to the <a href="https://mlr3learners.mlr-org.com/dev/articles/learners/additional-learners.html">mlr3learners org</a>
+<li>All density learners except <code>LearnerDensHist</code> and <code>LearnerDensKDE</code> have been moved to the <code>mlr3learners org</code>
 </li>
-<li>The following survival learners have been moved to the <a href="https://mlr3learners.mlr-org.com/dev/articles/learners/additional-learners.html">mlr3learners org</a>, LearnerSurv: <code>Flexible</code>, <code>ObliqueRSF</code>, <code>Penalized</code>, <code>RandomForestSRC</code>
+<li>The following survival learners have been moved to the <code>mlr3learners org</code>, LearnerSurv: <code>Flexible</code>, <code>ObliqueRSF</code>, <code>Penalized</code>, <code>RandomForestSRC</code>
 </li>
 <li>Bugfix in <code>LearnerSurvXgboost</code> previously <code>lp</code> was erroneously returned as <code><a href="https://rdrr.io/r/base/Log.html">exp(lp)</a></code>
 </li>
