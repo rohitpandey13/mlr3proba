@@ -86,7 +86,7 @@ The task_type is set to &quot;surv&quot;." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.5.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.6.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -181,8 +181,7 @@ Predefined tasks are stored in <a href='https://mlr3.mlr-org.com/reference/mlr_t
 
     <p><div class="r6-active-bindings"></p><dl>
 <dt><code>censtype</code></dt><dd><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code><br />
-Returns the type of censoring, one of "right", "left", "counting", "interval", "interval2"
-or "mstate".</p></dd>
+Returns the type of censoring, one of "right", "left", "counting", "interval", or "mstate".</p></dd>
 
 </dl><p></div></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
@@ -194,6 +193,11 @@ or "mstate".</p></dd>
 <li><p><a href='#method-new'><code>TaskSurv$new()</code></a></p></li>
 <li><p><a href='#method-truth'><code>TaskSurv$truth()</code></a></p></li>
 <li><p><a href='#method-formula'><code>TaskSurv$formula()</code></a></p></li>
+<li><p><a href='#method-times'><code>TaskSurv$times()</code></a></p></li>
+<li><p><a href='#method-status'><code>TaskSurv$status()</code></a></p></li>
+<li><p><a href='#method-unique_times'><code>TaskSurv$unique_times()</code></a></p></li>
+<li><p><a href='#method-unique_event_times'><code>TaskSurv$unique_event_times()</code></a></p></li>
+<li><p><a href='#method-risk_set'><code>TaskSurv$risk_set()</code></a></p></li>
 <li><p><a href='#method-clone'><code>TaskSurv$clone()</code></a></p></li>
 </ul>
 <p><details ><summary>Inherited methods</summary>
@@ -211,8 +215,8 @@ or "mstate".</p></dd>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Task" data-id="rbind"><a href='../../mlr3/html/Task.html#method-rbind'><code>mlr3::Task$rbind()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Task" data-id="rename"><a href='../../mlr3/html/Task.html#method-rename'><code>mlr3::Task$rename()</code></a></span></p></li>
 <li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Task" data-id="select"><a href='../../mlr3/html/Task.html#method-select'><code>mlr3::Task$select()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Task" data-id="set_col_roles"><a href='../../mlr3/html/Task.html#method-set_col_roles'><code>mlr3::Task$set_col_roles()</code></a></span></p></li>
-<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Task" data-id="set_row_roles"><a href='../../mlr3/html/Task.html#method-set_row_roles'><code>mlr3::Task$set_row_roles()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Task" data-id="set_col_role"><a href='../../mlr3/html/Task.html#method-set_col_role'><code>mlr3::Task$set_col_role()</code></a></span></p></li>
+<li><p><span class="pkg-link" data-pkg="mlr3" data-topic="Task" data-id="set_row_role"><a href='../../mlr3/html/Task.html#method-set_row_role'><code>mlr3::Task$set_row_role()</code></a></span></p></li>
 </ul>
 </details>
 
@@ -222,10 +226,10 @@ or "mstate".</p></dd>
 <p><div class="r"></p><pre><span class='va'>TaskSurv</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span>
   <span class='va'>id</span>,
   <span class='va'>backend</span>,
-  <span class='va'>time</span>,
-  <span class='va'>event</span>,
+  time <span class='op'>=</span> <span class='st'>"time"</span>,
+  event <span class='op'>=</span> <span class='st'>"event"</span>,
   <span class='va'>time2</span>,
-  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right"</span>, <span class='st'>"left"</span>, <span class='st'>"counting"</span>, <span class='st'>"interval"</span>, <span class='st'>"interval2"</span>, <span class='st'>"mstate"</span><span class='op'>)</span>
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right"</span>, <span class='st'>"left"</span>, <span class='st'>"counting"</span>, <span class='st'>"interval"</span>, <span class='st'>"mstate"</span><span class='op'>)</span>
 <span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
@@ -282,6 +286,75 @@ Row indices.</p></dd>
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Returns</h4>
 <p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>.</p>
 <p><hr>
+<a id="method-times"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>times()</code></h3>
+<p>Returns the (unsorted) outcome times.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TaskSurv</span><span class='op'>$</span><span class='fu'>times</span><span class='op'>(</span>rows <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>rows</code></dt><dd><p><code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code><br />
+Row indices.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code></p>
+<p><hr>
+<a id="method-status"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>status()</code></h3>
+<p>Returns the event indicator (aka censoring/survival indicator).
+If <code>censtype</code> is <code>"right"</code> or <code>"left"</code> then <code>1</code> is event and <code>0</code> is censored.
+If <code>censtype</code> is <code>"mstate"</code> then <code>0</code> is censored and all other values are different events.
+If <code>censtype</code> is <code>"interval"</code> then <code>0</code> is right-censored, <code>1</code> is event, <code>2</code> is left-censored,
+<code>3</code> is interval-censored.
+See <a href='https://rdrr.io/pkg/survival/man/Surv.html'>survival::Surv</a>.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TaskSurv</span><span class='op'>$</span><span class='fu'>status</span><span class='op'>(</span>rows <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>rows</code></dt><dd><p><code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code><br />
+Row indices.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code></p>
+<p><hr>
+<a id="method-unique_times"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>unique_times()</code></h3>
+<p>Returns the sorted unique outcome times.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TaskSurv</span><span class='op'>$</span><span class='fu'>unique_times</span><span class='op'>(</span>rows <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>rows</code></dt><dd><p><code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code><br />
+Row indices.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code></p>
+<p><hr>
+<a id="method-unique_event_times"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>unique_event_times()</code></h3>
+<p>Returns the sorted unique event (or failure) outcome times.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TaskSurv</span><span class='op'>$</span><span class='fu'>unique_event_times</span><span class='op'>(</span>rows <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>rows</code></dt><dd><p><code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code><br />
+Row indices.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code></p>
+<p><hr>
+<a id="method-risk_set"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>risk_set()</code></h3>
+<p>Returns the <code>row_ids</code> of the observations 'at risk' (not dead or censored) at <code>time</code>.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>TaskSurv</span><span class='op'>$</span><span class='fu'>risk_set</span><span class='op'>(</span>time <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>time</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>) <br /> Time to return risk set for, if <code>NULL</code> returns all <code>row_ids</code>.</p></dd>
+
+</dl><p></div></p>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Returns</h4>
+<p><code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code></p>
+<p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>TaskSurv</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
@@ -298,17 +371,19 @@ Row indices.</p></dd>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mlr3.mlr-org.com'>mlr3</a></span><span class='op'>)</span>
 <span class='va'>lung</span> <span class='op'>=</span> <span class='fu'>mlr3misc</span><span class='fu'>::</span><span class='fu'><a href='https://mlr3misc.mlr-org.com/reference/load_dataset.html'>load_dataset</a></span><span class='op'>(</span><span class='st'>"lung"</span>, package <span class='op'>=</span> <span class='st'>"survival"</span><span class='op'>)</span>
 <span class='va'>lung</span><span class='op'>$</span><span class='va'>status</span> <span class='op'>=</span> <span class='op'>(</span><span class='va'>lung</span><span class='op'>$</span><span class='va'>status</span> <span class='op'>==</span> <span class='fl'>2L</span><span class='op'>)</span>
-<span class='va'>b</span> <span class='op'>=</span> <span class='fu'><a href='https://mlr3.mlr-org.com/reference/as_data_backend.html'>as_data_backend</a></span><span class='op'>(</span><span class='va'>lung</span><span class='op'>)</span>
 <span class='va'>task</span> <span class='op'>=</span> <span class='va'>TaskSurv</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='st'>"lung"</span>,
-  backend <span class='op'>=</span> <span class='va'>b</span>, time <span class='op'>=</span> <span class='st'>"time"</span>,
+  backend <span class='op'>=</span> <span class='va'>lung</span>, time <span class='op'>=</span> <span class='st'>"time"</span>,
   event <span class='op'>=</span> <span class='st'>"status"</span><span class='op'>)</span>
 
+<span class='co'># meta data</span>
 <span class='va'>task</span><span class='op'>$</span><span class='va'>target_names</span>
 </div><div class='output co'>#&gt; [1] "time"   "status"</div><div class='input'><span class='va'>task</span><span class='op'>$</span><span class='va'>feature_names</span>
 </div><div class='output co'>#&gt; [1] "age"       "inst"      "meal.cal"  "pat.karno" "ph.ecog"   "ph.karno" 
 #&gt; [7] "sex"       "wt.loss"  </div><div class='input'><span class='va'>task</span><span class='op'>$</span><span class='fu'>formula</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Surv(time, status, type = "right") ~ .
-#&gt; &lt;environment: namespace:survival&gt;</div><div class='input'><span class='va'>task</span><span class='op'>$</span><span class='fu'>truth</span><span class='op'>(</span><span class='op'>)</span>
+#&gt; &lt;environment: namespace:survival&gt;</div><div class='input'>
+<span class='co'># survival data</span>
+<span class='va'>task</span><span class='op'>$</span><span class='fu'>truth</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   [1]  306   455  1010+  210   883  1022+  310   361   218   166   170   654 
 #&gt;  [13]  728    71   567   144   613   707    61    88   301    81   624   371 
 #&gt;  [25]  394   520   574   118   390    12   473    26   533   107    53   122 
@@ -327,7 +402,53 @@ Row indices.</p></dd>
 #&gt; [181]  300+  284+  350   272+  292+  332+  285   259+  110   286   270    81 
 #&gt; [193]  131   225+  269   225+  243+  279+  276+  135    79    59   240+  202+
 #&gt; [205]  235+  105   224+  239   237+  173+  252+  221+  185+   92+   13   222+
-#&gt; [217]  192+  183   211+  175+  197+  203+  116   188+  191+  105+  174+  177+</div></pre>
+#&gt; [217]  192+  183   211+  175+  197+  203+  116   188+  191+  105+  174+  177+</div><div class='input'><span class='va'>task</span><span class='op'>$</span><span class='fu'>times</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   [1]  306  455 1010  210  883 1022  310  361  218  166  170  654  728   71  567
+#&gt;  [16]  144  613  707   61   88  301   81  624  371  394  520  574  118  390   12
+#&gt;  [31]  473   26  533  107   53  122  814  965   93  731  460  153  433  145  583
+#&gt;  [46]   95  303  519  643  765  735  189   53  246  689   65    5  132  687  345
+#&gt;  [61]  444  223  175   60  163   65  208  821  428  230  840  305   11  132  226
+#&gt;  [76]  426  705  363   11  176  791   95  196  167  806  284  641  147  740  163
+#&gt;  [91]  655  239   88  245  588   30  179  310  477  166  559  450  364  107  177
+#&gt; [106]  156  529   11  429  351   15  181  283  201  524   13  212  524  288  363
+#&gt; [121]  442  199  550   54  558  207   92   60  551  543  293  202  353  511  267
+#&gt; [136]  511  371  387  457  337  201  404  222   62  458  356  353  163   31  340
+#&gt; [151]  229  444  315  182  156  329  364  291  179  376  384  268  292  142  413
+#&gt; [166]  266  194  320  181  285  301  348  197  382  303  296  180  186  145  269
+#&gt; [181]  300  284  350  272  292  332  285  259  110  286  270   81  131  225  269
+#&gt; [196]  225  243  279  276  135   79   59  240  202  235  105  224  239  237  173
+#&gt; [211]  252  221  185   92   13  222  192  183  211  175  197  203  116  188  191
+#&gt; [226]  105  174  177</div><div class='input'><span class='va'>task</span><span class='op'>$</span><span class='fu'>status</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   [1] 1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+#&gt;  [38] 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 0 1 1 1
+#&gt;  [75] 1 1 1 1 1 1 1 1 0 1 0 1 1 1 0 1 1 1 1 1 0 1 1 1 1 1 0 1 1 1 1 1 0 1 1 1 1
+#&gt; [112] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 0 1 0 1 1 1 1 1 0 1 1 0 0 1 1
+#&gt; [149] 1 1 1 0 0 1 1 1 0 1 1 0 0 1 0 1 0 0 1 1 1 1 0 1 1 0 0 0 1 1 1 0 0 0 1 0 0
+#&gt; [186] 0 1 0 1 1 1 1 1 0 1 0 0 0 0 1 1 1 0 0 0 1 0 1 0 0 0 0 0 0 1 0 0 1 0 0 0 0
+#&gt; [223] 1 0 0 0 0 0</div><div class='input'><span class='va'>task</span><span class='op'>$</span><span class='fu'>unique_times</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   [1]    5   11   12   13   15   26   30   31   53   54   59   60   61   62   65
+#&gt;  [16]   71   79   81   88   92   93   95  105  107  110  116  118  122  131  132
+#&gt;  [31]  135  142  144  145  147  153  156  163  166  167  170  173  174  175  176
+#&gt;  [46]  177  179  180  181  182  183  185  186  188  189  191  192  194  196  197
+#&gt;  [61]  199  201  202  203  207  208  210  211  212  218  221  222  223  224  225
+#&gt;  [76]  226  229  230  235  237  239  240  243  245  246  252  259  266  267  268
+#&gt;  [91]  269  270  272  276  279  283  284  285  286  288  291  292  293  296  300
+#&gt; [106]  301  303  305  306  310  315  320  329  332  337  340  345  348  350  351
+#&gt; [121]  353  356  361  363  364  371  376  382  384  387  390  394  404  413  426
+#&gt; [136]  428  429  433  442  444  450  455  457  458  460  473  477  511  519  520
+#&gt; [151]  524  529  533  543  550  551  558  559  567  574  583  588  613  624  641
+#&gt; [166]  643  654  655  687  689  705  707  728  731  735  740  765  791  806  814
+#&gt; [181]  821  840  883  965 1010 1022</div><div class='input'><span class='va'>task</span><span class='op'>$</span><span class='fu'>unique_event_times</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   [1]   5  11  12  13  15  26  30  31  53  54  59  60  61  62  65  71  79  81
+#&gt;  [19]  88  92  93  95 105 107 110 116 118 122 131 132 135 142 144 145 147 153
+#&gt;  [37] 156 163 166 167 170 175 176 177 179 180 181 182 183 186 189 194 197 199
+#&gt;  [55] 201 202 207 208 210 212 218 222 223 226 229 230 239 245 246 267 268 269
+#&gt;  [73] 270 283 284 285 286 288 291 293 301 303 305 306 310 320 329 337 340 345
+#&gt;  [91] 348 350 351 353 361 363 364 371 387 390 394 426 428 429 433 442 444 450
+#&gt; [109] 455 457 460 473 477 519 520 524 533 550 558 567 574 583 613 624 641 643
+#&gt; [127] 654 655 687 689 705 707 728 731 735 765 791 814 883</div><div class='input'><span class='va'>task</span><span class='op'>$</span><span class='fu'>risk_set</span><span class='op'>(</span>time <span class='op'>=</span> <span class='fl'>700</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1]  3  5  6 13 18 37 38 40 50 51 68 71 77 81 85 89</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
