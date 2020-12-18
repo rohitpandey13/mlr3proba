@@ -8,6 +8,7 @@
 #' * Possible values for `predict_types` are:
 #'   - `"pdf"`: Evaluates estimated probability density function for each value in the test set.
 #'   - `"cdf"`: Evaluates estimated cumulative distribution function for each value in the test set.
+#'   - `"pdfSquared2norm"`: Evaluates estimated L2-norm for the pdf function for each value in the test test.
 #'
 #' @template param_id
 #' @template param_param_set
@@ -34,7 +35,7 @@ LearnerDens = R6::R6Class("LearnerDens",
   public = list(
     #' @description Creates a new instance of this [R6][R6::R6Class] class.
     initialize = function(id, param_set = ParamSet$new(),
-      predict_types = "cdf", feature_types = character(),
+      predict_types = "pdf", feature_types = character(),
       properties = character(), data_formats = "data.table",
       packages = character(),
       man = NA_character_) {

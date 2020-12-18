@@ -19,7 +19,7 @@ PredictionDens = R6Class("PredictionDens",
     #' @description
     #' Creates a new instance of this [R6][R6::R6Class] class.
     #'
-    #' @param task ([TaskSurv])\cr
+    #' @param task ([TaskSDens])\cr
     #'   Task, used to extract defaults for `row_ids`.
     #'
     #' @param row_ids (`integer()`)\cr
@@ -33,11 +33,15 @@ PredictionDens = R6Class("PredictionDens",
     #'   Numeric vector of estimated cumulative distribution function, evaluated at values in test
     #'   set. One element for each observation in the test set.
     #'
+    #'  @param pdfSquared2norm (`numeric()`)\cr
+    #'   Numeric vector of estimated cumulative distribution function, evaluated at values in test
+    #'   set. One element for each observation in the test set.
+    #'
     #' @param check (`logical(1)`)\cr
     #'   If `TRUE`, performs argument checks and predict type conversions.
     initialize = function(task = NULL, row_ids = task$row_ids, pdf = NULL,
-                          cdf = NULL, check = TRUE) {
-      pdata = list(row_ids = row_ids, pdf = pdf, cdf = cdf)
+                          cdf = NULL, pdfSquared2norm = NULL, check = TRUE) {
+      pdata = list(row_ids = row_ids, pdf = pdf, cdf = cdf, pdfSquared2norm = pdfSquared2norm)
       pdata = discard(pdata, is.null)
       class(pdata) = c("PredictionDataDens", "PredictionData")
 
@@ -48,7 +52,7 @@ PredictionDens = R6Class("PredictionDens",
       self$task_type = "dens"
       self$man = "mlr3proba::PredictionDens"
       self$data = pdata
-      self$predict_types = intersect(c("pdf", "cdf"), names(pdata))
+      self$predict_types = intersect(c("pdf", "cdf", "pdfSquared2norm"), names(pdata))
     }
   ),
 
@@ -63,6 +67,12 @@ PredictionDens = R6Class("PredictionDens",
     #' Access the stored predicted cumulative distribution function.
     cdf = function() {
       self$data$cdf %??% rep(NA_real_, length(self$data$row_ids))
+    },
+
+    #' @field pdfSquared2norm (`numeric()`)\cr
+    #' Access the stored predicted cumulative distribution function.
+    pdfSquared2norm = function() {
+      self$data$pdfSquared2norm %??% rep(NA_real_, length(self$data$row_ids))
     }
   )
 )
@@ -70,6 +80,6 @@ PredictionDens = R6Class("PredictionDens",
 
 #' @export
 as.data.table.PredictionDens = function(x, ...) { # nolint
-  tab = as.data.table(x$data[c("row_ids", "pdf", "cdf")])
+  tab = as.data.table(x$data[c("row_ids", "pdf", "cdf", "pdfSquared2norm")])
   setnames(tab, "row_ids", "row_id")[]
 }

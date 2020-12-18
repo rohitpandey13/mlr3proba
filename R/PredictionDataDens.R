@@ -10,6 +10,7 @@ check_prediction_data.PredictionDataDens = function(pdata) { # nolint
 
   assert_numeric(pdata$pdf, len = n, any.missing = FALSE, null.ok = TRUE)
   assert_numeric(pdata$cdf, len = n, any.missing = FALSE, null.ok = TRUE)
+  assert_numeric(pdata$pdfSquared2norm, len = n, any.missing = FALSE, null.ok = TRUE)
 
   pdata
 }
@@ -24,6 +25,10 @@ is_missing_prediction_data.PredictionDataDens = function(pdata) { # nolint
 
   if (!is.null(pdata$cdf)) {
     miss = miss | is.na(pdata$cdf)
+  }
+
+  if (!is.null(pdata$pdfSquared2norm)) {
+    miss = miss | is.na(pdata$pdfSquared2norm)
   }
 
   pdata$row_ids[miss]

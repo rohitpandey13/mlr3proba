@@ -31,7 +31,7 @@ LearnerDensKDE = R6::R6Class("LearnerDensKDE",
       super$initialize(
         id = "dens.kde",
         param_set = ps,
-        predict_types = "pdf",
+        predict_types = c("pdf", "cdf"),
         feature_types = c("integer", "numeric"),
         properties = "missings",
         packages = "distr6",
@@ -50,19 +50,17 @@ LearnerDensKDE = R6::R6Class("LearnerDensKDE",
 
       data = task$data()[[1]]
 
-      kernel = get(as.character(subset(
-        distr6::listKernels(),
-        ShortName == self$param_set$values$kernel,
-        ClassName)))$new()
-
-
       bw = ifelse(self$param_set$values$bandwidth == "silver",
         0.9 * min(sd(data), stats::IQR(data, na.rm = TRUE) / 1.349, na.rm = TRUE) *
           length(data)^-0.2,
         self$param_set$values$bandwidth)
 
-      pdf = function(x) {} #nolint
+      kernel = get(as.character(subset(
+        distr6::listKernels(),
+        ShortName == self$param_set$values$kernel,
+        ClassName)))$new(bw = bw)
 
+      pdf = function(x) {} #nolint
       body(pdf) = substitute({
         if (length(x) == 1) {
           return(1 / (rows * bw) * sum(kernel$pdf((x - train) / bw)))
@@ -77,15 +75,21 @@ LearnerDensKDE = R6::R6Class("LearnerDensKDE",
         bw = bw,
         kernel = kernel))
 
-      Distribution$new(
-        name = paste(self$param_set$values$kernel, "KDE"),
-        short_name = paste0(self$param_set$values$kernel, "_KDE"),
-        type = set6::Reals$new(),
-        pdf = pdf)
-    },
+      dat <-  sapply(data, function (x, y) ((x - y)), y = data)
+      pdfSquared2norm <- sum(kernel$pdfSquared2Norm(x = dat)) / (length(data)^2)
+      cdfSquared2norm = sum(kernel$cdfSquared2Norm(x = dat)) / (length(data)^2)
+
+      structure(list(distr =Distribution$new(name = paste(self$param_set$values$kernel, "KDE"),
+                                               short_name =
+                                               paste0(self$param_set$values$kernel, "_KDE"),
+                                               pdf = pdf, type = set6::Reals$new()),
+                                               pdfSquared2norm = pdfSquared2norm,
+                                               cdfSquared2norm = cdfSquared2norm
+                                               ))
+      },
 
     .predict = function(task) {
-      list(pdf = self$model$pdf(task$data()[[1]]))
+      list(pdf = self$model$distr$pdf(task$data()[[1]]))
     }
   )
 )
