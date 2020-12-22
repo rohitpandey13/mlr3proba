@@ -49,9 +49,10 @@ register_mlr3 = function() {
     x$learner_properties$dens = x$learner_properties$regr
     x$measure_properties$dens = x$measure_properties$regr
     x$learner_predict_types$dens = list(
-      pdf = c("pdf", "cdf", "distr"),
-      cdf = c("pdf", "cdf", "distr"),
-      distr = c("pdf", "cdf", "distr"))
+      pdf = c("pdf", "cdf", "distr", "cdfSquared2norm"),
+      cdf = c("pdf", "cdf", "distr", "cdfSquared2norm"),
+      cdfSquared2norm = c("pdf", "cdf", "distr", "cdfSquared2norm"),
+      distr = c("pdf", "cdf", "distr", "cdfSquared2norm"))
     x$default_measures$dens = "dens.logloss"
   }
 
@@ -86,6 +87,7 @@ register_mlr3 = function() {
   x = utils::getFromNamespace("mlr_measures", ns = "mlr3")
 
   x$add("dens.logloss", MeasureDensLogloss)
+  x$add("dens.squared", MeasureDensSquaredloss)
 
   # x$add("regr.logloss", MeasureRegrLogloss)
 

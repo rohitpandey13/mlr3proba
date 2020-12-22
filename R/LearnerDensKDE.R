@@ -50,43 +50,69 @@ LearnerDensKDE = R6::R6Class("LearnerDensKDE",
 
       data = task$data()[[1]]
 
-      kernel = get(as.character(subset(
-        distr6::listKernels(),
-        ShortName == self$param_set$values$kernel,
-        ClassName)))$new()
-
-
       bw = ifelse(self$param_set$values$bandwidth == "silver",
         0.9 * min(sd(data), stats::IQR(data, na.rm = TRUE) / 1.349, na.rm = TRUE) *
           length(data)^-0.2,
         self$param_set$values$bandwidth)
 
-      pdf = function(x) {} #nolint
+      kernel = get(as.character(subset(
+        distr6::listKernels(),
+        ShortName == self$param_set$values$kernel,
+        ClassName)))$new(bw = bw)
 
+      pdf = function(x) {} #nolint
       body(pdf) = substitute({
         if (length(x) == 1) {
-          return(1 / (rows * bw) * sum(kernel$pdf((x - train) / bw)))
+          return(1 / (rows) * sum(kernel$pdf((x - train))))
         } else {
           x = matrix(x, nrow = length(x), ncol = rows)
           train_mat = matrix(train, nrow = nrow(x), ncol = rows, byrow = TRUE)
-          return(1 / (rows * bw) * colSums(apply((x - train_mat) / bw, 1, kernel$pdf)))
+          return(1 / (rows) * colSums(apply((x - train_mat), 1, kernel$pdf)))
         }
       }, list(
         rows = task$nrow,
         train = data,
-        bw = bw,
         kernel = kernel))
+#
+#       Distribution$new(
+#         name = paste(self$param_set$values$kernel, "KDE"),
+#         short_name = paste0(self$param_set$values$kernel, "_KDE"),
+#         type = set6::Reals$new(),
+#         pdf = pdf)
 
-      Distribution$new(
-        name = paste(self$param_set$values$kernel, "KDE"),
-        short_name = paste0(self$param_set$values$kernel, "_KDE"),
-        type = set6::Reals$new(),
-        pdf = pdf)
+      dat <-  sapply(data, function (x, y) ((x - y)), y = data)
+      pdfSquared2norm = sum(kernel$pdfSquared2Norm(x = dat)) / (length(data)^2)
+
+      cdfSquared2norm = function(x){}
+      body(cdfSquared2norm) = substitute({
+        if (kern %in% c("Norm", "Sigm")) {
+          return(NULL)
+        } else {
+          x_mat = lapply(x, function (x) matrix(x - train, nrow = length(train),
+                                                      ncol = length(train), byrow = T))
+          train_mat = sapply(data, function(x) x - train)
+          cdf2norm = mapply(function(x) kernel$cdfSquared2Norm(upper = x, x = train_mat),
+                 x_mat)
+          return(colSums(cdf2norm) / length(train)^2)
+        }
+        }, list(
+          rows = task$nrow,
+          train = data,
+          kern = self$param_set$values$kernel,
+          kernel = kernel))
+
+      structure(list(distr = Distribution$new(name = paste(self$param_set$values$kernel, "KDE"),
+                                             short_name =
+                                             paste0(self$param_set$values$kernel, "_KDE"),
+                                             pdf = pdf, type = set6::Reals$new()),
+                                             cdfSquared2norm = cdfSquared2norm,
+                                             pdfSquared2norm  = pdfSquared2norm
+      ))
     },
 
     .predict = function(task) {
-      list(pdf = self$model$pdf(task$data()[[1]]),
-           distr = self$model)
+      list(pdf = self$model$distr$pdf(task$data()[[1]]),
+           distr = self$model$distr)
     }
   )
 )
