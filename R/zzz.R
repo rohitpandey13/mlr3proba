@@ -88,6 +88,7 @@ register_mlr3 = function() {
 
   x$add("dens.logloss", MeasureDensLogloss)
   x$add("dens.squared", MeasureDensSquaredloss)
+  x$add("dens.ibl", MeasureDensIntBrierloss)
 
   # x$add("regr.logloss", MeasureRegrLogloss)
 
