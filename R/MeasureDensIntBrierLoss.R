@@ -38,12 +38,12 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
 
           private = list(
            .eps = numeric(0),
-           .score = function(prediction, learner, task, train_set, ...) {
+           .score = function(prediction, learner, task, train_set, test_set, ...) {
           # return NA if learner not compatible
           # change `c("dens.kde")` to list of compatible learners
 
           train =  task$data(train_set)[[1]]
-          x =  task$data()[[1]][-train]
+          x =  task$data()[[1]][! task$data()[[1]] %in% train]
           bw = learner$train(task)$model$bw
 
           kernel = get(as.character(subset(
