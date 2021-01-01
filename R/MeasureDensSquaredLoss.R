@@ -44,12 +44,16 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
          # change `c("dens.kde")` to list of compatible learners
 
 
-           # bw = learner$train(task)$model$bw
-           # kernel = learner$train(task)$model$kernel
+           bw = learner$train(task)$model$bw
+           train =  task$data(train_set)[[1]]
+           dat <- sapply(train, function (x, y) ((x - y) / bw), y = train)
 
-          # vectorized the data
-          # dat <- sapply(data, function (x, y) ((x - y) / bw), y = data)
-          #
+           kernel = get(as.character(subset(
+                  distr6::listKernels(),
+                  ShortName == learner$train(task)$model$kernel,
+                  ClassName)))$new(bw = bw)
+
+
           # squarednorm = switch(kernel,
           #                  "Norm" = distr6::NormalKernel$new()$pdfSquared2Norm(x = dat),
           #                  "Epan" = distr6::Epanechnikov$new()$pdfSquared2Norm(x = dat),
@@ -66,9 +70,11 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
 
           pdf = prediction$pdf
 
-          pdf2norm = learner$train(task, train_set)$model$pdfSquared2norm
+          pdfSquared2norm = sum(kernel$pdfSquared2Norm(x = dat)) / (length(train)^2)
 
-          score = - 2 * mean(pdf) + pdf2norm
+          # pdf2norm = learner$train(task, train_set)$model$pdfSquared2norm
+
+          score = - 2 * mean(pdf) + pdfSquared2norm
 
           # if (is.null(bw)) {
           #    score = NA

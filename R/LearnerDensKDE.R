@@ -74,17 +74,12 @@ LearnerDensKDE = R6::R6Class("LearnerDensKDE",
         train = data,
         kernel = kernel))
 
-      dat <-  sapply(data, function (x, y) ((x - y)), y = data)
-      pdfSquared2norm = sum(kernel$pdfSquared2Norm(x = dat)) / (length(data)^2)
-
       structure(list(distr = Distribution$new(name = paste(self$param_set$values$kernel, "KDE"),
                                              short_name =
                                              paste0(self$param_set$values$kernel, "_KDE"),
                                              pdf = pdf, type = set6::Reals$new()),
-                                             # cdfSquared2norm = cdfSquared2norm,
                                              bw = bw,
-                                             kernel = self$param_set$values$kernel,
-                                             pdfSquared2norm  = pdfSquared2norm
+                                             kernel = self$param_set$values$kernel
       ))
     },
 

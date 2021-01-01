@@ -21,6 +21,11 @@ probability density function, \eqn{f}, evaluated at the observed value, \eqn{y},
 }
 }
 
+\seealso{
+Other Density estimation measures: 
+\code{\link{MeasureDensIntBrierloss}},
+\code{\link{MeasureDensSquaredloss}}
+}
 \concept{Density estimation measures}
 \concept{density measures}
 \section{Super classes}{
