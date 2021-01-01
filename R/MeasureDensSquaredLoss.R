@@ -1,7 +1,7 @@
 #' @template dens_measure
 #' @templateVar title Squared loss
 #' @templateVar inherit [MeasureDens]
-#' @templateVar fullname MeasureDensSquared
+#' @templateVar fullname MeasureDensSquaredloss
 #'
 #' @description
 #' Calculates the squared-loss for density estimation.
