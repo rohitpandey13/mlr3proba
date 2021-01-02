@@ -44,17 +44,17 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
 
           train =  task$data(train_set)[[1]]
           x =  task$data()[[1]][! task$data()[[1]] %in% train]
-          bw = learner$model$bw
+          bw = learner$train(task)$model$bw
 
           kernel = get(as.character(subset(
                   distr6::listKernels(),
-                  ShortName == learner$model$kernel,
+                  ShortName == learner$train(task)$model$kernel,
                   ClassName)))$new(bw = bw)
 
-          if (learner$model$kernel == "Sigm") {
+          if (learner$train(task)$model$kernel == "Sigm") {
 
            score = NA
-           } else if (learner$model$kernel == "Norm") {
+           } else if (learner$train(task)$model$kernel == "Norm") {
 
            test_mat = lapply(x, function (x) x - train)
            cdfInt = mapply(function(x) kernel$cdfIntegral(upper = x), test_mat)
