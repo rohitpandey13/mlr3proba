@@ -48,7 +48,7 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
 
           kernel = get(as.character(subset(
                   distr6::listKernels(),
-                  ShortName == learner$train(task, train_set)$model$kernel,
+                  ShortName == prediction$distr,
                   ClassName)))$new(bw = bw)
 
           if (learner$train(task, train_set)$model$kernel == "Sigm") {
