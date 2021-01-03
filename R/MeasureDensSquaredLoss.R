@@ -18,7 +18,7 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
         id = "dens.squared",
         range = c(- Inf, Inf),
         minimize = TRUE,
-        predict_type = c("pdf", "distr"),
+        predict_type = "distr",
         properties = c("requires_learner", "requires_task", "requires_train_set"),
         man = "mlr3proba::mlr_measures_dens.squared"
         )
