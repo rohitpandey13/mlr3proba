@@ -50,7 +50,7 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
 
            kernel = get(as.character(subset(
                   distr6::listKernels(),
-                  ShortName == learner$train(task)$model$kernel,
+                  ShortName == learner$train(task, train_set)$model$kernel,
                   ClassName)))$new(bw = bw)
 
 
