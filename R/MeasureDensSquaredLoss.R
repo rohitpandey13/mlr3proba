@@ -70,7 +70,7 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
 
           pdf = prediction$pdf
 
-          pdf2norm = learner$train(task, train_set)$model$pdf2norm
+       #   pdf2norm = learner$train(task, train_set)$model$pdf2norm
 
           pdfSquared2norm = sum(kernel$pdfSquared2Norm(x = dat, upper = Inf)) / (length(train)^2)
 
