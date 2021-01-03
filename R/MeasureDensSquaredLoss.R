@@ -44,13 +44,13 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
          # change `c("dens.kde")` to list of compatible learners
 
 
-           bw = learner$model$bw
+           bw = llearner$train(task, train_set)$model$bw
            train =  task$data(train_set)[[1]]
            dat <- sapply(train, function (x, y) ((x - y) / bw), y = train)
 
            kernel = get(as.character(subset(
                   distr6::listKernels(),
-                  ShortName == learner$model$kernel,
+                  ShortName == learner$train(task, train_set)$model$kernel,
                   ClassName)))$new(bw = bw)
 
 
