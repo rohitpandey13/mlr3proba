@@ -47,11 +47,11 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
            bw = learner$train(task)$model$bw
            train =  task$data(train_set)[[1]]
            dat <- sapply(train, function (x, y) ((x - y) / bw), y = train)
-#
-#            kernel = get(as.character(subset(
-#                   distr6::listKernels(),
-#                   ShortName == learner$train(task)$model$kernel,
-#                   ClassName)))$new(bw = bw)
+
+           kernel = get(as.character(subset(
+                  distr6::listKernels(),
+                  ShortName == learner$train(task)$model$kernel,
+                  ClassName)))$new(bw = bw)
 
 
           # squarednorm = switch(kernel,
@@ -70,11 +70,9 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
 
           pdf = prediction$pdf
 
-       #   pdfSquared2norm = sum(kernel$pdfSquared2Norm(x = dat)) / (length(train)^2)
+          pdfSquared2norm = sum(kernel$pdfSquared2Norm(x = dat, upper = Inf)) / (length(train)^2)
 
-          # pdf2norm = learner$train(task, train_set)$model$pdfSquared2norm
-
-          score = - 2 * mean(pdf) #+ pdfSquared2norm
+          score = - 2 * mean(pdf) + pdfSquared2norm
 
           # if (is.null(bw)) {
           #    score = NA
