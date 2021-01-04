@@ -45,7 +45,7 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
 
            train =  task$data(train_set)[[1]]
            bw = learner$train(task, train_set)$model$bw
-           dat <- sapply(train, function (x, y) ((x - y) / bw), y = train)
+           dat <- sapply(train, function (x, y) (x - y), y = train)
            #
            kernel = get(as.character(subset(
                   distr6::listKernels(),
