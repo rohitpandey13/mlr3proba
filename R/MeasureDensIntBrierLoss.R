@@ -48,13 +48,13 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
 
           kernel = get(as.character(subset(
                   distr6::listKernels(),
-                  ShortName == prediction$distr,
+                  ShortName == strprint(prediction$distr),
                   ClassName)))$new(bw = bw)
 
-          if (learner$train(task, train_set)$model$kernel == "Sigm") {
+          if (strprint(prediction$distr) == "Sigm") {
 
            score = NA
-           } else if (learner$train(task, train_set)$model$kernel == "Norm") {
+           } else if (strprint(prediction$distr) == "Norm") {
 
            test_mat = lapply(x, function (x) x - train)
            cdfInt = mapply(function(x) kernel$cdfIntegral(upper = x), test_mat)
