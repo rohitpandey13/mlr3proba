@@ -60,8 +60,8 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
            cdfInt = mapply(function(x) kernel$cdfIntegral(upper = x), test_mat)
            ccdfInt = mapply(function(x) kernel$ccdfIntegral(lower = x), test_mat)
            energy = sum(kernel$energyBrier(train) / length(train)^2)
-           score = mean(colSums(ccdfInt)/length(train) +
-                   colSums(cdfInt)/length(train) -
+           score = mean(sum(ccdfInt)/length(train) +
+                   sum(cdfInt)/length(train) -
                    1/2 * energy)
 
            } else {
