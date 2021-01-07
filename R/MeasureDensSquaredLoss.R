@@ -43,7 +43,7 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
          # return NA if learner not compatible
          # change `c("dens.kde")` to list of compatible learners
 
-           # train =  task$data(train_set)[[1]]
+           train =  task$data(train_set)[[1]]
            # bw = learner$train(task)$model$bw
            # dat <- sapply(train, function (x, y) (x - y), y = train)
 
