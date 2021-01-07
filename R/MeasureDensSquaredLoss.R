@@ -43,37 +43,37 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
          # return NA if learner not compatible
          # change `c("dens.kde")` to list of compatible learners
 
-           train =  task$data(train_set)[[1]]
-           bw = learner$train(task, train_set)$model$bw
-           dat <- sapply(train, function (x, y) (x - y), y = train)
-           #
-           kernel = get(as.character(subset(
-                  distr6::listKernels(),
-                  ShortName == strprint(prediction$distr),
-                  ClassName)))$new(bw = bw)
+           # train =  task$data(train_set)[[1]]
+           # bw = learner$train(task)$model$bw
+           # dat <- sapply(train, function (x, y) (x - y), y = train)
 
-
-          # squarednorm = switch(kernel,
-          #                  "Norm" = distr6::NormalKernel$new()$pdfSquared2Norm(x = dat),
-          #                  "Epan" = distr6::Epanechnikov$new()$pdfSquared2Norm(x = dat),
-          #                  "Unif" = distr6::UniformKernel$new()$pdfSquared2Norm(x = dat),
-          #                  "Triw" = distr6::Triweight$new()$pdfSquared2Norm(x = dat),
-          #                  "Logis" = distr6::LogisticKernel$new()$pdfSquared2Norm(x = dat),
-          #                  "Quart" = distr6::Quartic$new()$pdfSquared2Norm(x = dat),
-          #                  "Sigm" = distr6::Sigmoid$new()$pdfSquared2Norm(x = dat),
-          #                  "Silv" = distr6::Silverman$new()$pdfSquared2Norm(x = dat),
-          #                  "Tric" = distr6::Tricube$new()$pdfSquared2Norm(x = dat),
-          #                  "Tri" = distr6::TriangularKernel$new()$pdfSquared2Norm(x = dat),
-          #                  "Cos" = distr6::Cosine$new()$pdfSquared2Norm(x = dat)
-          # )
+           # kernel = get(as.character(subset(
+           #        distr6::listKernels(),
+           #        ShortName == strprint(prediction$distr),
+           #        ClassName)))$new(bw = bw)
+# #
+#         kernel = learner$train(task)$model$kernel
+#           squarednorm = switch(kernel,
+#                            "Norm" = distr6::NormalKernel$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Epan" = distr6::Epanechnikov$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Unif" = distr6::UniformKernel$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Triw" = distr6::Triweight$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Logis" = distr6::LogisticKernel$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Quart" = distr6::Quartic$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Sigm" = distr6::Sigmoid$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Silv" = distr6::Silverman$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Tric" = distr6::Tricube$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Tri" = distr6::TriangularKernel$new(bw = bw)$pdfSquared2Norm(x = dat),
+#                            "Cos" = distr6::Cosine$new(bw = bw)$pdfSquared2Norm(x = dat)
+#           )
 
           pdf = prediction$pdf
 
-         # pdf2norm = learner$train(task, train_set)$model$pdf2norm
+          pdf2norm = learner$train(task, train_set)$model$pdf2norm
 
-          pdfSquared2norm = sum(kernel$pdfSquared2Norm(x = dat, upper = Inf)) / (length(train)^2)
+          # pdfSquared2norm = sum(kernel$pdfSquared2Norm(x = dat)) / (length(train)^2)
 
-          score = - 2 * mean(pdf) + pdfSquared2norm
+          score = - 2 * mean(pdf) + pdf2norm
 
           # if (is.null(bw)) {
           #    score = NA

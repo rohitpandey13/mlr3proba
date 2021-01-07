@@ -38,18 +38,18 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
 
           private = list(
            .eps = numeric(0),
-           .score = function(prediction, learner, task, train_set, test_set, ...) {
+           .score = function(prediction, learner, task, train_set, ...) {
           # return NA if learner not compatible
           # change `c("dens.kde")` to list of compatible learners
 
           train =  task$data(train_set)[[1]]
-          x =  task$data()[[1]][! task$data()[[1]] %in% train]
-          bw = learner$train(task, train_set)$model$bw
+          x =  task$data()[[1]][!task$data()[[1]] %in% train]
+          bw = learner$train(task)$model$bw
 
           kernel = get(as.character(subset(
                   distr6::listKernels(),
                   ShortName == strprint(prediction$distr),
-                  ClassName)))$new(bw = bw)
+                  ClassName)))$new(bw = 1)
 
           if (strprint(prediction$distr) == "Sigm") {
 
@@ -74,6 +74,8 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
            ccdf2norm = mapply(function(x) kernel$cdfSquared2Norm(upper = - x, x = - train_mat),
                               x_mat)
            score = mean(colSums(cdf2norm)  / (length(train)^2) + colSums(ccdf2norm) / (length(train)^2))
+
+          # score = mean(kernel$cdfSquared2Norm(upper = x, x = 0))
 
            }
           return(score)
