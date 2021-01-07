@@ -44,7 +44,7 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
 
           train =  task$data(train_set)[[1]]
           x =  task$data()[[1]][!task$data()[[1]] %in% train]
-          bw = learner$train(task)$model$bw
+          bw = learner$train(task)$model$bandwidth
 
           kernel = get(as.character(subset(
                   distr6::listKernels(),

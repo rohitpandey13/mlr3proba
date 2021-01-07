@@ -80,7 +80,7 @@ LearnerDensKDE = R6::R6Class("LearnerDensKDE",
       structure(list(distr = Distribution$new(name = paste(self$param_set$values$kernel),
                                              short_name = paste0(self$param_set$values$kernel),
                                              pdf = pdf, type = set6::Reals$new()),
-                                             bw = bw,
+                                             bandwidth = bw,
                                              pdf2norm = pdf2norm,
                                              kernel = self$param_set$values$kernel
       ))
