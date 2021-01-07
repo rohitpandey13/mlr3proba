@@ -18,7 +18,7 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
         id = "dens.ibl",
         range = c(- Inf, Inf),
         minimize = TRUE,
-        predict_type = "distr",
+        predict_type = "pdf",
         properties = c("requires_learner", "requires_task", "requires_train_set"),
         man = "mlr3proba::mlr_measures_dens.squared"
         )
@@ -49,7 +49,7 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
           kernel = get(as.character(subset(
                   distr6::listKernels(),
                   ShortName == strprint(prediction$distr),
-                  ClassName)))$new(bw = 1)
+                  ClassName)))$new(bw = bw)
 
           if (strprint(prediction$distr) == "Sigm") {
 
@@ -74,8 +74,6 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
            ccdf2norm = mapply(function(x) kernel$cdfSquared2Norm(upper = - x, x = - train_mat),
                               x_mat)
            score = mean(colSums(cdf2norm)  / (length(train)^2) + colSums(ccdf2norm) / (length(train)^2))
-
-          # score = mean(kernel$cdfSquared2Norm(upper = x, x = 0))
 
            }
           return(score)

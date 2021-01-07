@@ -18,7 +18,7 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
         id = "dens.squared",
         range = c(- Inf, Inf),
         minimize = TRUE,
-        predict_type = "distr",
+        predict_type = "pdf",
         properties = c("requires_learner", "requires_task", "requires_train_set"),
         man = "mlr3proba::mlr_measures_dens.squared"
         )
@@ -43,14 +43,14 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
          # return NA if learner not compatible
          # change `c("dens.kde")` to list of compatible learners
 
-           # train =  task$data(train_set)[[1]]
-           # bw = learner$train(task)$model$bw
-           # dat <- sapply(train, function (x, y) (x - y), y = train)
-           #
-           # kernel = get(as.character(subset(
-           #        distr6::listKernels(),
-           #        ShortName == strprint(prediction$distr),
-           #        ClassName)))$new(bw = bw)
+          train =  task$data(train_set)[[1]]
+          bw = learner$train(task, train_set)$model$bw
+          dat <- sapply(train, function (x, y) (x - y), y = train)
+
+          kernel = get(as.character(subset(
+            distr6::listKernels(),
+            ShortName == strprint(prediction$distr),
+            ClassName)))$new(bw = bw)
 # #
 #         kernel = learner$train(task)$model$kernel
 #           squarednorm = switch(kernel,
@@ -69,17 +69,17 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
 
           pdf = prediction$pdf
 
-          pdf2norm = learner$train(task, train_set)$model$pdf2norm
+          # pdf2norm = learner$train(task, train_set)$model$pdf2norm
 
-          # pdf2norm = sum(kernel$pdfSquared2Norm(x = dat)) / (length(train)^2)
+          pdf2norm = sum(kernel$pdfSquared2Norm(x = dat)) / (length(train)^2)
 
-          score = - 2 * mean(pdf) + pdf2norm
+          # score = pdf2norm
 
-          # if (is.null(bw)) {
-          #    score = NA
-          # } else {
-          #     score = - 2 * mean(pdf) + sum(pdf2norm)
-          # }
+          if (is.null(bw)) {
+             score = NA
+          } else {
+              score = - 2 * mean(pdf) + sum(pdf2norm)
+          }
 
           return(score)
           }
