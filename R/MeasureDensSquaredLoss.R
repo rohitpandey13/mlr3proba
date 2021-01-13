@@ -43,43 +43,20 @@ MeasureDensSquaredloss = R6::R6Class("MeasureDensSquaredloss",
          # return NA if learner not compatible
          # change `c("dens.kde")` to list of compatible learners
 
-          # train =  task$data(train_set)[[1]]
-          # bw = learner$train(task, train_set)$model$bw
-          # dat <- sapply(train, function (x, y) (x - y), y = train)
-          #
-          # kernel = get(as.character(subset(
-          #   distr6::listKernels(),
-          #   ShortName == strprint(prediction$distr),
-          #   ClassName)))$new(bw = bw)
-# #
-#         kernel = learner$train(task)$model$kernel
-#           squarednorm = switch(kernel,
-#                            "Norm" = distr6::NormalKernel$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Epan" = distr6::Epanechnikov$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Unif" = distr6::UniformKernel$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Triw" = distr6::Triweight$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Logis" = distr6::LogisticKernel$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Quart" = distr6::Quartic$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Sigm" = distr6::Sigmoid$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Silv" = distr6::Silverman$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Tric" = distr6::Tricube$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Tri" = distr6::TriangularKernel$new(bw = bw)$pdfSquared2Norm(x = dat),
-#                            "Cos" = distr6::Cosine$new(bw = bw)$pdfSquared2Norm(x = dat)
-#           )
+        train =  task$data(train_set)[[1]]
+        bw = unlist(prediction$distr$parameters("bandwidth")[[2]])
 
-          pdf = prediction$pdf
+        kernel = get(as.character(subset(
+                        distr6::listKernels(),
+                        ShortName == unlist(prediction$distr$parameters("kernel")[[2]]),
+                        ClassName)))$new(bw = bw)
 
-          pdf2norm = learner$train(task, train_set)$model$pdf2norm
+        dat = sapply(train, function(x) (x - train))
+        pdf = prediction$pdf
 
-          #pdf2norm = sum(kernel$pdfSquared2Norm(x = dat)) / (length(train)^2)
+        pdf2norm = sum(kernel$pdfSquared2Norm(x = dat)) / (length(train)^2)
 
-          # score = pdf2norm
-#
-#           if (is.null(bw)) {
-#              score = NA
-#           } else {
-          score = - 2 * mean(pdf) + pdf2norm
-#           }
+        score = - 2 * mean(pdf) + pdf2norm
 
           return(score)
           }
