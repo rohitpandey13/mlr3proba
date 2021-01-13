@@ -43,9 +43,8 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
           # change `c("dens.kde")` to list of compatible learners
 
           train =  task$data(train_set)[[1]]
-          x =  task$data()[[1]][!task$data()[[1]] %in% train]
+          test =  task$data()[[1]][!task$data()[[1]] %in% train]
           bw = unlist(prediction$distr$parameters("bandwidth")[[2]])
-
 
           kernel = get(as.character(subset(
                   distr6::listKernels(),
@@ -53,34 +52,23 @@ MeasureDensIntBrierloss = R6::R6Class("MeasureDensIntBrierloss",
                   ClassName)))$new(bw = bw)
 
           if (unlist(prediction$distr$parameters("kernel")[[2]]) == "Sigm") {
-                   score = NA
-           } else if (unlist(prediction$distr$parameters("kernel")[[2]]) == "Norm") {
-
-                test_mat = lapply(x, function (x) x - train)
-                cdfInt = mapply(function(x) kernel$cdfIntegral(upper = x), test_mat)
-                ccdfInt = mapply(function(x) kernel$ccdfIntegral(lower = x), test_mat)
-                energy = sum(kernel$energyBrier(train) / length(train)^2)
-
-                if (length(train) == 1) {
-                        score = mean(ccdfInt) + mean(cdfInt) - 1/2 * energy
-                } else {
-                        score = mean(colMeans(cdfInt) + colMeans(ccdfInt) - 1 / 2 * energy)
-                }
-
-                } else {
-
-                        x_mat = sapply(x, function (x) x-train)
-                        x_mat = as.numeric(x_mat)
-                        train_mat = sapply(train, function(x) x - train)
-                        train_mat = as.numeric(train_mat)
-                        res = matrix(NA, length(x_mat), length(train_mat))
-                        for (i in 1:length(x_mat)) {
-                                for (j in 1:length(train_mat)) {
-                                        res[i, j] = (kernel$cdfSquared2Norm(upper = x_mat[i], x = train_mat[j]) +
-                                                             kernel$cdfSquared2Norm(upper = - x_mat[i], x = -train_mat[j]))
-                                }
-                        }
-                        score =  sum(res) / (length(train)^3 * length(x))
+                  score = NA
+          } else if (unlist(prediction$distr$parameters("kernel")[[2]]) == "Norm") {
+                  test_mat = lapply(test, function(x) x - train)
+                  cdfInt = mapply(function(x) kernel$cdfIntegral(upper = x), test_mat)
+                  ccdfInt = mapply(function(x) kernel$ccdfIntegral(lower = x), test_mat)
+                  energy = sum(kernel$energyBrier(train)) / length(train)^2
+                  if (length(train) == 1) {
+                          score = mean(cdfInt) + mean(ccdfInt) - 1 / 2 * energy
+                  } else {
+                          score = mean(colMeans(cdfInt) + colMeans(ccdfInt) - 1 / 2 * energy)
+                  }
+          } else {
+                  x_mat = sapply(test, function(x) x - train)
+                  train_mat = sapply(train, function(x) x - train)
+                  cdf2norm = apply(x_mat, 2, function(x) kernel$cdfSquared2Norm(upper = x, x = train_mat))
+                  ccdf2norm = apply(x_mat, 2, function(x) kernel$cdfSquared2Norm(upper = -x, x = -train_mat))
+                  score = mean(colSums(cdf2norm) / length(train)^2 + colSums(ccdf2norm) / length(train)^2)
           }
 
           return(score)
