@@ -84,7 +84,7 @@ The task_type is set to &quot;dens&quot;." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.6</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.3.0</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -119,7 +119,7 @@ The task_type is set to &quot;dens&quot;." />
 </li>
         <li>
   <a href="https://github.com/mlr-org/mlr3proba/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -131,13 +131,13 @@ The task_type is set to &quot;dens&quot;." />
 </li>
 <li>
   <a href="https://stackoverflow.com/questions/tagged/mlr3">
-    <span class="fab fa fab fa-stack-overflow"></span>
+    <span class="fab fa-stack-overflow"></span>
      
   </a>
 </li>
 <li>
   <a href="https://mlr-org.com/">
-    <span class="fa fa-rss"></span>
+    <span class="fas fa-rss"></span>
      
   </a>
 </li>
@@ -182,6 +182,9 @@ Access the stored predicted probability density function.</p></dd>
 <dt><code>cdf</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
 Access the stored predicted cumulative distribution function.</p></dd>
 
+<dt><code>distr</code></dt><dd><p>(<a href='https://alan-turing-institute.github.io/distr6/reference/Distribution.html'>Distribution</a>)<br />
+Access the stored estimated distribution.</p></dd>
+
 </dl><p></div></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
@@ -209,6 +212,7 @@ Access the stored predicted cumulative distribution function.</p></dd>
   row_ids <span class='op'>=</span> <span class='va'>task</span><span class='op'>$</span><span class='va'>row_ids</span>,
   pdf <span class='op'>=</span> <span class='cn'>NULL</span>,
   cdf <span class='op'>=</span> <span class='cn'>NULL</span>,
+  distr <span class='op'>=</span> <span class='cn'>NULL</span>,
   check <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre><p></div></p>
 
@@ -227,6 +231,10 @@ One element for each observation in the test set.</p></dd>
 <dt><code>cdf</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/numeric.html'>numeric()</a></code>)<br />
 Numeric vector of estimated cumulative distribution function, evaluated at values in test
 set. One element for each observation in the test set.</p></dd>
+
+<dt><code>distr</code></dt><dd><p>(<a href='https://alan-turing-institute.github.io/distr6/reference/Distribution.html'>Distribution</a>)<br />
+<a href='https://alan-turing-institute.github.io/distr6/reference/Distribution.html'>Distribution</a> from <a href='https://CRAN.R-project.org/package=distr6'><span class="pkg">distr6</span></a>.
+The distribution from which <code>pdf</code> and <code>cdf</code> are derived.</p></dd>
 
 <dt><code>check</code></dt><dd><p>(<code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>)<br />
 If <code>TRUE</code>, performs argument checks and predict type conversions.</p></dd>
@@ -251,13 +259,13 @@ If <code>TRUE</code>, performs argument checks and predict type conversions.</p>
 <span class='va'>learner</span> <span class='op'>=</span> <span class='va'>mlr_learners</span><span class='op'>$</span><span class='fu'>get</span><span class='op'>(</span><span class='st'>"dens.hist"</span><span class='op'>)</span>
 <span class='va'>p</span> <span class='op'>=</span> <span class='va'>learner</span><span class='op'>$</span><span class='fu'>train</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span><span class='op'>$</span><span class='fu'>predict</span><span class='op'>(</span><span class='va'>task</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    row_id         pdf       cdf
-#&gt; 1:      1 0.001428571 0.9957143
-#&gt; 2:      2 0.007142857 0.9478571
-#&gt; 3:      3 0.005714286 0.0400000
-#&gt; 4:      4 0.030000000 0.8692857
-#&gt; 5:      5 0.012857143 0.1085714
-#&gt; 6:      6 0.012857143 0.1497143</div></pre>
+</div><div class='output co'>#&gt;    row_id         pdf       cdf              distr
+#&gt; 1:      1 0.001428571 0.9957143 &lt;Distribution[38]&gt;
+#&gt; 2:      2 0.007142857 0.9478571 &lt;Distribution[38]&gt;
+#&gt; 3:      3 0.005714286 0.0400000 &lt;Distribution[38]&gt;
+#&gt; 4:      4 0.030000000 0.8692857 &lt;Distribution[38]&gt;
+#&gt; 5:      5 0.012857143 0.1085714 &lt;Distribution[38]&gt;
+#&gt; 6:      6 0.012857143 0.1497143 &lt;Distribution[38]&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
