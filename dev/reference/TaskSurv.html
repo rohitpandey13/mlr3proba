@@ -86,7 +86,7 @@ The task_type is set to &quot;surv&quot;." />
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org" /></a>
-        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.2.6.9000</small></a>
+        <a class="navbar-brand" href="../index.html">mlr3proba <small>v0.3.1.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -229,7 +229,7 @@ Returns the type of censoring, one of "right", "left", "counting", "interval", o
   time <span class='op'>=</span> <span class='st'>"time"</span>,
   event <span class='op'>=</span> <span class='st'>"event"</span>,
   <span class='va'>time2</span>,
-  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right"</span>, <span class='st'>"left"</span>, <span class='st'>"counting"</span>, <span class='st'>"interval"</span>, <span class='st'>"mstate"</span><span class='op'>)</span>
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right"</span>, <span class='st'>"left"</span>, <span class='st'>"interval"</span>, <span class='st'>"counting"</span>, <span class='st'>"interval2"</span>, <span class='st'>"mstate"</span><span class='op'>)</span>
 <span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
@@ -318,7 +318,7 @@ Row indices.</p></dd>
 <p><code><a href='https://rdrr.io/r/base/integer.html'>integer()</a></code></p>
 <p><hr>
 <a id="method-unique_times"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>unique_times()</code></h3>
-<p>Returns the sorted unique outcome times.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p>Returns the sorted unique outcome times for 'right', 'left', and 'mcstate'.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>TaskSurv</span><span class='op'>$</span><span class='fu'>unique_times</span><span class='op'>(</span>rows <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>

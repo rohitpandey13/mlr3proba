@@ -46,7 +46,7 @@
 
       <div class="navbar-brand-container">
         <a href="https://mlr-org.com"><img src="https://raw.githubusercontent.com/mlr-org/mlr3/master/man/figures/logo.png" id="hexlogo" alt="mlr-org"></a>
-        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.2.6.9000</small></a>
+        <a class="navbar-brand" href="index.html">mlr3proba <small>v0.3.1.9000</small></a>
       </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -121,7 +121,7 @@
 <p>Package website: <a href="https://mlr3proba.mlr-org.com/">release</a> | <a href="https://mlr3proba.mlr-org.com/dev/">dev</a></p>
 <p>Probabilistic Supervised Learning for <strong><a href="https://github.com/mlr-org/mlr3/">mlr3</a></strong>.</p>
 <!-- badges: start -->
-<p><a href="https://github.com/mlr-org/mlr3proba/actions"><img src="https://github.com/mlr-org/mlr3proba/workflows/tic/badge.svg?branch=main" alt="tic"></a> <a href="https://www.codefactor.io/repository/github/mlr-org/mlr3proba"><img src="https://www.codefactor.io/repository/github/mlr-org/mlr3proba/badge" alt="CodeFactor"></a> <a href="https://cran.r-project.org/web/checks/check_results_mlr3proba.html"><img src="https://cranchecks.info/badges/worst/mlr3proba" alt="cran checks"></a> <a href="https://arxiv.org/abs/2008.08080"><img src="https://img.shields.io/badge/arXiv-2008.08080-brightgreen.svg" alt="arXiv"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <a href="https://lmmisld-lmu-stats-slds.srv.mwn.de/mlr_invite/"><img src="https://img.shields.io/badge/chat-mattermost-orange.svg" alt="Mattermost"></a> <!-- badges: end --></p>
+<p><a href="https://github.com/mlr-org/mlr3proba/actions"><img src="https://github.com/mlr-org/mlr3proba/workflows/tic/badge.svg?branch=main" alt="tic"></a> <a href="https://www.codefactor.io/repository/github/mlr-org/mlr3proba"><img src="https://www.codefactor.io/repository/github/mlr-org/mlr3proba/badge" alt="CodeFactor"></a> <a href="https://cran.r-project.org/web/checks/check_results_mlr3proba.html"><img src="https://cranchecks.info/badges/worst/mlr3proba" alt="cran checks"></a> <a href="https://doi.org/10.1093/bioinformatics/btab039"><img src="https://img.shields.io/badge/Article-10.1093%2Fbioinformatics%2Fbtab039-brightgreen" alt="Article"></a> <a href="https://stackoverflow.com/questions/tagged/mlr3"><img src="https://img.shields.io/badge/stackoverflow-mlr3-orange.svg" alt="StackOverflow"></a> <a href="https://lmmisld-lmu-stats-slds.srv.mwn.de/mlr_invite/"><img src="https://img.shields.io/badge/chat-mattermost-orange.svg" alt="Mattermost"></a> <!-- badges: end --></p>
 <div id="what-is-mlr3proba-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#what-is-mlr3proba-" class="anchor"></a>What is mlr3proba ?</h2>
@@ -292,6 +292,20 @@
 <a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
 <p>Several people contributed to the building of <code>mlr3proba</code>. Firstly, thanks to Michel Lang for writing <code>mlr3survival</code>. Several learners and measures implemented in <code>mlr3proba</code>, as well as the prediction, task, and measure surv objects, were written initially in <code>mlr3survival</code> before being absorbed into <code>mlr3proba</code>. Secondly thanks to Franz Kiraly for major contributions towards the design of the proba-specific parts of the package, including compositors and predict types. Also for mathematical contributions towards the scoring rules implemented in the package. Finally thanks to Bernd Bischl and the rest of the mlr core team for building <code>mlr3</code> and for many conversations about the design of <code>mlr3proba</code>.</p>
 </div>
+<div id="citing-mlr3proba" class="section level2">
+<h2 class="hasAnchor">
+<a href="#citing-mlr3proba" class="anchor"></a>Citing mlr3proba</h2>
+<p>If you use mlr3proba, please cite our <a href="https://doi.org/10.1093/bioinformatics/btab039">Bioinformatics article</a>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">@</span>Article{,</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  title =<span class="st"> </span>{mlr3proba<span class="op">:</span><span class="st"> </span>An R Package <span class="cf">for</span> Machine Learning <span class="cf">in</span> Survival Analysis},</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  author =<span class="st"> </span>{Raphael Sonabend and Franz J Király and Andreas Bender and Bernd Bischl and Michel Lang},</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  journal =<span class="st"> </span>{Bioinformatics},</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  month =<span class="st"> </span>{<span class="dv">02</span>},</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  year =<span class="st"> </span>{<span class="dv">2021</span>},</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  doi =<span class="st"> </span>{<span class="fl">10.1093</span><span class="op">/</span>bioinformatics<span class="op">/</span>btab039},</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  issn =<span class="st"> </span>{<span class="dv">1367-4803</span>},</span>
+<span id="cb3-9"><a href="#cb3-9"></a>}</span></code></pre></div>
+</div>
 </div>
   </div>
 
@@ -311,6 +325,12 @@
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.r-project.org/Licenses/LGPL-3">LGPL-3</a></li>
+</ul>
+</div>
+<div class="citation">
+<h2>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html">Citing mlr3proba</a></li>
 </ul>
 </div>
 <div class="developers">
